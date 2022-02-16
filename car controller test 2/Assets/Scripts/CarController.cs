@@ -10,6 +10,7 @@ public class CarController : MonoBehaviour
 
     private Rigidbody carRigidBody;
 
+    //I don't think I need this, might be leftover from old input system
     private const string HORIZONTAL = "Horizontal";
     private const string VERTICAL = "Vertical";
 
@@ -17,6 +18,7 @@ public class CarController : MonoBehaviour
 
     private float horizontalInput;
     private float verticalInput;
+    private float gamepadVerticalInput;
     private float currentSteerAngle;
     private float currentBrakeForce;
     private float brakeCheck;
@@ -24,6 +26,9 @@ public class CarController : MonoBehaviour
 
     private bool isBraking;
     private bool isResetting;
+
+    private bool touchingGround;
+    private float distToGround = 0.65f;
 
     [SerializeField] private bool frontWheelDrive;
     [SerializeField] private bool rearWheelDrive;
@@ -33,6 +38,10 @@ public class CarController : MonoBehaviour
     [SerializeField] private float motorForce;
     [SerializeField] private float brakeForce;
     [SerializeField] private float maxSteerAngle;
+
+    [SerializeField] private float controlPitchFactor;
+    [SerializeField] private float controlYawFactor;
+    [SerializeField] private float controlRollFactor;
 
     [SerializeField] private WheelCollider frontLeftWheelCollider;
     [SerializeField] private WheelCollider frontRightWheelCollider;
@@ -45,6 +54,7 @@ public class CarController : MonoBehaviour
     [SerializeField] private Transform backRightWheelTransform;
 
     [SerializeField] InputAction steering;
+    [SerializeField] InputAction gamepadVertical;
     [SerializeField] InputAction handbrake;
     [SerializeField] InputAction reset;
 
@@ -58,6 +68,7 @@ public class CarController : MonoBehaviour
     private void OnEnable()
     {
         steering.Enable();
+        gamepadVertical.Enable();
         handbrake.Enable();
         reset.Enable();
     }
@@ -65,6 +76,7 @@ public class CarController : MonoBehaviour
     private void OnDisable()
     {
         steering.Disable();
+        gamepadVertical.Disable();
         handbrake.Disable();
         reset.Disable();
     }
@@ -72,8 +84,10 @@ public class CarController : MonoBehaviour
     private void FixedUpdate()
     {
         GetInput();
+        CheckGround();
         HandleMotor();
         HandleSteering();
+        HandleRotation();
         UpdateWheels();
         ResetCheck();
     }
@@ -87,12 +101,29 @@ public class CarController : MonoBehaviour
 
         horizontalInput = steering.ReadValue<Vector2>().x;
         verticalInput = steering.ReadValue<Vector2>().y;
+        gamepadVerticalInput = gamepadVertical.ReadValue<float>();
         brakeCheck = handbrake.ReadValue<float>();
         if (brakeCheck > .5)
         { isBraking = true; } else { isBraking = false; }
         resetCheck = reset.ReadValue<float>();
         if (resetCheck > .5)
         { isResetting = true; } else { isResetting = false; }
+    }
+
+    void CheckGround()
+    {
+        if (Physics.Raycast(frontLeftWheelTransform.localPosition, Vector3.down, distToGround) &&
+            Physics.Raycast(frontRightWheelTransform.localPosition, Vector3.down, distToGround) &&
+            Physics.Raycast(backLeftWheelTransform.localPosition, Vector3.down, distToGround) &&
+            Physics.Raycast(backRightWheelTransform.localPosition, Vector3.down, distToGround)  )
+        {
+            touchingGround = true;
+        }
+        else
+        {
+            touchingGround = false;
+        }
+        Debug.Log(touchingGround);
     }
 
     private void HandleMotor()
@@ -106,8 +137,8 @@ public class CarController : MonoBehaviour
         if (rearWheelDrive)
         {
             //Transmission()
-            backLeftWheelCollider.motorTorque = verticalInput * motorForce;
-            backRightWheelCollider.motorTorque = verticalInput * motorForce;
+            backLeftWheelCollider.motorTorque = verticalInput * motorForce;// * transmissionForce
+            backRightWheelCollider.motorTorque = verticalInput * motorForce;// * transmissionForce
         }
 
         currentBrakeForce = isBraking ? brakeForce : 0f;
@@ -167,6 +198,32 @@ public class CarController : MonoBehaviour
         currentSteerAngle = maxSteerAngle * horizontalInput;
         frontLeftWheelCollider.steerAngle = currentSteerAngle;
         frontRightWheelCollider.steerAngle = currentSteerAngle;
+    }
+
+    private void HandleRotation()
+    {
+        if (touchingGround == false)
+        {
+            float pitch;
+
+            float yaw;
+
+            float roll;
+
+            if (isBraking == false)
+            {
+                pitch = transform.eulerAngles.x + gamepadVerticalInput * controlPitchFactor; //specific to gamepad for time being, needs fixing
+                yaw = transform.eulerAngles.y + horizontalInput * controlYawFactor;
+                transform.rotation = Quaternion.Euler(pitch, yaw, transform.eulerAngles.z);
+            }
+            else if (isBraking)
+            {
+                pitch = transform.eulerAngles.x + gamepadVerticalInput * controlPitchFactor; //specific to gamepad for time being, needs fixing
+                roll = transform.eulerAngles.z + horizontalInput * -controlRollFactor;
+                transform.rotation = Quaternion.Euler(pitch, transform.eulerAngles.y, roll);
+            }
+
+        }
     }
 
     private void UpdateWheels()
