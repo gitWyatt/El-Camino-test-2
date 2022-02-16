@@ -23,9 +23,11 @@ public class CarController : MonoBehaviour
     private float currentBrakeForce;
     private float brakeCheck;
     private float resetCheck;
+    private float flipCheck;
 
     private bool isBraking;
     private bool isResetting;
+    private bool isFlipping;
 
     private bool touchingGround;
     private float distToGround = 0.65f;
@@ -56,6 +58,7 @@ public class CarController : MonoBehaviour
     [SerializeField] InputAction steering;
     [SerializeField] InputAction gamepadVertical;
     [SerializeField] InputAction handbrake;
+    [SerializeField] InputAction flip;
     [SerializeField] InputAction reset;
 
     private void Start()
@@ -71,6 +74,7 @@ public class CarController : MonoBehaviour
         gamepadVertical.Enable();
         handbrake.Enable();
         reset.Enable();
+        flip.Enable();
     }
 
     private void OnDisable()
@@ -79,6 +83,7 @@ public class CarController : MonoBehaviour
         gamepadVertical.Disable();
         handbrake.Disable();
         reset.Disable();
+        flip.Disable();
     }
 
     private void FixedUpdate()
@@ -108,14 +113,22 @@ public class CarController : MonoBehaviour
         resetCheck = reset.ReadValue<float>();
         if (resetCheck > .5)
         { isResetting = true; } else { isResetting = false; }
+        flipCheck = flip.ReadValue<float>();
+        if (flipCheck > .5)
+        { isFlipping = true; } else { isFlipping = false; }
     }
 
     void CheckGround()
     {
-        if (Physics.Raycast(frontLeftWheelTransform.localPosition, Vector3.down, distToGround) &&
-            Physics.Raycast(frontRightWheelTransform.localPosition, Vector3.down, distToGround) &&
-            Physics.Raycast(backLeftWheelTransform.localPosition, Vector3.down, distToGround) &&
-            Physics.Raycast(backRightWheelTransform.localPosition, Vector3.down, distToGround)  )
+        //if (Physics.Raycast(frontLeftWheelTransform.position, -frontLeftWheelTransform.up, distToGround) &&
+        //    Physics.Raycast(frontRightWheelTransform.position, -frontRightWheelTransform.up, distToGround) &&
+        //    Physics.Raycast(backLeftWheelTransform.position, -backLeftWheelTransform.up, distToGround) &&
+        //    Physics.Raycast(backRightWheelTransform.position, -backRightWheelTransform.up, distToGround))
+
+        if (Physics.Raycast(frontLeftWheelTransform.position, Vector3.down, distToGround) &&
+            Physics.Raycast(frontRightWheelTransform.position, Vector3.down, distToGround) &&
+            Physics.Raycast(backLeftWheelTransform.position, Vector3.down, distToGround) &&
+            Physics.Raycast(backRightWheelTransform.position, Vector3.down, distToGround))
         {
             touchingGround = true;
         }
@@ -123,7 +136,8 @@ public class CarController : MonoBehaviour
         {
             touchingGround = false;
         }
-        Debug.Log(touchingGround);
+        //output to log
+        //Debug.Log(touchingGround);
     }
 
     private void HandleMotor()
@@ -210,6 +224,7 @@ public class CarController : MonoBehaviour
 
             float roll;
 
+            //with Euler angles, breaks when upside down
             if (isBraking == false)
             {
                 pitch = transform.eulerAngles.x + gamepadVerticalInput * controlPitchFactor; //specific to gamepad for time being, needs fixing
@@ -221,8 +236,28 @@ public class CarController : MonoBehaviour
                 pitch = transform.eulerAngles.x + gamepadVerticalInput * controlPitchFactor; //specific to gamepad for time being, needs fixing
                 roll = transform.eulerAngles.z + horizontalInput * -controlRollFactor;
                 transform.rotation = Quaternion.Euler(pitch, transform.eulerAngles.y, roll);
+                Debug.Log(roll);
             }
 
+
+            //without Euler angles, breaks when upside down
+            //if (isBraking == false)
+            //{
+            //    pitch = transform.rotation.x + gamepadVerticalInput * controlPitchFactor; //specific to gamepad for time being, needs fixing
+            //    yaw = transform.rotation.y + horizontalInput * controlYawFactor;
+            //    transform.rotation *= Quaternion.AngleAxis(pitch, Vector3.right);
+            //    transform.rotation *= Quaternion.AngleAxis(yaw, Vector3.up);
+            //}
+            //else if (isBraking)
+            //{
+            //    pitch = transform.rotation.x + gamepadVerticalInput * controlPitchFactor; //specific to gamepad for time being, needs fixing
+            //    roll = transform.rotation.z + horizontalInput * -controlRollFactor;
+            //    transform.rotation *= Quaternion.AngleAxis(roll, Vector3.forward);
+            //    Debug.Log(roll);
+            //}
+
+            float help = transform.eulerAngles.z;
+                Debug.Log(help);
         }
     }
 
@@ -248,6 +283,11 @@ public class CarController : MonoBehaviour
         if (isResetting == true)
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
+        if (isFlipping == true)
+        {
+            transform.rotation = Quaternion.Euler(transform.eulerAngles.x, transform.eulerAngles.y, 0);
+
         }
     }
 }
