@@ -224,34 +224,68 @@ public class CarController : MonoBehaviour
 
             float roll;
 
-            //with Euler angles, breaks when upside down
-            if (isBraking == false)
-            {
-                pitch = transform.eulerAngles.x + gamepadVerticalInput * controlPitchFactor; //specific to gamepad for time being, needs fixing
-                yaw = transform.eulerAngles.y + horizontalInput * controlYawFactor;
-                transform.rotation = Quaternion.Euler(pitch, yaw, transform.eulerAngles.z);
-            }
-            else if (isBraking)
-            {
-                pitch = transform.eulerAngles.x + gamepadVerticalInput * controlPitchFactor; //specific to gamepad for time being, needs fixing
-                roll = transform.eulerAngles.z + horizontalInput * -controlRollFactor;
-                transform.rotation = Quaternion.Euler(pitch, transform.eulerAngles.y, roll);
-                Debug.Log(roll);
-            }
+            ////with Euler angles, transform.rotation, breaks when upside down
+            //if (isBraking == false)
+            //{
+            //    pitch = transform.eulerAngles.x + gamepadVerticalInput * controlPitchFactor; //specific to gamepad for time being, needs fixing
+            //    yaw = transform.eulerAngles.y + horizontalInput * controlYawFactor;
+            //    transform.rotation = Quaternion.Euler(pitch, yaw, transform.eulerAngles.z);
+            //}
+            //else if (isBraking)
+            //{
+            //    pitch = transform.eulerAngles.x + gamepadVerticalInput * controlPitchFactor; //specific to gamepad for time being, needs fixing
+            //    roll = transform.eulerAngles.z + horizontalInput * -controlRollFactor;
+            //    transform.rotation = Quaternion.Euler(transform.eulerAngles.x, transform.eulerAngles.y, roll);
+            //    Debug.Log(roll);
+            //}
 
-
-            //without Euler angles, breaks when upside down
+            //without Euler angles, transform.Rotate() with float angles, breaks when upside down
             //if (isBraking == false)
             //{
             //    pitch = transform.rotation.x + gamepadVerticalInput * controlPitchFactor; //specific to gamepad for time being, needs fixing
             //    yaw = transform.rotation.y + horizontalInput * controlYawFactor;
+            //    transform.Rotate(pitch, yaw, transform.rotation.z, Space.Self);
+            //}
+            //else if (isBraking)
+            //{
+            //    pitch = transform.rotation.x + gamepadVerticalInput * controlPitchFactor; //specific to gamepad for time being, needs fixing
+            //    //roll = transform.rotation.z + horizontalInput * -controlRollFactor;
+            //    roll = transform.rotation.z + horizontalInput * -controlRollFactor;
+            //    transform.Rotate(transform.rotation.x, transform.rotation.y, roll, Space.Self);
+            //    Debug.Log(roll);
+            //}
+
+            //without Euler angles, transform.Rotate() with Vector3, still fucking breaks upside down
+            if (isBraking == false)
+            {
+                pitch = transform.rotation.x + gamepadVerticalInput * controlPitchFactor; //specific to gamepad for time being, needs fixing
+                yaw = transform.rotation.y + horizontalInput * controlYawFactor;
+                transform.Rotate(Vector3.right, pitch, Space.World);
+                transform.Rotate(Vector3.up, yaw, Space.World);
+            }
+            else if (isBraking)
+            {
+                //pitch = transform.rotation.x + gamepadVerticalInput * controlPitchFactor; //specific to gamepad for time being, needs fixing
+                roll = transform.rotation.z + horizontalInput * -controlRollFactor;
+                transform.Rotate(Vector3.forward, roll, Space.World);
+                Debug.Log(roll);
+            }
+
+            //without Euler angles, transform.rotation, breaks when upside down
+            //if (isBraking == false)
+            //{
+            //    //pitch = transform.rotation.x + gamepadVerticalInput * controlPitchFactor; //specific to gamepad for time being, needs fixing
+            //    //yaw = transform.rotation.y + horizontalInput * controlYawFactor;
+            //    pitch = gamepadVerticalInput;
+            //    yaw = horizontalInput;
             //    transform.rotation *= Quaternion.AngleAxis(pitch, Vector3.right);
             //    transform.rotation *= Quaternion.AngleAxis(yaw, Vector3.up);
             //}
             //else if (isBraking)
             //{
-            //    pitch = transform.rotation.x + gamepadVerticalInput * controlPitchFactor; //specific to gamepad for time being, needs fixing
-            //    roll = transform.rotation.z + horizontalInput * -controlRollFactor;
+            //    //pitch = transform.rotation.x + gamepadVerticalInput * controlPitchFactor; //specific to gamepad for time being, needs fixing
+            //    //roll = transform.rotation.z + horizontalInput * -controlRollFactor;
+            //    roll = -horizontalInput;
             //    transform.rotation *= Quaternion.AngleAxis(roll, Vector3.forward);
             //    Debug.Log(roll);
             //}
