@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
 
@@ -31,6 +32,11 @@ public class CarController : MonoBehaviour
 
     private bool touchingGround;
     private float distToGround = 0.65f;
+
+    double mph;
+
+    [SerializeField] public Text velocityOutput;
+    [SerializeField] public Text speedOutput;
 
     [SerializeField] private bool frontWheelDrive;
     [SerializeField] private bool rearWheelDrive;
@@ -93,6 +99,7 @@ public class CarController : MonoBehaviour
         HandleMotor();
         HandleSteering();
         HandleRotation();
+        HandleSpeedometer();
         UpdateWheels();
         ResetCheck();
     }
@@ -344,6 +351,14 @@ public class CarController : MonoBehaviour
             float help = transform.rotation.z;
                 Debug.Log(help);
         }
+    }
+
+    private void HandleSpeedometer()        //need to correct for up/down.  speed ramps up when freefalling, etc.
+    {
+        mph = carRigidBody.velocity.magnitude * 2.237;      //calculate accurate mph
+        //kph = carRigidBody.velocity.magnitude * 3.6;      //calculate accurate kph
+        velocityOutput.text = carRigidBody.velocity.magnitude.ToString("F2") + "Units";
+        speedOutput.text = mph.ToString("F2") + "MPH";
     }
 
     private void UpdateWheels()
