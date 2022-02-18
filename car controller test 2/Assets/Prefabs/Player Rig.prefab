@@ -152,7 +152,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1428129084899743190}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.74, z: 0}
+  m_LocalPosition: {x: 0, y: -0.74, z: 0.9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -299,7 +299,7 @@ WheelCollider:
   m_Radius: 0.47
   m_SuspensionSpring:
     spring: 35000
-    damper: 1500
+    damper: 500
     targetPosition: 0.5
   m_SuspensionDistance: 0.3
   m_ForceAppPointDistance: 0
@@ -735,8 +735,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1428129086377603201}
-  m_LocalRotation: {x: 0.101011425, y: 0.000000024209038, z: -0.0000000024579614, w: 0.99488527}
-  m_LocalPosition: {x: 0, y: 24.56, z: -30.19}
+  m_LocalRotation: {x: 0.101011425, y: -0.000000024209035, z: 0.000000002457961, w: 0.99488527}
+  m_LocalPosition: {x: 0, y: 25.3, z: -30.19}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -762,8 +762,8 @@ MonoBehaviour:
   m_StreamingVersion: 20170927
   m_Priority: 10
   m_StandbyUpdate: 2
-  m_LookAt: {fileID: 1428129084899743177}
-  m_Follow: {fileID: 1428129084899743177}
+  m_LookAt: {fileID: 6790256317913548495}
+  m_Follow: {fileID: 6790256317913548495}
   m_Lens:
     FieldOfView: 90
     OrthographicSize: 5
@@ -773,7 +773,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.6007905, y: 1}
+    m_SensorSize: {x: 1.6, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -921,8 +921,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1428129086589540616}
-  m_LocalRotation: {x: 0.101011425, y: 0.000000024209038, z: -0.0000000024579614, w: 0.99488527}
-  m_LocalPosition: {x: 0, y: 24.56, z: -30.19}
+  m_LocalRotation: {x: 0.101011425, y: -0.000000024209035, z: 0.000000002457961, w: 0.99488527}
+  m_LocalPosition: {x: 0, y: 25.3, z: -30.19}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1231,8 +1231,11 @@ MonoBehaviour:
   frontHandBrake: 0
   rearHandBrake: 1
   motorForce: 5000
-  brakeForce: 500
+  brakeForce: 400
   maxSteerAngle: 30
+  controlPitchFactor: 20000
+  controlYawFactor: 10000
+  controlRollFactor: 10000
   frontLeftWheelCollider: {fileID: 1428129085900252539}
   frontRightWheelCollider: {fileID: 1428129085242269854}
   backLeftWheelCollider: {fileID: 1428129085215122542}
@@ -1330,6 +1333,39 @@ MonoBehaviour:
       m_Action: Steering
       m_Flags: 8
     m_Flags: 0
+  gamepadVertical:
+    m_Name: Gamepad Vertical
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 2e708f56-0ff0-4f6c-9b05-cda09d5a225e
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 1D Axis
+      m_Id: cd26f6d3-a7f3-49e5-9bd0-f6058f274d44
+      m_Path: 1DAxis
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Gamepad Vertical
+      m_Flags: 4
+    - m_Name: negative
+      m_Id: 3144b26b-4fc2-42b2-8246-8ce2f0158e2d
+      m_Path: <Gamepad>/leftStick/down
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Gamepad Vertical
+      m_Flags: 8
+    - m_Name: positive
+      m_Id: 4816ece7-7830-44eb-8648-1e9e6e2f335d
+      m_Path: <Gamepad>/leftStick/up
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Gamepad Vertical
+      m_Flags: 8
+    m_Flags: 0
   handbrake:
     m_Name: Handbrake
     m_Type: 0
@@ -1355,6 +1391,31 @@ MonoBehaviour:
       m_Action: Handbrake
       m_Flags: 0
     m_Flags: 0
+  flip:
+    m_Name: Flip
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: d1450511-1f01-4cad-9d5d-0519df590796
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: ebef4472-f90c-49de-966d-ec9625b7f871
+      m_Path: <Gamepad>/buttonNorth
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Flip
+      m_Flags: 0
+    - m_Name: 
+      m_Id: 6555a93e-e59e-4977-af14-8b21c7a6d343
+      m_Path: <Keyboard>/r
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Flip
+      m_Flags: 0
+    m_Flags: 0
   reset:
     m_Name: Reset
     m_Type: 0
@@ -1365,7 +1426,7 @@ MonoBehaviour:
     m_SingletonActionBindings:
     - m_Name: 
       m_Id: 5b27d1b1-7d32-4b5e-a932-e6e41b99ecf6
-      m_Path: <Keyboard>/r
+      m_Path: <Keyboard>/escape
       m_Interactions: 
       m_Processors: 
       m_Groups: 
@@ -1373,7 +1434,7 @@ MonoBehaviour:
       m_Flags: 0
     - m_Name: 
       m_Id: 58c192ea-d141-473c-93cd-c2efa55da6ad
-      m_Path: <Gamepad>/buttonNorth
+      m_Path: <Gamepad>/select
       m_Interactions: 
       m_Processors: 
       m_Groups: 
