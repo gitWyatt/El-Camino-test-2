@@ -34,9 +34,18 @@ public class CarController : MonoBehaviour
     private float distToGround = 0.65f;
 
     double mph;
+    private float engineRPM;
+    private float minRPM = 1000f;
+    private float maxRPM = 2500f;
+    private float currentGear = 1f;
+    private float gearNumber = 6f;
+    private float[] gearRatio = new float[] { 2.66f, 1.78f, 1.3f, 1f, .7f, .5f };
 
+
+    [SerializeField] public Text rpmOutput;
     [SerializeField] public Text velocityOutput;
     [SerializeField] public Text speedOutput;
+    [SerializeField] public Text gearBox;
 
     [SerializeField] private bool frontWheelDrive;
     [SerializeField] private bool rearWheelDrive;
@@ -151,15 +160,15 @@ public class CarController : MonoBehaviour
     {
         if (frontWheelDrive)
         {
-            //Transmission()
-            frontLeftWheelCollider.motorTorque = verticalInput * motorForce;// * transmissionForce
-            frontRightWheelCollider.motorTorque = verticalInput * motorForce;// * transmissionForce
+            Transmission();
+            frontLeftWheelCollider.motorTorque = verticalInput * motorForce * transmissionForce;
+            frontRightWheelCollider.motorTorque = verticalInput * motorForce * transmissionForce;
         }
         if (rearWheelDrive)
         {
-            //Transmission()
-            backLeftWheelCollider.motorTorque = verticalInput * motorForce;// * transmissionForce
-            backRightWheelCollider.motorTorque = verticalInput * motorForce;// * transmissionForce
+            Transmission();
+            backLeftWheelCollider.motorTorque = verticalInput * motorForce * transmissionForce;
+            backRightWheelCollider.motorTorque = verticalInput * motorForce * transmissionForce;
         }
 
         currentBrakeForce = isBraking ? brakeForce : 0f;
@@ -168,30 +177,79 @@ public class CarController : MonoBehaviour
 
     private void Transmission()
     {
-        //if (speed >= 0) || (speed < 10)
-        //{
-        //  transmissionForce = 2.66f;
-        //}
-        //else if (speed >= 10) || (speed < 20)
-        //{
-        //  transmissionForce = 1.78f;
-        //}
-        //else if (speed >= 20) || (speed < 30)
-        //{
-        //  transmissionForce = 1.3f;
-        //}
-        //else if (speed >= 30) || (speed < 40)
-        //{
-        //  transmissionForce = 1f;
-        //}
-        //else if (speed >= 40) || (speed < 50)
-        //{
-        //  transmissionForce = 0.7f;
-        //}
-        //else if (speed <= 50)
-        //{
-        //  transmissionForce = 0.5f;
-        //}
+        if (frontWheelDrive)
+        {
+            engineRPM = (frontLeftWheelCollider.rpm + frontRightWheelCollider.rpm) / 2f * transmissionForce;
+        }
+        else
+        {
+            engineRPM = (backLeftWheelCollider.rpm + backRightWheelCollider.rpm) / 2f * transmissionForce;
+        }
+
+        if (engineRPM >= maxRPM)
+        {
+            if (currentGear < gearNumber)
+            {
+                currentGear++;
+
+                switch(currentGear)
+                {
+                    case 2:
+                        transmissionForce = 1.78f;
+                        break;
+                    case 3:
+                        transmissionForce = 1.3f;
+                        break;
+                    case 4:
+                        transmissionForce = 1f;
+                        break;
+                    case 5:
+                        transmissionForce = .7f;
+                        break;
+                    case 6:
+                        transmissionForce = .5f;
+                        break;
+                }
+            }
+            else
+            {
+                currentGear = 6;
+                transmissionForce = .5f;
+            }
+        }
+        if (engineRPM <= minRPM)
+        {
+            if (currentGear > 1)
+            {
+                currentGear--;
+
+                switch (currentGear)
+                {
+                    case 1:
+                        transmissionForce = 2.66f;
+                        break;
+                    case 2:
+                        transmissionForce = 1.78f;
+                        break;
+                    case 3:
+                        transmissionForce = 1.3f;
+                        break;
+                    case 4:
+                        transmissionForce = 1f;
+                        break;
+                    case 5:
+                        transmissionForce = .7f;
+                        break;
+                }
+            }
+            else
+            {
+                currentGear = 1;
+                transmissionForce = 2.66f;
+            }
+        }
+
+        Debug.Log(transmissionForce);
     }
 
     private void ApplyBraking()
@@ -226,57 +284,8 @@ public class CarController : MonoBehaviour
         if (touchingGround == false)
         {
             float pitch;
-
             float yaw;
-
             float roll;
-
-            ////with Euler angles, transform.rotation, breaks when upside down
-            //if (isBraking == false)
-            //{
-            //    pitch = transform.eulerAngles.x + gamepadVerticalInput * controlPitchFactor; //specific to gamepad for time being, needs fixing
-            //    yaw = transform.eulerAngles.y + horizontalInput * controlYawFactor;
-            //    transform.rotation = Quaternion.Euler(pitch, yaw, transform.eulerAngles.z);
-            //}
-            //else if (isBraking)
-            //{
-            //    pitch = transform.eulerAngles.x + gamepadVerticalInput * controlPitchFactor; //specific to gamepad for time being, needs fixing
-            //    roll = transform.eulerAngles.z + horizontalInput * -controlRollFactor;
-            //    transform.rotation = Quaternion.Euler(transform.eulerAngles.x, transform.eulerAngles.y, roll);
-            //    Debug.Log(roll);
-            //}
-
-            ////without Euler angles, transform.Rotate() with float angles, breaks when upside down
-            //if (isBraking == false)
-            //{
-            //    pitch = transform.rotation.x + gamepadVerticalInput * controlPitchFactor; //specific to gamepad for time being, needs fixing
-            //    yaw = transform.rotation.y + horizontalInput * controlYawFactor;
-            //    transform.Rotate(pitch, yaw, transform.rotation.z, Space.Self);
-            //}
-            //else if (isBraking)
-            //{
-            //    pitch = transform.rotation.x + gamepadVerticalInput * controlPitchFactor; //specific to gamepad for time being, needs fixing
-            //    //roll = transform.rotation.z + horizontalInput * -controlRollFactor;
-            //    roll = transform.rotation.z + horizontalInput * -controlRollFactor;
-            //    transform.Rotate(transform.rotation.x, transform.rotation.y, roll, Space.Self);
-            //    Debug.Log(roll);
-            //}
-
-            ////without Euler angles, transform.Rotate() with Vector3, still fucking breaks upside down
-            //if (isBraking == false)
-            //{
-            //    pitch = transform.rotation.x + gamepadVerticalInput * controlPitchFactor; //specific to gamepad for time being, needs fixing
-            //    yaw = transform.rotation.y + horizontalInput * controlYawFactor;
-            //    transform.Rotate(Vector3.right, pitch, Space.World);
-            //    transform.Rotate(Vector3.up, yaw, Space.World);
-            //}
-            //else if (isBraking)
-            //{
-            //    //pitch = transform.rotation.x + gamepadVerticalInput * controlPitchFactor; //specific to gamepad for time being, needs fixing
-            //    roll = transform.rotation.z + horizontalInput * -controlRollFactor;
-            //    transform.Rotate(Vector3.forward, roll, Space.World);
-            //    Debug.Log(roll);
-            //}
 
             //same as above but with rigidbody addtorque
             if (isBraking == false)
@@ -292,73 +301,23 @@ public class CarController : MonoBehaviour
                 roll = transform.rotation.z + horizontalInput * -controlRollFactor;
                 carRigidBody.AddRelativeTorque(Vector3.right * pitch);
                 carRigidBody.AddRelativeTorque(Vector3.forward * roll);
-                Debug.Log(roll);
+                //Debug.Log(roll);
             }
-
-            //without Euler angles, transform.rotation, breaks when upside down
-            //if (isBraking == false)
-            //{
-            //    //pitch = transform.rotation.x + gamepadVerticalInput * controlPitchFactor; //specific to gamepad for time being, needs fixing
-            //    //yaw = transform.rotation.y + horizontalInput * controlYawFactor;
-            //    pitch = gamepadVerticalInput;
-            //    yaw = horizontalInput;
-            //    transform.rotation *= Quaternion.AngleAxis(pitch, Vector3.right);
-            //    transform.rotation *= Quaternion.AngleAxis(yaw, Vector3.up);
-            //}
-            //else if (isBraking)
-            //{
-            //    //pitch = transform.rotation.x + gamepadVerticalInput * controlPitchFactor; //specific to gamepad for time being, needs fixing
-            //    //roll = transform.rotation.z + horizontalInput * -controlRollFactor;
-            //    roll = -horizontalInput;
-            //    transform.rotation *= Quaternion.AngleAxis(roll, Vector3.forward);
-            //    Debug.Log(roll);
-            //}
-
-            ////idk dude I found this one in a youtube video, breaks when upside down
-            //if (isBraking == false)
-            //{
-            //    pitch = transform.rotation.x + gamepadVerticalInput * controlPitchFactor; //specific to gamepad for time being, needs fixing
-            //    yaw = transform.rotation.y + horizontalInput * controlYawFactor;
-            //    transform.rotation *= Quaternion.AngleAxis(pitch, Vector3.right);
-            //    transform.rotation *= Quaternion.AngleAxis(yaw, Vector3.up);
-            //}
-            //else if (isBraking)
-            //{
-            //    //pitch = transform.rotation.x + gamepadVerticalInput * controlPitchFactor; //specific to gamepad for time being, needs fixing
-            //    roll = transform.rotation.z + horizontalInput * -controlRollFactor;
-            //    transform.rotation *= Quaternion.AngleAxis(roll, Vector3.forward);
-            //    Debug.Log(roll);
-            //}
-
-            //split up.  set destination rotation position as new vector3, then transform to it with eulerAngles
-            //if (isBraking == false)
-            //{
-            //    pitch = transform.rotation.x + gamepadVerticalInput * controlPitchFactor; //specific to gamepad for time being, needs fixing
-            //    yaw = transform.rotation.y + horizontalInput * controlYawFactor;
-            //    Vector3 newRotation = new Vector3(pitch, yaw, transform.rotation.z);
-            //    transform.Rotate(newRotation);
-            //}
-            //else if (isBraking)
-            //{
-            //    pitch = transform.rotation.x + gamepadVerticalInput * controlPitchFactor; //specific to gamepad for time being, needs fixing
-            //    //roll = transform.rotation.z + horizontalInput * -controlRollFactor;
-            //    roll = transform.rotation.z + horizontalInput * -controlRollFactor;
-            //    Vector3 newRotation = new Vector3(transform.rotation.x, transform.rotation.y, roll);
-            //    transform.Rotate(newRotation);
-            //    Debug.Log(roll);
-            //}
-
-            float help = transform.rotation.z;
-                Debug.Log(help);
+            //float help = transform.rotation.z;
+            //Debug.Log(help);
         }
     }
 
-    private void HandleSpeedometer()        //need to correct for up/down.  speed ramps up when freefalling, etc.
+    private void HandleSpeedometer()
     {
-        mph = carRigidBody.velocity.magnitude * 2.237;      //calculate accurate mph
+        Vector3 carVelocity = carRigidBody.velocity;
+        carVelocity.y = 0;                          //ignore inaccuracies due to y axis
+        mph = carVelocity.magnitude * 2.237;        //calculate accurate mph
         //kph = carRigidBody.velocity.magnitude * 3.6;      //calculate accurate kph
-        velocityOutput.text = carRigidBody.velocity.magnitude.ToString("F2") + "Units";
-        speedOutput.text = mph.ToString("F2") + "MPH";
+        gearBox.text = "Gear: " + currentGear.ToString();
+        rpmOutput.text = "eRPM: " + engineRPM.ToString("F0");
+        velocityOutput.text = "Units: " + carVelocity.magnitude.ToString("F0");
+        speedOutput.text = "MPH: " + mph.ToString("F0");
     }
 
     private void UpdateWheels()
@@ -392,3 +351,109 @@ public class CarController : MonoBehaviour
         }
     }
 }
+
+
+
+//~~~~~~~~~~~Old code graveyard~~~~~~~~~~~//
+
+//HandleRotation Class
+
+////with Euler angles, transform.rotation, breaks when upside down
+//if (isBraking == false)
+//{
+//    pitch = transform.eulerAngles.x + gamepadVerticalInput * controlPitchFactor; //specific to gamepad for time being, needs fixing
+//    yaw = transform.eulerAngles.y + horizontalInput * controlYawFactor;
+//    transform.rotation = Quaternion.Euler(pitch, yaw, transform.eulerAngles.z);
+//}
+//else if (isBraking)
+//{
+//    pitch = transform.eulerAngles.x + gamepadVerticalInput * controlPitchFactor; //specific to gamepad for time being, needs fixing
+//    roll = transform.eulerAngles.z + horizontalInput * -controlRollFactor;
+//    transform.rotation = Quaternion.Euler(transform.eulerAngles.x, transform.eulerAngles.y, roll);
+//    Debug.Log(roll);
+//}
+
+////without Euler angles, transform.Rotate() with float angles, breaks when upside down
+//if (isBraking == false)
+//{
+//    pitch = transform.rotation.x + gamepadVerticalInput * controlPitchFactor; //specific to gamepad for time being, needs fixing
+//    yaw = transform.rotation.y + horizontalInput * controlYawFactor;
+//    transform.Rotate(pitch, yaw, transform.rotation.z, Space.Self);
+//}
+//else if (isBraking)
+//{
+//    pitch = transform.rotation.x + gamepadVerticalInput * controlPitchFactor; //specific to gamepad for time being, needs fixing
+//    //roll = transform.rotation.z + horizontalInput * -controlRollFactor;
+//    roll = transform.rotation.z + horizontalInput * -controlRollFactor;
+//    transform.Rotate(transform.rotation.x, transform.rotation.y, roll, Space.Self);
+//    Debug.Log(roll);
+//}
+
+////without Euler angles, transform.Rotate() with Vector3, still fucking breaks upside down
+//if (isBraking == false)
+//{
+//    pitch = transform.rotation.x + gamepadVerticalInput * controlPitchFactor; //specific to gamepad for time being, needs fixing
+//    yaw = transform.rotation.y + horizontalInput * controlYawFactor;
+//    transform.Rotate(Vector3.right, pitch, Space.World);
+//    transform.Rotate(Vector3.up, yaw, Space.World);
+//}
+//else if (isBraking)
+//{
+//    //pitch = transform.rotation.x + gamepadVerticalInput * controlPitchFactor; //specific to gamepad for time being, needs fixing
+//    roll = transform.rotation.z + horizontalInput * -controlRollFactor;
+//    transform.Rotate(Vector3.forward, roll, Space.World);
+//    Debug.Log(roll);
+//}
+
+//without Euler angles, transform.rotation, breaks when upside down
+//if (isBraking == false)
+//{
+//    //pitch = transform.rotation.x + gamepadVerticalInput * controlPitchFactor; //specific to gamepad for time being, needs fixing
+//    //yaw = transform.rotation.y + horizontalInput * controlYawFactor;
+//    pitch = gamepadVerticalInput;
+//    yaw = horizontalInput;
+//    transform.rotation *= Quaternion.AngleAxis(pitch, Vector3.right);
+//    transform.rotation *= Quaternion.AngleAxis(yaw, Vector3.up);
+//}
+//else if (isBraking)
+//{
+//    //pitch = transform.rotation.x + gamepadVerticalInput * controlPitchFactor; //specific to gamepad for time being, needs fixing
+//    //roll = transform.rotation.z + horizontalInput * -controlRollFactor;
+//    roll = -horizontalInput;
+//    transform.rotation *= Quaternion.AngleAxis(roll, Vector3.forward);
+//    Debug.Log(roll);
+//}
+
+////idk dude I found this one in a youtube video, breaks when upside down
+//if (isBraking == false)
+//{
+//    pitch = transform.rotation.x + gamepadVerticalInput * controlPitchFactor; //specific to gamepad for time being, needs fixing
+//    yaw = transform.rotation.y + horizontalInput * controlYawFactor;
+//    transform.rotation *= Quaternion.AngleAxis(pitch, Vector3.right);
+//    transform.rotation *= Quaternion.AngleAxis(yaw, Vector3.up);
+//}
+//else if (isBraking)
+//{
+//    //pitch = transform.rotation.x + gamepadVerticalInput * controlPitchFactor; //specific to gamepad for time being, needs fixing
+//    roll = transform.rotation.z + horizontalInput * -controlRollFactor;
+//    transform.rotation *= Quaternion.AngleAxis(roll, Vector3.forward);
+//    Debug.Log(roll);
+//}
+
+//split up.  set destination rotation position as new vector3, then transform to it with eulerAngles
+//if (isBraking == false)
+//{
+//    pitch = transform.rotation.x + gamepadVerticalInput * controlPitchFactor; //specific to gamepad for time being, needs fixing
+//    yaw = transform.rotation.y + horizontalInput * controlYawFactor;
+//    Vector3 newRotation = new Vector3(pitch, yaw, transform.rotation.z);
+//    transform.Rotate(newRotation);
+//}
+//else if (isBraking)
+//{
+//    pitch = transform.rotation.x + gamepadVerticalInput * controlPitchFactor; //specific to gamepad for time being, needs fixing
+//    //roll = transform.rotation.z + horizontalInput * -controlRollFactor;
+//    roll = transform.rotation.z + horizontalInput * -controlRollFactor;
+//    Vector3 newRotation = new Vector3(transform.rotation.x, transform.rotation.y, roll);
+//    transform.Rotate(newRotation);
+//    Debug.Log(roll);
+//}
