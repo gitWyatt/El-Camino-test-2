@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-using UnityEngine.InputSystem;
 
 public class CarController : MonoBehaviour
 {
+    [SerializeField] private InputMaster controls;
+
     public Transform centerOfMass;
 
     private Rigidbody carRigidBody;
@@ -19,16 +20,19 @@ public class CarController : MonoBehaviour
 
     private float horizontalInput;
     private float verticalInput;
+    private float gas;
     private float gamepadVerticalInput;
     private float currentSteerAngle;
     private float currentBrakeForce;
     private float brakeCheck;
     private float resetCheck;
     private float flipCheck;
+    private float pauseCheck;
 
     private bool isBraking;
     private bool isResetting;
     private bool isFlipping;
+    public bool pressingPause;
 
     private bool touchingGround;
     private float distToGround = 0.65f;
@@ -70,11 +74,17 @@ public class CarController : MonoBehaviour
     [SerializeField] private Transform backLeftWheelTransform;
     [SerializeField] private Transform backRightWheelTransform;
 
-    [SerializeField] InputAction steering;
-    [SerializeField] InputAction gamepadVertical;
-    [SerializeField] InputAction handbrake;
-    [SerializeField] InputAction flip;
-    [SerializeField] InputAction reset;
+    //[SerializeField] InputAction steering;
+    //[SerializeField] InputAction gamepadVertical;
+    //[SerializeField] InputAction handbrake;
+    //[SerializeField] InputAction flip;
+    //[SerializeField] InputAction reset;
+    //[SerializeField] InputAction pause;
+
+    private void Awake()
+    {
+        controls = new InputMaster();
+    }
 
     private void Start()
     {
@@ -85,20 +95,24 @@ public class CarController : MonoBehaviour
 
     private void OnEnable()
     {
-        steering.Enable();
-        gamepadVertical.Enable();
-        handbrake.Enable();
-        reset.Enable();
-        flip.Enable();
+        controls.Enable();
+        //steering.Enable();
+        //gamepadVertical.Enable();
+        //handbrake.Enable();
+        //reset.Enable();
+        //flip.Enable();
+        //pause.Enable();
     }
 
     private void OnDisable()
     {
-        steering.Disable();
-        gamepadVertical.Disable();
-        handbrake.Disable();
-        reset.Disable();
-        flip.Disable();
+        controls.Disable();
+        //steering.Disable();
+        //gamepadVertical.Disable();
+        //handbrake.Disable();
+        //reset.Disable();
+        //flip.Disable();
+        //pause.Disable();
     }
 
     private void FixedUpdate()
@@ -115,23 +129,59 @@ public class CarController : MonoBehaviour
 
     private void GetInput()
     {
+        //new input
+
+        horizontalInput = controls.Player.Steering.ReadValue<Vector2>().x;
+        verticalInput = controls.Player.UpDown.ReadValue<Vector2>().y;
+        gas = controls.Player.ForwardReverse.ReadValue<Vector2>().x;
+
+        if (controls.Player.Handbrake.triggered)
+        {
+            isBraking = true;
+            Debug.Log(isBraking);
+        }
+
+        if (controls.Player.Reset.triggered)
+        {
+            isResetting = true;
+        }
+
+        if (controls.Player.Flip.triggered)
+        {
+            isFlipping = true;
+        }
+
+        if (controls.Player.Pause.triggered)
+        {
+            pressingPause = true;
+        }
+        
+        //old input
+
         //horizontalInput = Input.GetAxis(HORIZONTAL);
         //verticalInput = Input.GetAxis(VERTICAL);
         //isBraking = Input.GetKey(KeyCode.Space);
         //idk maybe
 
-        horizontalInput = steering.ReadValue<Vector2>().x;
-        verticalInput = steering.ReadValue<Vector2>().y;
-        gamepadVerticalInput = gamepadVertical.ReadValue<float>();
-        brakeCheck = handbrake.ReadValue<float>();
-        if (brakeCheck > .5)
-        { isBraking = true; } else { isBraking = false; }
-        resetCheck = reset.ReadValue<float>();
-        if (resetCheck > .5)
-        { isResetting = true; } else { isResetting = false; }
-        flipCheck = flip.ReadValue<float>();
-        if (flipCheck > .5)
-        { isFlipping = true; } else { isFlipping = false; }
+        //horizontalInput = steering.ReadValue<Vector2>().x;
+        //verticalInput = steering.ReadValue<Vector2>().y;
+        //gamepadVerticalInput = gamepadVertical.ReadValue<float>();
+
+        //brakeCheck = handbrake.ReadValue<float>();
+        //if (brakeCheck > .5)
+        //{ isBraking = true; } else { isBraking = false; }
+        
+        //resetCheck = reset.ReadValue<float>();
+        //if (resetCheck > .5)
+        //{ isResetting = true; } else { isResetting = false; }
+        
+        //flipCheck = flip.ReadValue<float>();
+        //if (flipCheck > .5)
+        //{ isFlipping = true; } else { isFlipping = false; }
+
+        //pauseCheck = pause.ReadValue<float>();
+        //if (pauseCheck > .5)
+        //{ pressingPause = true; } else { pressingPause = false; }
     }
 
     void CheckGround()
@@ -161,14 +211,14 @@ public class CarController : MonoBehaviour
         if (frontWheelDrive)
         {
             Transmission();
-            frontLeftWheelCollider.motorTorque = verticalInput * motorForce * transmissionForce;
-            frontRightWheelCollider.motorTorque = verticalInput * motorForce * transmissionForce;
+            frontLeftWheelCollider.motorTorque = gas * motorForce * transmissionForce;
+            frontRightWheelCollider.motorTorque = gas * motorForce * transmissionForce;
         }
         if (rearWheelDrive)
         {
             Transmission();
-            backLeftWheelCollider.motorTorque = verticalInput * motorForce * transmissionForce;
-            backRightWheelCollider.motorTorque = verticalInput * motorForce * transmissionForce;
+            backLeftWheelCollider.motorTorque = gas * motorForce * transmissionForce;
+            backRightWheelCollider.motorTorque = gas * motorForce * transmissionForce;
         }
 
         currentBrakeForce = isBraking ? brakeForce : 0f;
@@ -249,7 +299,7 @@ public class CarController : MonoBehaviour
             }
         }
 
-        Debug.Log(transmissionForce);
+        //Debug.Log(transmissionForce);
     }
 
     private void ApplyBraking()
