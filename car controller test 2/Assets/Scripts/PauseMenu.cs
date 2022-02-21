@@ -30,11 +30,10 @@ public class PauseMenu : MonoBehaviour
             {
                 Resume();
             }
-            else if (gameIsPaused == false)
+            else
             {
                 Pause();
             }
-            //Debug.Log(pressingPause);
         }
     }
 

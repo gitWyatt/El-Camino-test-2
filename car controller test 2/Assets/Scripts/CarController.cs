@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem;
 
 public class CarController : MonoBehaviour
 {
-    [SerializeField] private InputMaster controls;
+    public InputMaster controls;
 
     public Transform centerOfMass;
 
@@ -83,7 +84,11 @@ public class CarController : MonoBehaviour
 
     private void Awake()
     {
-        controls = new InputMaster();
+        if (controls == null)
+        {
+            controls = new InputMaster();
+        }
+        
     }
 
     private void Start()
@@ -131,31 +136,65 @@ public class CarController : MonoBehaviour
     {
         //new input
 
-        horizontalInput = controls.Player.Steering.ReadValue<Vector2>().x;
-        verticalInput = controls.Player.UpDown.ReadValue<Vector2>().y;
-        gas = controls.Player.ForwardReverse.ReadValue<Vector2>().x;
+        //Vector2 horizontalInputVector2 = controls.Player.Steering.ReadValue<Vector2>();
+        //Vector2 verticalInputVector2 = controls.Player.UpDown.ReadValue<Vector2>();
+        //Vector2 gasVector2 = controls.Player.ForwardReverse.ReadValue<Vector2>();
+        //Debug.Log(horizontalInputVector2);
 
-        if (controls.Player.Handbrake.triggered)
-        {
-            isBraking = true;
-            Debug.Log(isBraking);
-        }
+        //horizontalInput = horizontalInputVector2.y;
+        //verticalInput = verticalInputVector2;
+        //gas = gasVector2;
 
-        if (controls.Player.Reset.triggered)
-        {
-            isResetting = true;
-        }
+        horizontalInput = controls.Player.Steering.ReadValue<float>();
+        verticalInput = controls.Player.UpDown.ReadValue<float>();
+        gas = controls.Player.ForwardReverse.ReadValue<float>();
 
-        if (controls.Player.Flip.triggered)
-        {
-            isFlipping = true;
-        }
+        brakeCheck = controls.Player.Handbrake.ReadValue<float>();
+        resetCheck = controls.Player.Reset.ReadValue<float>();
+        flipCheck = controls.Player.Flip.ReadValue<float>();
+        //pauseCheck = controls.Player.Pause.ReadValue<float>();
+        controls.Player.Pause.performed += PauseHandler;
 
-        if (controls.Player.Pause.triggered)
-        {
-            pressingPause = true;
-        }
-        
+        if (brakeCheck > .5)
+        { isBraking = true; }
+        else { isBraking = false; }
+
+        if (resetCheck > .5)
+        { isResetting = true; }
+        else { isResetting = false; }
+
+        if (flipCheck > .5)
+        { isFlipping = true; }
+        else { isFlipping = false; }
+
+        //if (pauseCheck > .5)
+        //{ pressingPause = true; }
+        //else { pressingPause = false; }
+
+
+
+
+        //if (controls.Player.Handbrake.triggered)
+        //{
+        //    isBraking = true;
+        //}
+
+        //if (controls.Player.Reset.triggered)
+        //{
+        //    isResetting = true;
+        //    Debug.Log(isResetting);
+        //}
+
+        //if (controls.Player.Flip.triggered)
+        //{
+        //    isFlipping = true;
+        //}
+
+        //if (controls.Player.Pause.triggered)
+        //{
+        //    pressingPause = true;
+        //}
+
         //old input
 
         //horizontalInput = Input.GetAxis(HORIZONTAL);
@@ -170,11 +209,11 @@ public class CarController : MonoBehaviour
         //brakeCheck = handbrake.ReadValue<float>();
         //if (brakeCheck > .5)
         //{ isBraking = true; } else { isBraking = false; }
-        
+
         //resetCheck = reset.ReadValue<float>();
         //if (resetCheck > .5)
         //{ isResetting = true; } else { isResetting = false; }
-        
+
         //flipCheck = flip.ReadValue<float>();
         //if (flipCheck > .5)
         //{ isFlipping = true; } else { isFlipping = false; }
@@ -340,14 +379,14 @@ public class CarController : MonoBehaviour
             //same as above but with rigidbody addtorque
             if (isBraking == false)
             {
-                pitch = transform.rotation.x + gamepadVerticalInput * controlPitchFactor; //specific to gamepad for time being, needs fixing
+                pitch = transform.rotation.x + verticalInput * controlPitchFactor; //specific to gamepad for time being, needs fixing
                 yaw = transform.rotation.y + horizontalInput * controlYawFactor;
                 carRigidBody.AddRelativeTorque(Vector3.right * pitch);
                 carRigidBody.AddRelativeTorque(Vector3.up * yaw);
             }
             else if (isBraking)
             {
-                pitch = transform.rotation.x + gamepadVerticalInput * controlPitchFactor; //specific to gamepad for time being, needs fixing
+                pitch = transform.rotation.x + verticalInput * controlPitchFactor; //specific to gamepad for time being, needs fixing
                 roll = transform.rotation.z + horizontalInput * -controlRollFactor;
                 carRigidBody.AddRelativeTorque(Vector3.right * pitch);
                 carRigidBody.AddRelativeTorque(Vector3.forward * roll);
@@ -356,6 +395,11 @@ public class CarController : MonoBehaviour
             //float help = transform.rotation.z;
             //Debug.Log(help);
         }
+    }
+
+    public void PauseHandler(InputAction.CallbackContext context)
+    {
+        pressingPause = !pressingPause;
     }
 
     private void HandleSpeedometer()
