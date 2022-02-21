@@ -24,30 +24,47 @@ public class PauseMenu : MonoBehaviour
     void Update()
     {
         pressingPause = carController.pressingPause;
-        if (pressingPause)
+        //if (pressingPause)
+        //{
+        //    if (gameIsPaused)
+        //    {
+        //        Resume();
+        //    }
+        //    else
+        //    {
+        //        Pause();
+        //    }
+        //}
+    }
+
+    public void OnPause()
+    {
+        if (gameIsPaused)
         {
-            if (gameIsPaused)
-            {
-                Resume();
-            }
-            else
-            {
-                Pause();
-            }
+            Resume();
         }
+        else
+        {
+            Pause();
+        }
+        Debug.Log("step 2");
     }
 
     void Resume()
     {
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
-        gameIsPaused = false;
+        gameIsPaused = !gameIsPaused;
+        //gameIsPaused = false;
+        Debug.Log("step 3");
     }
 
     void Pause()
     {
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
-        gameIsPaused = true;
+        gameIsPaused = !gameIsPaused;
+        //gameIsPaused = true;
+        Debug.Log("step 3");
     }
 }

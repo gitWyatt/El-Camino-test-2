@@ -200,11 +200,6 @@ public class CarController : MonoBehaviour
         //horizontalInput = Input.GetAxis(HORIZONTAL);
         //verticalInput = Input.GetAxis(VERTICAL);
         //isBraking = Input.GetKey(KeyCode.Space);
-        //idk maybe
-
-        //horizontalInput = steering.ReadValue<Vector2>().x;
-        //verticalInput = steering.ReadValue<Vector2>().y;
-        //gamepadVerticalInput = gamepadVertical.ReadValue<float>();
 
         //brakeCheck = handbrake.ReadValue<float>();
         //if (brakeCheck > .5)
@@ -399,7 +394,8 @@ public class CarController : MonoBehaviour
 
     public void PauseHandler(InputAction.CallbackContext context)
     {
-        pressingPause = !pressingPause;
+        FindObjectOfType<PauseMenu>().OnPause();
+        Debug.Log("step 1");
     }
 
     private void HandleSpeedometer()
