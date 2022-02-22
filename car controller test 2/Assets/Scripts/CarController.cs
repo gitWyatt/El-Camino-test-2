@@ -13,9 +13,11 @@ public class CarController : MonoBehaviour
 
     private Rigidbody carRigidBody;
 
+    public PauseMenu pauseMenu;
+
     //I don't think I need this, might be leftover from old input system
-    private const string HORIZONTAL = "Horizontal";
-    private const string VERTICAL = "Vertical";
+    //private const string HORIZONTAL = "Horizontal";
+    //private const string VERTICAL = "Vertical";
 
     private float transmissionForce;
 
@@ -31,7 +33,6 @@ public class CarController : MonoBehaviour
     private bool isBraking;
     private bool isResetting;
     private bool isFlipping;
-    //public bool pressingPause;
 
     private bool touchingGround;
     private float distToGround = 0.65f;
@@ -79,7 +80,7 @@ public class CarController : MonoBehaviour
         {
             controls = new InputMaster();
         }
-        
+        Time.timeScale = 1f;
     }
 
     private void Start()
@@ -113,7 +114,7 @@ public class CarController : MonoBehaviour
 
     private void GetInput()
     {
-        //new input
+        //new input player
 
         horizontalInput = controls.Player.Steering.ReadValue<float>();
         verticalInput = controls.Player.UpDown.ReadValue<float>();
@@ -136,51 +137,6 @@ public class CarController : MonoBehaviour
         if (flipCheck > .5)
         { isFlipping = true; }
         else { isFlipping = false; }
-
-        //if (pauseCheck > .5)
-        //{ pressingPause = true; }
-        //else { pressingPause = false; }
-
-        //if (controls.Player.Handbrake.triggered)
-        //{
-        //    isBraking = true;
-        //}
-
-        //if (controls.Player.Reset.triggered)
-        //{
-        //    isResetting = true;
-        //    Debug.Log(isResetting);
-        //}
-
-        //if (controls.Player.Flip.triggered)
-        //{
-        //    isFlipping = true;
-        //}
-
-        //if (controls.Player.Pause.triggered)
-        //{
-        //    pressingPause = true;
-        //}
-
-        //horizontalInput = Input.GetAxis(HORIZONTAL);
-        //verticalInput = Input.GetAxis(VERTICAL);
-        //isBraking = Input.GetKey(KeyCode.Space);
-
-        //brakeCheck = handbrake.ReadValue<float>();
-        //if (brakeCheck > .5)
-        //{ isBraking = true; } else { isBraking = false; }
-
-        //resetCheck = reset.ReadValue<float>();
-        //if (resetCheck > .5)
-        //{ isResetting = true; } else { isResetting = false; }
-
-        //flipCheck = flip.ReadValue<float>();
-        //if (flipCheck > .5)
-        //{ isFlipping = true; } else { isFlipping = false; }
-
-        //pauseCheck = pause.ReadValue<float>();
-        //if (pauseCheck > .5)
-        //{ pressingPause = true; } else { pressingPause = false; }
     }
 
     void CheckGround()
@@ -343,7 +299,19 @@ public class CarController : MonoBehaviour
 
     public void PauseHandler(InputAction.CallbackContext context)
     {
-        FindObjectOfType<PauseMenu>().OnPause();
+        pauseMenu.OnPause();
+
+        if (Time.timeScale > 0.9f)
+        {
+            //verticalInput = controls.Menu.UpDown.ReadValue<float>();
+        }
+        else
+        {
+            //verticalInput = controls.Player.ForwardReverse.ReadValue<float>();
+        }
+
+
+        //FindObjectOfType<PauseMenu>().OnPause();
         Debug.Log("step 1");
     }
 
@@ -496,3 +464,55 @@ public class CarController : MonoBehaviour
 //    transform.Rotate(newRotation);
 //    Debug.Log(roll);
 //}
+
+
+
+//new input menu
+//horizontalPause = controls.Menu.LeftRight.ReadValue<float>();
+//verticalPause = controls.Menu.UpDown.ReadValue<float>();
+//controls.Menu.Pause.performed += PauseHandler;
+
+//if (pauseCheck > .5)
+//{ pressingPause = true; }
+//else { pressingPause = false; }
+
+//if (controls.Player.Handbrake.triggered)
+//{
+//    isBraking = true;
+//}
+
+//if (controls.Player.Reset.triggered)
+//{
+//    isResetting = true;
+//    Debug.Log(isResetting);
+//}
+
+//if (controls.Player.Flip.triggered)
+//{
+//    isFlipping = true;
+//}
+
+//if (controls.Player.Pause.triggered)
+//{
+//    pressingPause = true;
+//}
+
+//horizontalInput = Input.GetAxis(HORIZONTAL);
+//verticalInput = Input.GetAxis(VERTICAL);
+//isBraking = Input.GetKey(KeyCode.Space);
+
+//brakeCheck = handbrake.ReadValue<float>();
+//if (brakeCheck > .5)
+//{ isBraking = true; } else { isBraking = false; }
+
+//resetCheck = reset.ReadValue<float>();
+//if (resetCheck > .5)
+//{ isResetting = true; } else { isResetting = false; }
+
+//flipCheck = flip.ReadValue<float>();
+//if (flipCheck > .5)
+//{ isFlipping = true; } else { isFlipping = false; }
+
+//pauseCheck = pause.ReadValue<float>();
+//if (pauseCheck > .5)
+//{ pressingPause = true; } else { pressingPause = false; }

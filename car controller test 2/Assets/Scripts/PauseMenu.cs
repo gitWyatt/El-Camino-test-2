@@ -3,67 +3,58 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 
 public class PauseMenu : MonoBehaviour
 {
+    public InputMaster controls;
+
     CarController carController;
-    bool gameIsPaused;
-    //bool pressingPause;
 
     public GameObject pauseMenuUI;
 
     public GameObject pauseFirstButton;
 
+
+    private void Awake()
+    {
+        controls = new InputMaster();
+        //clear selected object
+        EventSystem.current.SetSelectedGameObject(null);
+        //set a new selected object
+        EventSystem.current.SetSelectedGameObject(pauseFirstButton);
+    }
+
     private void Start()
     {
         carController = GameObject.Find("Camino").GetComponent<CarController>();
-    }
 
-    //public static bool GameIsPaused = false;
-    //GameObject go = GameObject.Find("Camino");
-    //public CarController carController = go.GetComponent<CarController>();
-    //CarController carController = car.GetComponent<CarController>();
-    //bool GameIsPaused = CarController.isPausing;
+    }
 
     void Update()
     {
-        //pressingPause = carController.pressingPause;
-        //if (pressingPause)
-        //{
-        //    if (gameIsPaused)
-        //    {
-        //        Resume();
-        //    }
-        //    else
-        //    {
-        //        Pause();
-        //    }
-        //}
+        
     }
 
     public void OnPause()
     {
-        if (gameIsPaused)
+        if (Time.timeScale < 0.1f)
         {
             Resume();
-            gameIsPaused = false;
         }
         else
         {
             Pause();
-            gameIsPaused = true;
         }
-        Debug.Log("step 2");
-        Debug.Log(gameIsPaused);
+        //Debug.Log("step 2");
     }
 
     void Resume()
     {
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
-        //gameIsPaused = !gameIsPaused;
-        //gameIsPaused = false;
-        Debug.Log("step 3");
+
+        //Debug.Log("step 3");
     }
 
     void Pause()
@@ -76,18 +67,18 @@ public class PauseMenu : MonoBehaviour
         //set a new selected object
         EventSystem.current.SetSelectedGameObject(pauseFirstButton);
 
-        Debug.Log("step 3");
+        //Debug.Log("step 3");
     }
 
 
     public void LoadDirtTrack()
     {
-        //Time.timeScale = 1f;
+        Time.timeScale = 1f;
         SceneManager.LoadScene(1);
     }
     public void LoadSkatePark()
     {
-        //Time.timeScale = 1f;
+        Time.timeScale = 1f;
         SceneManager.LoadScene(2);
     }
     public void QuitGame()
