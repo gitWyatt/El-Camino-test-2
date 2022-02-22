@@ -74,11 +74,13 @@ public class PauseMenu : MonoBehaviour
     public void LoadDirtTrack()
     {
         Time.timeScale = 1f;
+        //pauseMenuUI.SetActive(false);
         SceneManager.LoadScene(1);
     }
     public void LoadSkatePark()
     {
         Time.timeScale = 1f;
+        //pauseMenuUI.SetActive(false);
         SceneManager.LoadScene(2);
     }
     public void QuitGame()

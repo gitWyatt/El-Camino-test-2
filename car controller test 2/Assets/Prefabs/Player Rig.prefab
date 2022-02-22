@@ -298,7 +298,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
@@ -1198,7 +1198,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1428129086377603201}
-  m_LocalRotation: {x: 0.07822094, y: -0.000000015258935, z: 0.0000000011972364, w: 0.9969361}
+  m_LocalRotation: {x: 0.07822093, y: 0.000000021296035, z: -0.0000000016709152, w: 0.9969361}
   m_LocalPosition: {x: 0, y: 15, z: -23}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1384,7 +1384,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1428129086589540616}
-  m_LocalRotation: {x: 0.07822094, y: -0.000000015258935, z: 0.0000000011972364, w: 0.9969361}
+  m_LocalRotation: {x: 0.07822093, y: 0.000000021296035, z: -0.0000000016709152, w: 0.9969361}
   m_LocalPosition: {x: 0, y: 15, z: -23}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1806,6 +1806,10 @@ PrefabInstance:
     - target: {fileID: 170627350192388283, guid: 2ebe153f605604e46afb5ba6c5896b41, type: 3}
       propertyPath: m_Name
       value: Pause Menu
+      objectReference: {fileID: 0}
+    - target: {fileID: 170627350192388283, guid: 2ebe153f605604e46afb5ba6c5896b41, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2ebe153f605604e46afb5ba6c5896b41, type: 3}
