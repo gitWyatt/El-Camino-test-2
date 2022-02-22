@@ -22,18 +22,16 @@ public class CarController : MonoBehaviour
     private float horizontalInput;
     private float verticalInput;
     private float gas;
-    private float gamepadVerticalInput;
     private float currentSteerAngle;
     private float currentBrakeForce;
     private float brakeCheck;
     private float resetCheck;
     private float flipCheck;
-    private float pauseCheck;
 
     private bool isBraking;
     private bool isResetting;
     private bool isFlipping;
-    public bool pressingPause;
+    //public bool pressingPause;
 
     private bool touchingGround;
     private float distToGround = 0.65f;
@@ -44,7 +42,7 @@ public class CarController : MonoBehaviour
     private float maxRPM = 2500f;
     private float currentGear = 1f;
     private float gearNumber = 6f;
-    private float[] gearRatio = new float[] { 2.66f, 1.78f, 1.3f, 1f, .7f, .5f };
+    private float[] gearRatio = new float[] { 2.66f, 1.78f, 1.3f, 1f, .7f, .5f };  //unneeded as of now
 
 
     [SerializeField] public Text rpmOutput;
@@ -75,13 +73,6 @@ public class CarController : MonoBehaviour
     [SerializeField] private Transform backLeftWheelTransform;
     [SerializeField] private Transform backRightWheelTransform;
 
-    //[SerializeField] InputAction steering;
-    //[SerializeField] InputAction gamepadVertical;
-    //[SerializeField] InputAction handbrake;
-    //[SerializeField] InputAction flip;
-    //[SerializeField] InputAction reset;
-    //[SerializeField] InputAction pause;
-
     private void Awake()
     {
         if (controls == null)
@@ -101,23 +92,11 @@ public class CarController : MonoBehaviour
     private void OnEnable()
     {
         controls.Enable();
-        //steering.Enable();
-        //gamepadVertical.Enable();
-        //handbrake.Enable();
-        //reset.Enable();
-        //flip.Enable();
-        //pause.Enable();
     }
 
     private void OnDisable()
     {
         controls.Disable();
-        //steering.Disable();
-        //gamepadVertical.Disable();
-        //handbrake.Disable();
-        //reset.Disable();
-        //flip.Disable();
-        //pause.Disable();
     }
 
     private void FixedUpdate()
@@ -135,15 +114,6 @@ public class CarController : MonoBehaviour
     private void GetInput()
     {
         //new input
-
-        //Vector2 horizontalInputVector2 = controls.Player.Steering.ReadValue<Vector2>();
-        //Vector2 verticalInputVector2 = controls.Player.UpDown.ReadValue<Vector2>();
-        //Vector2 gasVector2 = controls.Player.ForwardReverse.ReadValue<Vector2>();
-        //Debug.Log(horizontalInputVector2);
-
-        //horizontalInput = horizontalInputVector2.y;
-        //verticalInput = verticalInputVector2;
-        //gas = gasVector2;
 
         horizontalInput = controls.Player.Steering.ReadValue<float>();
         verticalInput = controls.Player.UpDown.ReadValue<float>();
@@ -171,9 +141,6 @@ public class CarController : MonoBehaviour
         //{ pressingPause = true; }
         //else { pressingPause = false; }
 
-
-
-
         //if (controls.Player.Handbrake.triggered)
         //{
         //    isBraking = true;
@@ -194,8 +161,6 @@ public class CarController : MonoBehaviour
         //{
         //    pressingPause = true;
         //}
-
-        //old input
 
         //horizontalInput = Input.GetAxis(HORIZONTAL);
         //verticalInput = Input.GetAxis(VERTICAL);
@@ -220,11 +185,6 @@ public class CarController : MonoBehaviour
 
     void CheckGround()
     {
-        //if (Physics.Raycast(frontLeftWheelTransform.position, -frontLeftWheelTransform.up, distToGround) &&
-        //    Physics.Raycast(frontRightWheelTransform.position, -frontRightWheelTransform.up, distToGround) &&
-        //    Physics.Raycast(backLeftWheelTransform.position, -backLeftWheelTransform.up, distToGround) &&
-        //    Physics.Raycast(backRightWheelTransform.position, -backRightWheelTransform.up, distToGround))
-
         if (Physics.Raycast(frontLeftWheelTransform.position, Vector3.down, distToGround) &&
             Physics.Raycast(frontRightWheelTransform.position, Vector3.down, distToGround) &&
             Physics.Raycast(backLeftWheelTransform.position, Vector3.down, distToGround) &&
@@ -236,7 +196,6 @@ public class CarController : MonoBehaviour
         {
             touchingGround = false;
         }
-        //output to log
         //Debug.Log(touchingGround);
     }
 
@@ -333,7 +292,6 @@ public class CarController : MonoBehaviour
             }
         }
 
-        //Debug.Log(transmissionForce);
     }
 
     private void ApplyBraking()
@@ -349,11 +307,6 @@ public class CarController : MonoBehaviour
             backRightWheelCollider.brakeTorque = currentBrakeForce;
             backLeftWheelCollider.brakeTorque = currentBrakeForce;
         }
-
-        //frontRightWheelCollider.brakeTorque = currentBrakeForce;
-        //frontLeftWheelCollider.brakeTorque = currentBrakeForce;
-        //backRightWheelCollider.brakeTorque = currentBrakeForce;
-        //backLeftWheelCollider.brakeTorque = currentBrakeForce;
     }
 
     private void HandleSteering()
@@ -371,24 +324,20 @@ public class CarController : MonoBehaviour
             float yaw;
             float roll;
 
-            //same as above but with rigidbody addtorque
             if (isBraking == false)
             {
-                pitch = transform.rotation.x + verticalInput * controlPitchFactor; //specific to gamepad for time being, needs fixing
+                pitch = transform.rotation.x + verticalInput * controlPitchFactor; 
                 yaw = transform.rotation.y + horizontalInput * controlYawFactor;
                 carRigidBody.AddRelativeTorque(Vector3.right * pitch);
                 carRigidBody.AddRelativeTorque(Vector3.up * yaw);
             }
             else if (isBraking)
             {
-                pitch = transform.rotation.x + verticalInput * controlPitchFactor; //specific to gamepad for time being, needs fixing
+                pitch = transform.rotation.x + verticalInput * controlPitchFactor; 
                 roll = transform.rotation.z + horizontalInput * -controlRollFactor;
                 carRigidBody.AddRelativeTorque(Vector3.right * pitch);
                 carRigidBody.AddRelativeTorque(Vector3.forward * roll);
-                //Debug.Log(roll);
             }
-            //float help = transform.rotation.z;
-            //Debug.Log(help);
         }
     }
 

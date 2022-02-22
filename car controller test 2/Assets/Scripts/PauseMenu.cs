@@ -1,14 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
 
 public class PauseMenu : MonoBehaviour
 {
     CarController carController;
-    bool gameIsPaused = false;
-    bool pressingPause;
+    bool gameIsPaused;
+    //bool pressingPause;
 
     public GameObject pauseMenuUI;
+
+    public GameObject pauseFirstButton;
 
     private void Start()
     {
@@ -23,7 +27,7 @@ public class PauseMenu : MonoBehaviour
 
     void Update()
     {
-        pressingPause = carController.pressingPause;
+        //pressingPause = carController.pressingPause;
         //if (pressingPause)
         //{
         //    if (gameIsPaused)
@@ -42,19 +46,22 @@ public class PauseMenu : MonoBehaviour
         if (gameIsPaused)
         {
             Resume();
+            gameIsPaused = false;
         }
         else
         {
             Pause();
+            gameIsPaused = true;
         }
         Debug.Log("step 2");
+        Debug.Log(gameIsPaused);
     }
 
     void Resume()
     {
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
-        gameIsPaused = !gameIsPaused;
+        //gameIsPaused = !gameIsPaused;
         //gameIsPaused = false;
         Debug.Log("step 3");
     }
@@ -63,8 +70,29 @@ public class PauseMenu : MonoBehaviour
     {
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
-        gameIsPaused = !gameIsPaused;
-        //gameIsPaused = true;
+
+        //clear selected object
+        EventSystem.current.SetSelectedGameObject(null);
+        //set a new selected object
+        EventSystem.current.SetSelectedGameObject(pauseFirstButton);
+
         Debug.Log("step 3");
+    }
+
+
+    public void LoadDirtTrack()
+    {
+        //Time.timeScale = 1f;
+        SceneManager.LoadScene(1);
+    }
+    public void LoadSkatePark()
+    {
+        //Time.timeScale = 1f;
+        SceneManager.LoadScene(2);
+    }
+    public void QuitGame()
+    {
+        Debug.Log("QUIT!");
+        Application.Quit();
     }
 }

@@ -631,7 +631,7 @@ WheelCollider:
   m_SuspensionDistance: 0.3
   m_ForceAppPointDistance: 0
   m_Mass: 20
-  m_WheelDampingRate: 0.25
+  m_WheelDampingRate: 0.12
   m_ForwardFriction:
     m_ExtremumSlip: 1
     m_ExtremumValue: 2
@@ -728,7 +728,7 @@ WheelCollider:
   m_SuspensionDistance: 0.3
   m_ForceAppPointDistance: 0
   m_Mass: 20
-  m_WheelDampingRate: 0.25
+  m_WheelDampingRate: 0.12
   m_ForwardFriction:
     m_ExtremumSlip: 1
     m_ExtremumValue: 2
@@ -790,7 +790,7 @@ WheelCollider:
   m_SuspensionDistance: 0.3
   m_ForceAppPointDistance: 0
   m_Mass: 20
-  m_WheelDampingRate: 0.25
+  m_WheelDampingRate: 0.12
   m_ForwardFriction:
     m_ExtremumSlip: 1
     m_ExtremumValue: 2
@@ -1038,7 +1038,7 @@ WheelCollider:
   m_SuspensionDistance: 0.3
   m_ForceAppPointDistance: 0
   m_Mass: 20
-  m_WheelDampingRate: 0.25
+  m_WheelDampingRate: 0.12
   m_ForwardFriction:
     m_ExtremumSlip: 1
     m_ExtremumValue: 2
@@ -1160,7 +1160,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1428129086377603201}
-  m_LocalRotation: {x: 0.07822094, y: -0.000000015258935, z: 0.0000000011972364, w: 0.9969361}
+  m_LocalRotation: {x: 0.07822093, y: 0.000000021296035, z: -0.0000000016709152, w: 0.9969361}
   m_LocalPosition: {x: 0, y: 15, z: -23}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1346,7 +1346,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1428129086589540616}
-  m_LocalRotation: {x: 0.07822094, y: -0.000000015258935, z: 0.0000000011972364, w: 0.9969361}
+  m_LocalRotation: {x: 0.07822093, y: 0.000000021296035, z: -0.0000000016709152, w: 0.9969361}
   m_LocalPosition: {x: 0, y: 15, z: -23}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1664,7 +1664,7 @@ MonoBehaviour:
   maxSteerAngle: 30
   controlPitchFactor: 20000
   controlYawFactor: 20000
-  controlRollFactor: 15000
+  controlRollFactor: 10000
   frontLeftWheelCollider: {fileID: 1428129085900252539}
   frontRightWheelCollider: {fileID: 1428129085242269854}
   backLeftWheelCollider: {fileID: 1428129085215122542}
@@ -1673,200 +1673,3 @@ MonoBehaviour:
   frontRightWheelTransform: {fileID: 485307736095529940}
   backLeftWheelTransform: {fileID: 1428129086507531166}
   backRightWheelTransform: {fileID: 1428129085842851344}
-  steering:
-    m_Name: Steering
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: e5b87a72-629c-4027-bee3-c969df383337
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 2D Vector
-      m_Id: e813b1e6-5c4d-4e19-b5bd-00dd8fac8745
-      m_Path: 2DVector
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Steering
-      m_Flags: 4
-    - m_Name: up
-      m_Id: dc8b2fb8-d9a0-47cc-a4c4-c05219960b3c
-      m_Path: <Keyboard>/w
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Steering
-      m_Flags: 8
-    - m_Name: down
-      m_Id: 1596a813-4c35-4b08-8385-ac1272cd9e8f
-      m_Path: <Keyboard>/s
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Steering
-      m_Flags: 8
-    - m_Name: left
-      m_Id: 0cae77f9-0c5e-4725-a7f3-220c81fa867a
-      m_Path: <Keyboard>/a
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Steering
-      m_Flags: 8
-    - m_Name: right
-      m_Id: 043039ae-fd52-495b-ace4-5e75eacb59c0
-      m_Path: <Keyboard>/d
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Steering
-      m_Flags: 8
-    - m_Name: 2D Vector
-      m_Id: c1b33d64-cc87-4256-85f1-b74b43d76485
-      m_Path: 2DVector
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Steering
-      m_Flags: 4
-    - m_Name: up
-      m_Id: 3172bd82-e358-49f4-9038-f91706708bfd
-      m_Path: <Gamepad>/rightTrigger
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Steering
-      m_Flags: 8
-    - m_Name: down
-      m_Id: 8f803e90-e258-4e5e-befe-adb8713902c2
-      m_Path: <Gamepad>/leftTrigger
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Steering
-      m_Flags: 8
-    - m_Name: left
-      m_Id: 2baf445c-6408-4860-b8cc-2409f5cd3851
-      m_Path: <Gamepad>/leftStick/left
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Steering
-      m_Flags: 8
-    - m_Name: right
-      m_Id: 9915a793-9ddb-440a-9285-6df20970c88d
-      m_Path: <Gamepad>/leftStick/right
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Steering
-      m_Flags: 8
-    m_Flags: 0
-  gamepadVertical:
-    m_Name: Gamepad Vertical
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 2e708f56-0ff0-4f6c-9b05-cda09d5a225e
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 1D Axis
-      m_Id: cd26f6d3-a7f3-49e5-9bd0-f6058f274d44
-      m_Path: 1DAxis
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Gamepad Vertical
-      m_Flags: 4
-    - m_Name: negative
-      m_Id: 3144b26b-4fc2-42b2-8246-8ce2f0158e2d
-      m_Path: <Gamepad>/leftStick/down
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Gamepad Vertical
-      m_Flags: 8
-    - m_Name: positive
-      m_Id: 4816ece7-7830-44eb-8648-1e9e6e2f335d
-      m_Path: <Gamepad>/leftStick/up
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Gamepad Vertical
-      m_Flags: 8
-    m_Flags: 0
-  handbrake:
-    m_Name: Handbrake
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 11e5a057-7d2d-495d-9810-5f40633d40aa
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: e4b9d6a5-5ef8-4e83-95e1-3e6ac2461f6c
-      m_Path: <Keyboard>/space
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Handbrake
-      m_Flags: 0
-    - m_Name: 
-      m_Id: 43ca1810-2aa1-417f-a84c-481d1e2a9540
-      m_Path: <Gamepad>/buttonSouth
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Handbrake
-      m_Flags: 0
-    m_Flags: 0
-  flip:
-    m_Name: Flip
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: d1450511-1f01-4cad-9d5d-0519df590796
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: ebef4472-f90c-49de-966d-ec9625b7f871
-      m_Path: <Gamepad>/buttonNorth
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Flip
-      m_Flags: 0
-    - m_Name: 
-      m_Id: 6555a93e-e59e-4977-af14-8b21c7a6d343
-      m_Path: <Keyboard>/r
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Flip
-      m_Flags: 0
-    m_Flags: 0
-  reset:
-    m_Name: Reset
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 0420ce4c-07af-40e1-af4a-f6b9cc3573c0
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: 5b27d1b1-7d32-4b5e-a932-e6e41b99ecf6
-      m_Path: <Keyboard>/escape
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Reset
-      m_Flags: 0
-    - m_Name: 
-      m_Id: 58c192ea-d141-473c-93cd-c2efa55da6ad
-      m_Path: <Gamepad>/select
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Reset
-      m_Flags: 0
-    m_Flags: 0
