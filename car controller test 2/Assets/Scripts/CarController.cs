@@ -43,7 +43,7 @@ public class CarController : MonoBehaviour
     private float maxRPM = 2500f;
     private float currentGear = 1f;
     private float gearNumber = 6f;
-    private float[] gearRatio = new float[] { 2.66f, 1.78f, 1.3f, 1f, .7f, .5f };  //unneeded as of now
+    private float[] gearRatio = new float[] { 2.66f, 1.78f, 1.3f, 1f, .7f, .1f };  //unneeded as of now.  top gear used to be .5f instead of .1f
 
 
     [SerializeField] public Text rpmOutput;
@@ -53,6 +53,7 @@ public class CarController : MonoBehaviour
 
     [SerializeField] private bool frontWheelDrive;
     [SerializeField] private bool rearWheelDrive;
+    [SerializeField] private float singleAxleMFAdjustment;
     [SerializeField] private bool frontHandBrake;
     [SerializeField] private bool rearHandBrake;
 
@@ -157,19 +158,28 @@ public class CarController : MonoBehaviour
 
     private void HandleMotor()
     {
-        if (frontWheelDrive)
+        if (frontWheelDrive && rearWheelDrive)
         {
             Transmission();
             frontLeftWheelCollider.motorTorque = gas * motorForce * transmissionForce;
             frontRightWheelCollider.motorTorque = gas * motorForce * transmissionForce;
-        }
-        if (rearWheelDrive)
-        {
-            Transmission();
             backLeftWheelCollider.motorTorque = gas * motorForce * transmissionForce;
             backRightWheelCollider.motorTorque = gas * motorForce * transmissionForce;
         }
+        else if (frontWheelDrive && !rearWheelDrive)
+        {
+            Transmission();
+            frontLeftWheelCollider.motorTorque = gas * (motorForce * singleAxleMFAdjustment) * transmissionForce;
+            frontRightWheelCollider.motorTorque = gas * (motorForce * singleAxleMFAdjustment) * transmissionForce;
+        }
+        else if (rearWheelDrive && !frontWheelDrive)
+        {
+            Transmission();
+            backLeftWheelCollider.motorTorque = gas * (motorForce * singleAxleMFAdjustment) * transmissionForce;
+            backRightWheelCollider.motorTorque = gas * (motorForce * singleAxleMFAdjustment) * transmissionForce;
+        }
 
+        Debug.Log(backLeftWheelCollider.motorTorque);
         currentBrakeForce = isBraking ? brakeForce : 0f;
         ApplyBraking();
     }
@@ -206,7 +216,7 @@ public class CarController : MonoBehaviour
                         transmissionForce = .7f;
                         break;
                     case 6:
-                        transmissionForce = .5f;
+                        transmissionForce = .1f;    //was previously .5f
                         break;
                 }
             }
@@ -240,6 +250,10 @@ public class CarController : MonoBehaviour
                         transmissionForce = .7f;
                         break;
                 }
+            }
+            if (engineRPM < 0)
+            {
+                transmissionForce = 1f;
             }
             else
             {
