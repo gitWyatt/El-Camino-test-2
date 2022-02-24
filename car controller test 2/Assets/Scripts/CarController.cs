@@ -59,6 +59,9 @@ public class CarController : MonoBehaviour
 
     [SerializeField] private float motorForce;
     [SerializeField] private float brakeForce;
+    [SerializeField] private float standardSidewaysStiffness;
+    [SerializeField] private float driftFrontSidewaysStiffness;
+    [SerializeField] private float driftRearSidewaysStiffness;
     [SerializeField] private float maxSteerAngle;
 
     [SerializeField] private float controlPitchFactor;
@@ -276,6 +279,36 @@ public class CarController : MonoBehaviour
         {
             backRightWheelCollider.brakeTorque = currentBrakeForce;
             backLeftWheelCollider.brakeTorque = currentBrakeForce;
+        }
+
+        WheelFrictionCurve frontLeftWheelFriction = frontLeftWheelCollider.sidewaysFriction;
+        WheelFrictionCurve frontRightWheelFriction = frontRightWheelCollider.sidewaysFriction;
+        WheelFrictionCurve backLeftWheelFriction = backLeftWheelCollider.sidewaysFriction;
+        WheelFrictionCurve backRightWheelFriction = backRightWheelCollider.sidewaysFriction;
+
+        if (isBraking)
+        {
+            frontLeftWheelFriction.stiffness = driftFrontSidewaysStiffness;
+            frontRightWheelFriction.stiffness = driftFrontSidewaysStiffness;
+            backLeftWheelFriction.stiffness = driftRearSidewaysStiffness;
+            backRightWheelFriction.stiffness = driftRearSidewaysStiffness;
+
+            frontLeftWheelCollider.sidewaysFriction = frontLeftWheelFriction;
+            frontRightWheelCollider.sidewaysFriction = frontRightWheelFriction;
+            backLeftWheelCollider.sidewaysFriction = backLeftWheelFriction;
+            backRightWheelCollider.sidewaysFriction = backRightWheelFriction;
+        }
+        else if (!isBraking)
+        {
+            frontLeftWheelFriction.stiffness = standardSidewaysStiffness;
+            frontRightWheelFriction.stiffness = standardSidewaysStiffness;
+            backLeftWheelFriction.stiffness = standardSidewaysStiffness;
+            backRightWheelFriction.stiffness = standardSidewaysStiffness;
+
+            frontLeftWheelCollider.sidewaysFriction = frontLeftWheelFriction;
+            frontRightWheelCollider.sidewaysFriction = frontRightWheelFriction;
+            backLeftWheelCollider.sidewaysFriction = backLeftWheelFriction;
+            backRightWheelCollider.sidewaysFriction = backRightWheelFriction;
         }
     }
 
