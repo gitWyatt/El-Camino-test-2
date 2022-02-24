@@ -1198,7 +1198,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1428129086377603201}
-  m_LocalRotation: {x: 0.031068424, y: -7.0700495e-10, z: 2.197613e-11, w: 0.99951726}
+  m_LocalRotation: {x: 0.03106842, y: 0.0000000018617461, z: -5.7869445e-11, w: 0.99951726}
   m_LocalPosition: {x: 0, y: 10.5, z: -20}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1384,7 +1384,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1428129086589540616}
-  m_LocalRotation: {x: 0.031068424, y: -7.0700495e-10, z: 2.197613e-11, w: 0.99951726}
+  m_LocalRotation: {x: 0.03106842, y: 0.0000000018617461, z: -5.7869445e-11, w: 0.99951726}
   m_LocalPosition: {x: 0, y: 10.5, z: -20}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1695,11 +1695,11 @@ MonoBehaviour:
   speedOutput: {fileID: 1041954121}
   gearBox: {fileID: 1300120566}
   frontWheelDrive: 1
-  rearWheelDrive: 1
-  singleAxleMFAdjustment: 2
+  rearWheelDrive: 0
+  singleAxleMFAdjustment: 2.1
   frontHandBrake: 0
   rearHandBrake: 1
-  motorForce: 2500
+  motorForce: 2250
   brakeForce: 400
   standardSidewaysStiffness: 1
   driftFrontSidewaysStiffness: 0.6
