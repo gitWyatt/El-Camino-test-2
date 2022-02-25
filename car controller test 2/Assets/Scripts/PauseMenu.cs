@@ -33,7 +33,7 @@ public class PauseMenu : MonoBehaviour
 
     void Update()
     {
-        
+
     }
 
     public void OnPause()
@@ -49,7 +49,7 @@ public class PauseMenu : MonoBehaviour
         //Debug.Log("step 2");
     }
 
-    void Resume()
+    public void Resume()
     {
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
@@ -82,6 +82,24 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 1f;
         //pauseMenuUI.SetActive(false);
         SceneManager.LoadScene(2);
+    }
+    public void SetPoweredAxel(int axelIndex)
+    {
+        if (axelIndex == 0f)
+        {
+            carController.frontWheelDrive = true;
+            carController.rearWheelDrive = false;
+        }
+        if (axelIndex == 1f)
+        {
+            carController.frontWheelDrive = false;
+            carController.rearWheelDrive = true;
+        }
+        if (axelIndex == 2f)
+        {
+            carController.frontWheelDrive = true;
+            carController.rearWheelDrive = true;
+        }
     }
     public void QuitGame()
     {

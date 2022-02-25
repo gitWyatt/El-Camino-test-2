@@ -51,8 +51,8 @@ public class CarController : MonoBehaviour
     [SerializeField] public Text speedOutput;
     [SerializeField] public Text gearBox;
 
-    [SerializeField] private bool frontWheelDrive;
-    [SerializeField] private bool rearWheelDrive;
+    [SerializeField] public bool frontWheelDrive;
+    [SerializeField] public bool rearWheelDrive;
     [SerializeField] private float singleAxleMFAdjustment;
     [SerializeField] private bool frontHandBrake;
     [SerializeField] private bool rearHandBrake;
@@ -182,7 +182,6 @@ public class CarController : MonoBehaviour
             backRightWheelCollider.motorTorque = gas * (motorForce * singleAxleMFAdjustment) * transmissionForce;
         }
 
-        Debug.Log(backLeftWheelCollider.motorTorque);
         currentBrakeForce = isBraking ? brakeForce : 0f;
         ApplyBraking();
     }
@@ -256,7 +255,7 @@ public class CarController : MonoBehaviour
             }
             if (engineRPM < 0)
             {
-                transmissionForce = 1f;
+                transmissionForce = 1.78f;
             }
             else
             {
@@ -359,7 +358,7 @@ public class CarController : MonoBehaviour
 
 
         //FindObjectOfType<PauseMenu>().OnPause();
-        Debug.Log("step 1");
+        //Debug.Log("step 1");
     }
 
     private void HandleSpeedometer()
