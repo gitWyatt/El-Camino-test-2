@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
@@ -100,6 +101,10 @@ public class PauseMenu : MonoBehaviour
             carController.frontWheelDrive = true;
             carController.rearWheelDrive = true;
         }
+    }
+    public void SetQuality(int qualityIndex)
+    {
+        QualitySettings.SetQualityLevel(qualityIndex);
     }
     public void QuitGame()
     {
