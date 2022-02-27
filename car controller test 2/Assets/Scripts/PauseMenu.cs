@@ -18,6 +18,7 @@ public class PauseMenu : MonoBehaviour
 
     public TMPro.TMP_Dropdown QualityDropDown;
     public TMPro.TMP_Dropdown AxelDropDown;
+    public TMPro.TMP_Dropdown FPSDropDown;
 
     private void Awake()
     {
@@ -37,11 +38,16 @@ public class PauseMenu : MonoBehaviour
 
         int axel = PlayerPrefs.GetInt("axelIndex", 0);
         AxelDropDown.value = axel;
+
+        int fps = PlayerPrefs.GetInt("fpsIndex", 0);
+        FPSDropDown.value = fps;
+
+        //QualitySettings.vSyncCount = 0;
     }
 
     void Update()
     {
-
+        Debug.Log(Application.targetFrameRate);
     }
 
     public void OnPause()
@@ -112,13 +118,37 @@ public class PauseMenu : MonoBehaviour
         }
     }
     public void SetQuality(int qualityIndex)
-    {
+    {        
         QualitySettings.SetQualityLevel(qualityIndex);
         PlayerPrefs.SetInt("qualityIndex", qualityIndex);
 
         //QualitySettings.SetQualityLevel(PlayerPrefs.GetInt("qualityIndex"));
         
         //QualitySettings.SetQualityLevel(qualityIndex);
+    }
+    public void SetFPS(int fpsIndex)
+    {
+        switch(fpsIndex)
+        {
+            case 0:
+                Application.targetFrameRate = 30;
+                break;
+            case 1:
+                Application.targetFrameRate = 60;
+                break;
+            case 2:
+                Application.targetFrameRate = 72;
+                break;
+            case 3:
+                Application.targetFrameRate = 120;
+                break;
+            case 4:
+                Application.targetFrameRate = 144;
+                break;
+        }
+        //Application.SetTargetFrameRate(fpsIndex);
+        //Application.targetFrameRate = fpsIndex;
+        PlayerPrefs.SetInt("fpsIndex", fpsIndex);
     }
     public void QuitGame()
     {
