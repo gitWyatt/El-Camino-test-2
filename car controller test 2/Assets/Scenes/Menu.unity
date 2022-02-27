@@ -3583,6 +3583,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pauseMenuUI: {fileID: 1084389037}
   pauseFirstButton: {fileID: 80060961}
+  QualityDropDown: {fileID: 209144327}
+  AxelDropDown: {fileID: 388032497}
 --- !u!1 &1515219583
 GameObject:
   m_ObjectHideFlags: 0

@@ -16,6 +16,8 @@ public class PauseMenu : MonoBehaviour
 
     public GameObject pauseFirstButton;
 
+    public TMPro.TMP_Dropdown QualityDropDown;
+    public TMPro.TMP_Dropdown AxelDropDown;
 
     private void Awake()
     {
@@ -30,6 +32,11 @@ public class PauseMenu : MonoBehaviour
     {
         carController = GameObject.Find("Camino").GetComponent<CarController>();
 
+        int quality = PlayerPrefs.GetInt("qualityIndex", 0);
+        QualityDropDown.value = quality;
+
+        int axel = PlayerPrefs.GetInt("axelIndex", 0);
+        AxelDropDown.value = axel;
     }
 
     void Update()
@@ -86,6 +93,8 @@ public class PauseMenu : MonoBehaviour
     }
     public void SetPoweredAxel(int axelIndex)
     {
+        PlayerPrefs.SetInt("axelIndex", axelIndex);
+
         if (axelIndex == 0f)
         {
             carController.frontWheelDrive = true;
@@ -105,6 +114,11 @@ public class PauseMenu : MonoBehaviour
     public void SetQuality(int qualityIndex)
     {
         QualitySettings.SetQualityLevel(qualityIndex);
+        PlayerPrefs.SetInt("qualityIndex", qualityIndex);
+
+        //QualitySettings.SetQualityLevel(PlayerPrefs.GetInt("qualityIndex"));
+        
+        //QualitySettings.SetQualityLevel(qualityIndex);
     }
     public void QuitGame()
     {

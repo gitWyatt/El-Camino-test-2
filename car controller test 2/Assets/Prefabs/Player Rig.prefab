@@ -1205,6 +1205,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pauseMenuUI: {fileID: 1428129084725443375}
   pauseFirstButton: {fileID: 1428129084922525086}
+  QualityDropDown: {fileID: 1894801030}
+  AxelDropDown: {fileID: 1428129085631123196}
 --- !u!1 &1467163899
 GameObject:
   m_ObjectHideFlags: 0
@@ -2434,7 +2436,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1428129086377603201}
-  m_LocalRotation: {x: 0.031068424, y: -7.0700495e-10, z: 2.197613e-11, w: 0.99951726}
+  m_LocalRotation: {x: 0.031068426, y: -0.000000002097754, z: 6.520538e-11, w: 0.99951726}
   m_LocalPosition: {x: 0, y: 10.5, z: -20}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2620,7 +2622,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1428129086589540616}
-  m_LocalRotation: {x: 0.031068424, y: -7.0700495e-10, z: 2.197613e-11, w: 0.99951726}
+  m_LocalRotation: {x: 0.031068426, y: -0.000000002097754, z: 6.520538e-11, w: 0.99951726}
   m_LocalPosition: {x: 0, y: 10.5, z: -20}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
