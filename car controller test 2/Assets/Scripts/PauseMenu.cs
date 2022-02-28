@@ -17,11 +17,12 @@ public class PauseMenu : MonoBehaviour
     public GameObject pauseFirstButton;
 
     public TMPro.TMP_Dropdown QualityDropDown;
-    public TMPro.TMP_Dropdown AxelDropDown;
+    public TMPro.TMP_Dropdown AxleDropDown;
     public TMPro.TMP_Dropdown FPSDropDown;
 
     private void Awake()
     {
+        carController = GameObject.Find("Camino").GetComponent<CarController>();
         controls = new InputMaster();
         //clear selected object
         EventSystem.current.SetSelectedGameObject(null);
@@ -29,25 +30,47 @@ public class PauseMenu : MonoBehaviour
         EventSystem.current.SetSelectedGameObject(pauseFirstButton);
     }
 
+    private void OnEnable()
+    {
+        
+    }
+
     private void Start()
     {
-        carController = GameObject.Find("Camino").GetComponent<CarController>();
-
         int quality = PlayerPrefs.GetInt("qualityIndex", 0);
         QualityDropDown.value = quality;
 
         int axel = PlayerPrefs.GetInt("axelIndex", 0);
-        AxelDropDown.value = axel;
+        AxleDropDown.value = axel;
 
-        int fps = PlayerPrefs.GetInt("fpsIndex", 0);
+        int fps = PlayerPrefs.GetInt("fpsIndex", 1);
+        switch (fps)
+        {
+            case 0:
+                Application.targetFrameRate = 30;
+                break;
+            case 1:
+                Application.targetFrameRate = 60;
+                break;
+            case 2:
+                Application.targetFrameRate = 72;
+                break;
+            case 3:
+                Application.targetFrameRate = 120;
+                break;
+            case 4:
+                Application.targetFrameRate = 144;
+                break;
+        }
         FPSDropDown.value = fps;
 
         //QualitySettings.vSyncCount = 0;
     }
 
-    void Update()
+    private void Update()
     {
-        Debug.Log(Application.targetFrameRate);
+        Debug.Log(FPSDropDown.value);
+        Debug.Log(PlayerPrefs.GetInt("fpsIndex"));
     }
 
     public void OnPause()
@@ -97,21 +120,22 @@ public class PauseMenu : MonoBehaviour
         //pauseMenuUI.SetActive(false);
         SceneManager.LoadScene(2);
     }
-    public void SetPoweredAxel(int axelIndex)
-    {
-        PlayerPrefs.SetInt("axelIndex", axelIndex);
 
-        if (axelIndex == 0f)
+    public void SetPoweredAxle(int axleIndex)
+    {
+        PlayerPrefs.SetInt("axleIndex", axleIndex);
+
+        if (axleIndex == 0f)
         {
             carController.frontWheelDrive = true;
             carController.rearWheelDrive = false;
         }
-        if (axelIndex == 1f)
+        if (axleIndex == 1f)
         {
             carController.frontWheelDrive = false;
             carController.rearWheelDrive = true;
         }
-        if (axelIndex == 2f)
+        if (axleIndex == 2f)
         {
             carController.frontWheelDrive = true;
             carController.rearWheelDrive = true;
