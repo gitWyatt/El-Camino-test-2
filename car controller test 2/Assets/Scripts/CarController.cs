@@ -58,12 +58,24 @@ public class CarController : MonoBehaviour
     [SerializeField] private bool rearHandBrake;
 
     [SerializeField] private float motorForce;
+    [SerializeField] public int motorSelection;
+    [SerializeField] private float streetMotorForce;
+    [SerializeField] private float racingMotorForce;
+
     [SerializeField] private float brakeForce;
+    [SerializeField] public int tireSelection;
+    [SerializeField] private float basicBrakesStandardSidewaysStiffness;
+    [SerializeField] private float basicBrakesDriftFrontSidewaysStiffness;
+    [SerializeField] private float basicBrakesDriftRearSidewaysStiffness;
+    [SerializeField] private float offRoadBrakesStandardSidewaysStiffness;
+    [SerializeField] private float offRoadBrakesDriftFrontSidewaysStiffness;
+    [SerializeField] private float offRoadBrakesDriftRearSidewaysStiffness;
+
     [SerializeField] private float standardSidewaysStiffness;
     [SerializeField] private float driftFrontSidewaysStiffness;
     [SerializeField] private float driftRearSidewaysStiffness;
-    [SerializeField] private float maxSteerAngle;
 
+    [SerializeField] private float maxSteerAngle;
     [SerializeField] private float controlPitchFactor;
     [SerializeField] private float controlYawFactor;
     [SerializeField] private float controlRollFactor;
@@ -114,6 +126,7 @@ public class CarController : MonoBehaviour
         HandleSpeedometer();
         UpdateWheels();
         ResetCheck();
+        DebugToConsole();
     }
 
     private void GetInput()
@@ -161,6 +174,17 @@ public class CarController : MonoBehaviour
 
     private void HandleMotor()
     {
+        switch (motorSelection)
+        {
+            case 0:
+                motorForce = streetMotorForce;
+                break;
+            case 1:
+                motorForce = racingMotorForce;
+                break;
+        }
+        
+
         if (frontWheelDrive && rearWheelDrive)
         {
             Transmission();
@@ -285,6 +309,20 @@ public class CarController : MonoBehaviour
         WheelFrictionCurve backLeftWheelFriction = backLeftWheelCollider.sidewaysFriction;
         WheelFrictionCurve backRightWheelFriction = backRightWheelCollider.sidewaysFriction;
 
+        switch (tireSelection)
+        {
+            case 0:
+                standardSidewaysStiffness = basicBrakesStandardSidewaysStiffness;
+                driftFrontSidewaysStiffness = basicBrakesDriftFrontSidewaysStiffness;
+                driftRearSidewaysStiffness = basicBrakesDriftRearSidewaysStiffness;
+                break;
+            case 1:
+                standardSidewaysStiffness = offRoadBrakesStandardSidewaysStiffness;
+                driftFrontSidewaysStiffness = offRoadBrakesDriftFrontSidewaysStiffness;
+                driftRearSidewaysStiffness = offRoadBrakesDriftRearSidewaysStiffness;
+                break;
+        }
+
         if (isBraking)
         {
             frontLeftWheelFriction.stiffness = driftFrontSidewaysStiffness;
@@ -328,8 +366,16 @@ public class CarController : MonoBehaviour
 
             if (isBraking == false)
             {
-                pitch = transform.rotation.x + verticalInput * controlPitchFactor; 
-                yaw = transform.rotation.y + horizontalInput * controlYawFactor;
+                pitch = transform.rotation.x + verticalInput * controlPitchFactor;
+                if (gas < 0)
+                {
+                    yaw = transform.rotation.y + -horizontalInput * controlYawFactor;
+                }
+                else
+                {
+                    yaw = transform.rotation.y + horizontalInput * controlYawFactor;
+                }
+                //yaw = transform.rotation.y + horizontalInput * controlYawFactor;
                 carRigidBody.AddRelativeTorque(Vector3.right * pitch);
                 carRigidBody.AddRelativeTorque(Vector3.up * yaw);
             }
@@ -402,6 +448,11 @@ public class CarController : MonoBehaviour
             transform.rotation = Quaternion.Euler(0, transform.eulerAngles.y, 0);
 
         }
+    }
+
+    private void DebugToConsole()
+    {
+        //Debug.Log(horizontalInput);    
     }
 }
 

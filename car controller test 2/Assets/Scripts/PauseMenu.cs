@@ -19,6 +19,8 @@ public class PauseMenu : MonoBehaviour
     public TMPro.TMP_Dropdown QualityDropDown;
     public TMPro.TMP_Dropdown AxleDropDown;
     public TMPro.TMP_Dropdown FPSDropDown;
+    public TMPro.TMP_Dropdown MotorDropDown;
+    public TMPro.TMP_Dropdown TireDropDown;
 
     private void Awake()
     {
@@ -40,8 +42,8 @@ public class PauseMenu : MonoBehaviour
         int quality = PlayerPrefs.GetInt("qualityIndex", 0);
         QualityDropDown.value = quality;
 
-        int axel = PlayerPrefs.GetInt("axelIndex", 0);
-        AxleDropDown.value = axel;
+        int axle = PlayerPrefs.GetInt("axleIndex", 0);
+        AxleDropDown.value = axle;
 
         int fps = PlayerPrefs.GetInt("fpsIndex", 1);
         switch (fps)
@@ -64,13 +66,19 @@ public class PauseMenu : MonoBehaviour
         }
         FPSDropDown.value = fps;
 
+        int motor = PlayerPrefs.GetInt("motorIndex", 0);
+        MotorDropDown.value = motor;
+
+        int tire = PlayerPrefs.GetInt("tireIndex", 0);
+        TireDropDown.value = tire;
+
         //QualitySettings.vSyncCount = 0;
     }
 
     private void Update()
     {
-        Debug.Log(FPSDropDown.value);
-        Debug.Log(PlayerPrefs.GetInt("fpsIndex"));
+        //Debug.Log(FPSDropDown.value);
+        //Debug.Log(PlayerPrefs.GetInt("fpsIndex"));
     }
 
     public void OnPause()
@@ -123,24 +131,54 @@ public class PauseMenu : MonoBehaviour
 
     public void SetPoweredAxle(int axleIndex)
     {
-        PlayerPrefs.SetInt("axleIndex", axleIndex);
-
-        if (axleIndex == 0f)
+        if (axleIndex == 0)
         {
             carController.frontWheelDrive = true;
             carController.rearWheelDrive = false;
         }
-        if (axleIndex == 1f)
+        if (axleIndex == 1)
         {
             carController.frontWheelDrive = false;
             carController.rearWheelDrive = true;
         }
-        if (axleIndex == 2f)
+        if (axleIndex == 2)
         {
             carController.frontWheelDrive = true;
             carController.rearWheelDrive = true;
         }
+
+        PlayerPrefs.SetInt("axleIndex", axleIndex);
     }
+    public void SetMotor(int motorIndex)
+    {
+        switch(motorIndex)
+        {
+            case 0:
+                carController.motorSelection = 0;
+                break;
+            case 1:
+                carController.motorSelection = 1;
+                break;
+        }
+
+        PlayerPrefs.SetInt("motorIndex", motorIndex);
+    }
+    public void SetTire(int tireIndex)
+    {
+        switch(tireIndex)
+        {
+            case 0:
+                carController.tireSelection = 0;
+                break;
+            case 1:
+                carController.tireSelection = 1;
+                break;
+        }
+
+        PlayerPrefs.SetInt("tireIndex", tireIndex);
+    }
+
+
     public void SetQuality(int qualityIndex)
     {        
         QualitySettings.SetQualityLevel(qualityIndex);

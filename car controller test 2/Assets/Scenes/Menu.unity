@@ -425,7 +425,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &192152867
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1418,7 +1418,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &388032496
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4555,6 +4555,7 @@ MonoBehaviour:
   QualityDropDown: {fileID: 209144327}
   AxleDropDown: {fileID: 388032497}
   FPSDropDown: {fileID: 1611872405}
+  MotorDropDown: {fileID: 0}
 --- !u!114 &1514879139
 MonoBehaviour:
   m_ObjectHideFlags: 0
