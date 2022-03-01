@@ -63,6 +63,7 @@ public class CarController : MonoBehaviour
     [SerializeField] private float racingMotorForce;
 
     [SerializeField] private float brakeForce;
+    [SerializeField] private float driftBrakesLerpValue;
     [SerializeField] public int tireSelection;
     [SerializeField] private float basicBrakesStandardSidewaysStiffness;
     [SerializeField] private float basicBrakesDriftFrontSidewaysStiffness;
@@ -76,6 +77,12 @@ public class CarController : MonoBehaviour
     [SerializeField] private float driftRearSidewaysStiffness;
 
     [SerializeField] private float maxSteerAngle;
+    [SerializeField] public int steeringSelection;
+    [SerializeField] private float steeringLerpValue;
+    [SerializeField] private float unpoweredSteeringLerpValue;
+    [SerializeField] private float streetSteeringLerpValue;
+    [SerializeField] private float driftSteeringLerpValue;
+
     [SerializeField] private float controlPitchFactor;
     [SerializeField] private float controlYawFactor;
     [SerializeField] private float controlRollFactor;
@@ -198,10 +205,14 @@ public class CarController : MonoBehaviour
             Transmission();
             frontLeftWheelCollider.motorTorque = gas * (motorForce * singleAxleMFAdjustment) * transmissionForce;
             frontRightWheelCollider.motorTorque = gas * (motorForce * singleAxleMFAdjustment) * transmissionForce;
+            backLeftWheelCollider.motorTorque = 0f;
+            backRightWheelCollider.motorTorque = 0f;
         }
         else if (rearWheelDrive && !frontWheelDrive)
         {
             Transmission();
+            frontLeftWheelCollider.motorTorque = 0f;
+            frontRightWheelCollider.motorTorque = 0f;
             backLeftWheelCollider.motorTorque = gas * (motorForce * singleAxleMFAdjustment) * transmissionForce;
             backRightWheelCollider.motorTorque = gas * (motorForce * singleAxleMFAdjustment) * transmissionForce;
         }
@@ -323,8 +334,18 @@ public class CarController : MonoBehaviour
                 break;
         }
 
+        float currentDriftFrontSidewaysStiffness = frontLeftWheelFriction.stiffness;
+        float currentDriftRearSidewaysStiffness = frontLeftWheelFriction.stiffness;
+
         if (isBraking)
         {
+            //lerp
+            //frontLeftWheelFriction.stiffness = Mathf.Lerp(currentDriftFrontSidewaysStiffness, driftFrontSidewaysStiffness, driftBrakesLerpValue);
+            //frontRightWheelFriction.stiffness = Mathf.Lerp(currentDriftFrontSidewaysStiffness, driftFrontSidewaysStiffness, driftBrakesLerpValue);
+            //backLeftWheelFriction.stiffness = Mathf.Lerp(currentDriftRearSidewaysStiffness, driftRearSidewaysStiffness, driftBrakesLerpValue);
+            //backRightWheelFriction.stiffness = Mathf.Lerp(currentDriftRearSidewaysStiffness, driftRearSidewaysStiffness, driftBrakesLerpValue);
+
+            //non-lerp
             frontLeftWheelFriction.stiffness = driftFrontSidewaysStiffness;
             frontRightWheelFriction.stiffness = driftFrontSidewaysStiffness;
             backLeftWheelFriction.stiffness = driftRearSidewaysStiffness;
@@ -334,26 +355,59 @@ public class CarController : MonoBehaviour
             frontRightWheelCollider.sidewaysFriction = frontRightWheelFriction;
             backLeftWheelCollider.sidewaysFriction = backLeftWheelFriction;
             backRightWheelCollider.sidewaysFriction = backRightWheelFriction;
+
+            Debug.Log(frontLeftWheelFriction.stiffness);
         }
         else if (!isBraking)
         {
-            frontLeftWheelFriction.stiffness = standardSidewaysStiffness;
-            frontRightWheelFriction.stiffness = standardSidewaysStiffness;
-            backLeftWheelFriction.stiffness = standardSidewaysStiffness;
-            backRightWheelFriction.stiffness = standardSidewaysStiffness;
+            //lerp
+            frontLeftWheelFriction.stiffness = Mathf.Lerp(currentDriftFrontSidewaysStiffness, standardSidewaysStiffness, driftBrakesLerpValue);
+            frontRightWheelFriction.stiffness = Mathf.Lerp(currentDriftFrontSidewaysStiffness, standardSidewaysStiffness, driftBrakesLerpValue);
+            backLeftWheelFriction.stiffness = Mathf.Lerp(currentDriftRearSidewaysStiffness, standardSidewaysStiffness, driftBrakesLerpValue);
+            backRightWheelFriction.stiffness = Mathf.Lerp(currentDriftRearSidewaysStiffness, standardSidewaysStiffness, driftBrakesLerpValue);
+
+            //non-lerp
+            //frontLeftWheelFriction.stiffness = standardSidewaysStiffness;
+            //frontRightWheelFriction.stiffness = standardSidewaysStiffness;
+            //backLeftWheelFriction.stiffness = standardSidewaysStiffness;
+            //backRightWheelFriction.stiffness = standardSidewaysStiffness;
 
             frontLeftWheelCollider.sidewaysFriction = frontLeftWheelFriction;
             frontRightWheelCollider.sidewaysFriction = frontRightWheelFriction;
             backLeftWheelCollider.sidewaysFriction = backLeftWheelFriction;
             backRightWheelCollider.sidewaysFriction = backRightWheelFriction;
+
+            Debug.Log(frontLeftWheelFriction.stiffness);
         }
     }
 
     private void HandleSteering()
     {
-        currentSteerAngle = maxSteerAngle * horizontalInput;
-        frontLeftWheelCollider.steerAngle = currentSteerAngle;
-        frontRightWheelCollider.steerAngle = currentSteerAngle;
+        currentSteerAngle = (frontLeftWheelCollider.steerAngle + frontRightWheelCollider.steerAngle) / 2;
+        float newSteerAngle = maxSteerAngle * horizontalInput;
+
+        switch (steeringSelection)
+        {
+            case 0:
+                steeringLerpValue = .1f;
+                brakeForce = 400f;          //move this to its own dropdown, maybe "handbrake orientation => standard handbrake"
+                break;
+            case 1:
+                steeringLerpValue = .3f;
+                brakeForce = 400f;          //move this to its own dropdown, maybe "handbrake orientation => standard handbrake"
+                break;
+            case 2:
+                steeringLerpValue = .5f;
+                brakeForce = 200f;          //move this to its own dropdown, maybe "handbrake orientation => drifting handbrake"
+                break;
+        }
+
+        frontLeftWheelCollider.steerAngle = Mathf.Lerp(currentSteerAngle, newSteerAngle, steeringLerpValue);
+        frontRightWheelCollider.steerAngle = Mathf.Lerp(currentSteerAngle, newSteerAngle, steeringLerpValue);
+
+        //currentSteerAngle = maxSteerAngle * horizontalInput;
+        //frontLeftWheelCollider.steerAngle = currentSteerAngle;
+        //frontRightWheelCollider.steerAngle = currentSteerAngle;
     }
 
     private void HandleRotation()
@@ -452,7 +506,7 @@ public class CarController : MonoBehaviour
 
     private void DebugToConsole()
     {
-        //Debug.Log(horizontalInput);    
+        //Debug.Log();    
     }
 }
 

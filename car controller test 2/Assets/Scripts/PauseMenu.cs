@@ -21,6 +21,7 @@ public class PauseMenu : MonoBehaviour
     public TMPro.TMP_Dropdown FPSDropDown;
     public TMPro.TMP_Dropdown MotorDropDown;
     public TMPro.TMP_Dropdown TireDropDown;
+    public TMPro.TMP_Dropdown SteeringDropDown;
 
     private void Awake()
     {
@@ -72,6 +73,8 @@ public class PauseMenu : MonoBehaviour
         int tire = PlayerPrefs.GetInt("tireIndex", 0);
         TireDropDown.value = tire;
 
+        int steering = PlayerPrefs.GetInt("steeringIndex", 0);
+        SteeringDropDown.value = steering;
         //QualitySettings.vSyncCount = 0;
     }
 
@@ -128,6 +131,12 @@ public class PauseMenu : MonoBehaviour
         //pauseMenuUI.SetActive(false);
         SceneManager.LoadScene(2);
     }
+    public void LoadHills()
+    {
+        Time.timeScale = 1f;
+        //pauseMenuUI.SetActive(false);
+        SceneManager.LoadScene(3);
+    }
 
     public void SetPoweredAxle(int axleIndex)
     {
@@ -176,6 +185,23 @@ public class PauseMenu : MonoBehaviour
         }
 
         PlayerPrefs.SetInt("tireIndex", tireIndex);
+    }
+    public void SetSteering(int steeringIndex)
+    {
+        switch(steeringIndex)
+        {
+            case 0:
+                carController.steeringSelection = 0;
+                break;
+            case 1:
+                carController.steeringSelection = 1;
+                break;
+            case 2:
+                carController.steeringSelection = 2;
+                break;
+        }
+
+        PlayerPrefs.SetInt("steeringIndex", steeringIndex);
     }
 
 
