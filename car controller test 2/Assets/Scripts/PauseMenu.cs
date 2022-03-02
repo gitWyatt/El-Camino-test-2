@@ -138,6 +138,7 @@ public class PauseMenu : MonoBehaviour
         SceneManager.LoadScene(3);
     }
 
+
     public void SetPoweredAxle(int axleIndex)
     {
         if (axleIndex == 0)
@@ -181,6 +182,9 @@ public class PauseMenu : MonoBehaviour
                 break;
             case 1:
                 carController.tireSelection = 1;
+                break;
+            case 2:
+                carController.tireSelection = 2;
                 break;
         }
 

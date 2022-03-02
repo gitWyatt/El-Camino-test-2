@@ -9,7 +9,9 @@ public class CarController : MonoBehaviour
 {
     public InputMaster controls;
 
-    public Transform centerOfMass;
+    public Transform centerOfMassAir;
+    public Transform centerOfMassGround;
+    public Transform centerOfMassCurrent;
 
     private Rigidbody carRigidBody;
 
@@ -71,6 +73,9 @@ public class CarController : MonoBehaviour
     [SerializeField] private float offRoadBrakesStandardSidewaysStiffness;
     [SerializeField] private float offRoadBrakesDriftFrontSidewaysStiffness;
     [SerializeField] private float offRoadBrakesDriftRearSidewaysStiffness;
+    [SerializeField] private float driftBrakesStandardSidewaysStiffness;
+    [SerializeField] private float driftBrakesDriftFrontSidewaysStiffness;
+    [SerializeField] private float driftBrakesDriftRearSidewaysStiffness;
 
     [SerializeField] private float standardSidewaysStiffness;
     [SerializeField] private float driftFrontSidewaysStiffness;
@@ -110,7 +115,8 @@ public class CarController : MonoBehaviour
     {
         //sets center of mass to transform
         carRigidBody = GetComponent<Rigidbody>();
-        carRigidBody.centerOfMass = centerOfMass.localPosition;
+        //carRigidBody.centerOfMass = centerOfMassGround.localPosition;
+        carRigidBody.centerOfMass = centerOfMassCurrent.localPosition;
     }
 
     private void OnEnable()
@@ -332,6 +338,11 @@ public class CarController : MonoBehaviour
                 driftFrontSidewaysStiffness = offRoadBrakesDriftFrontSidewaysStiffness;
                 driftRearSidewaysStiffness = offRoadBrakesDriftRearSidewaysStiffness;
                 break;
+            case 2:
+                standardSidewaysStiffness = driftBrakesStandardSidewaysStiffness;
+                driftFrontSidewaysStiffness = driftBrakesDriftFrontSidewaysStiffness;
+                driftRearSidewaysStiffness = driftBrakesDriftRearSidewaysStiffness;
+                break;
         }
 
         float currentDriftFrontSidewaysStiffness = frontLeftWheelFriction.stiffness;
@@ -401,7 +412,7 @@ public class CarController : MonoBehaviour
                 brakeForce = 200f;          //move this to its own dropdown, maybe "handbrake orientation => drifting handbrake"
                 break;
         }
-
+ 
         frontLeftWheelCollider.steerAngle = Mathf.Lerp(currentSteerAngle, newSteerAngle, steeringLerpValue);
         frontRightWheelCollider.steerAngle = Mathf.Lerp(currentSteerAngle, newSteerAngle, steeringLerpValue);
 
@@ -414,6 +425,9 @@ public class CarController : MonoBehaviour
     {
         if (touchingGround == false)
         {
+            centerOfMassCurrent.localPosition = Vector3.Lerp(centerOfMassCurrent.localPosition, centerOfMassAir.localPosition, 0.1f);
+            //carRigidBody.centerOfMass = centerOfMassAir.localPosition;
+
             float pitch;
             float yaw;
             float roll;
@@ -441,6 +455,15 @@ public class CarController : MonoBehaviour
                 carRigidBody.AddRelativeTorque(Vector3.forward * roll);
             }
         }
+
+        //big test right here
+        if (touchingGround)
+        {
+            centerOfMassCurrent.localPosition = Vector3.Lerp(centerOfMassCurrent.localPosition, centerOfMassGround.localPosition, 0.5f);
+            //carRigidBody.centerOfMass = centerOfMassGround.localPosition;
+        }
+
+        Debug.Log(centerOfMassCurrent.localPosition);
     }
 
     public void PauseHandler(InputAction.CallbackContext context)
