@@ -66,16 +66,20 @@ public class CarController : MonoBehaviour
 
     [SerializeField] private float brakeForce;
     [SerializeField] private float driftBrakesLerpValue;
-    [SerializeField] public int tireSelection;
-    [SerializeField] private float basicBrakesStandardSidewaysStiffness;
+    [SerializeField] public int handbrakeSelection;
+    [SerializeField] private float moreDriftBrakeForce;
+    [SerializeField] private float lessDriftBrakeForce;
     [SerializeField] private float basicBrakesDriftFrontSidewaysStiffness;
     [SerializeField] private float basicBrakesDriftRearSidewaysStiffness;
-    [SerializeField] private float offRoadBrakesStandardSidewaysStiffness;
     [SerializeField] private float offRoadBrakesDriftFrontSidewaysStiffness;
     [SerializeField] private float offRoadBrakesDriftRearSidewaysStiffness;
-    [SerializeField] private float driftBrakesStandardSidewaysStiffness;
     [SerializeField] private float driftBrakesDriftFrontSidewaysStiffness;
     [SerializeField] private float driftBrakesDriftRearSidewaysStiffness;
+
+    [SerializeField] public int tireSelection;
+    [SerializeField] private float basicBrakesStandardSidewaysStiffness;
+    [SerializeField] private float offRoadBrakesStandardSidewaysStiffness;
+    [SerializeField] private float driftBrakesStandardSidewaysStiffness;
 
     [SerializeField] private float standardSidewaysStiffness;
     [SerializeField] private float driftFrontSidewaysStiffness;
@@ -87,6 +91,12 @@ public class CarController : MonoBehaviour
     [SerializeField] private float unpoweredSteeringLerpValue;
     [SerializeField] private float streetSteeringLerpValue;
     [SerializeField] private float driftSteeringLerpValue;
+
+    [SerializeField] private float suspensionPower;
+    [SerializeField] public int suspensionSelection;
+    [SerializeField] private float bouncySuspensionValue;
+    [SerializeField] private float middleSuspensionValue;
+    [SerializeField] private float sturdySuspensionValue;
 
     [SerializeField] private float controlPitchFactor;
     [SerializeField] private float controlYawFactor;
@@ -133,6 +143,8 @@ public class CarController : MonoBehaviour
     {
         GetInput();
         CheckGround();
+        HandleSuspension();
+        HandleHandbrake();
         HandleMotor();
         HandleSteering();
         HandleRotation();
@@ -183,6 +195,74 @@ public class CarController : MonoBehaviour
             touchingGround = false;
         }
         //Debug.Log(touchingGround);
+    }
+
+    private void HandleSuspension()
+    {
+        var flSpring = frontLeftWheelCollider.suspensionSpring;
+        var frSpring = frontRightWheelCollider.suspensionSpring;
+        var blSpring = backLeftWheelCollider.suspensionSpring;
+        var brSpring = backRightWheelCollider.suspensionSpring;
+
+        switch (suspensionSelection)
+        {
+            case 0:
+                flSpring.damper = bouncySuspensionValue;
+                frSpring.damper = bouncySuspensionValue;
+                blSpring.damper = bouncySuspensionValue;
+                brSpring.damper = bouncySuspensionValue;
+                break;
+            case 1:
+                flSpring.damper = middleSuspensionValue;
+                frSpring.damper = middleSuspensionValue;
+                blSpring.damper = middleSuspensionValue;
+                brSpring.damper = middleSuspensionValue;
+                break;
+            case 2:
+                flSpring.damper = sturdySuspensionValue;
+                frSpring.damper = sturdySuspensionValue;
+                blSpring.damper = sturdySuspensionValue;
+                brSpring.damper = sturdySuspensionValue;
+                break;
+        }
+
+        frontLeftWheelCollider.suspensionSpring = flSpring;
+        frontRightWheelCollider.suspensionSpring = frSpring;
+        backLeftWheelCollider.suspensionSpring = blSpring;
+        backRightWheelCollider.suspensionSpring = frSpring;
+    }
+
+    private void HandleHandbrake()
+    {
+        switch (handbrakeSelection)
+        {
+            case 0:
+                frontHandBrake = false;
+                brakeForce = moreDriftBrakeForce;
+                driftFrontSidewaysStiffness = driftBrakesDriftFrontSidewaysStiffness;
+                driftRearSidewaysStiffness = driftBrakesDriftRearSidewaysStiffness;
+                break;
+            case 1:
+                frontHandBrake = false;
+                brakeForce = lessDriftBrakeForce;
+                driftFrontSidewaysStiffness = basicBrakesDriftFrontSidewaysStiffness;
+                driftRearSidewaysStiffness = basicBrakesDriftRearSidewaysStiffness;
+                break;
+            case 2:
+                frontHandBrake = true;
+                if (frontWheelDrive && rearWheelDrive)
+                {
+                    brakeForce = motorForce * singleAxleMFAdjustment;
+                }
+                else if (!frontWheelDrive || !rearWheelDrive)
+                {
+                    brakeForce = motorForce;
+                }
+                driftFrontSidewaysStiffness = offRoadBrakesDriftFrontSidewaysStiffness;
+                driftRearSidewaysStiffness = offRoadBrakesDriftRearSidewaysStiffness;
+                break;
+        }
+        Debug.Log(brakeForce);
     }
 
     private void HandleMotor()
@@ -330,23 +410,23 @@ public class CarController : MonoBehaviour
         {
             case 0:
                 standardSidewaysStiffness = basicBrakesStandardSidewaysStiffness;
-                driftFrontSidewaysStiffness = basicBrakesDriftFrontSidewaysStiffness;
-                driftRearSidewaysStiffness = basicBrakesDriftRearSidewaysStiffness;
+                //driftFrontSidewaysStiffness = basicBrakesDriftFrontSidewaysStiffness;         //moved to brake selection
+                //driftRearSidewaysStiffness = basicBrakesDriftRearSidewaysStiffness;
                 break;
             case 1:
                 standardSidewaysStiffness = offRoadBrakesStandardSidewaysStiffness;
-                driftFrontSidewaysStiffness = offRoadBrakesDriftFrontSidewaysStiffness;
-                driftRearSidewaysStiffness = offRoadBrakesDriftRearSidewaysStiffness;
+                //driftFrontSidewaysStiffness = offRoadBrakesDriftFrontSidewaysStiffness;       //moved to brake selection
+                //driftRearSidewaysStiffness = offRoadBrakesDriftRearSidewaysStiffness;
                 break;
             case 2:
                 standardSidewaysStiffness = driftBrakesStandardSidewaysStiffness;
-                driftFrontSidewaysStiffness = driftBrakesDriftFrontSidewaysStiffness;
-                driftRearSidewaysStiffness = driftBrakesDriftRearSidewaysStiffness;
+                //driftFrontSidewaysStiffness = driftBrakesDriftFrontSidewaysStiffness;         //moved to brake selection
+                //driftRearSidewaysStiffness = driftBrakesDriftRearSidewaysStiffness;
                 break;
         }
 
-        float currentDriftFrontSidewaysStiffness = frontLeftWheelFriction.stiffness;
-        float currentDriftRearSidewaysStiffness = frontLeftWheelFriction.stiffness;
+        float currentDriftFrontSidewaysStiffness = (frontLeftWheelFriction.stiffness + frontRightWheelFriction.stiffness) / 2;
+        float currentDriftRearSidewaysStiffness = (backLeftWheelFriction.stiffness + backRightWheelFriction.stiffness) / 2;
 
         if (isBraking)
         {
@@ -367,7 +447,7 @@ public class CarController : MonoBehaviour
             backLeftWheelCollider.sidewaysFriction = backLeftWheelFriction;
             backRightWheelCollider.sidewaysFriction = backRightWheelFriction;
 
-            Debug.Log(frontLeftWheelFriction.stiffness);
+            //Debug.Log(frontLeftWheelFriction.stiffness);
         }
         else if (!isBraking)
         {
@@ -388,7 +468,7 @@ public class CarController : MonoBehaviour
             backLeftWheelCollider.sidewaysFriction = backLeftWheelFriction;
             backRightWheelCollider.sidewaysFriction = backRightWheelFriction;
 
-            Debug.Log(frontLeftWheelFriction.stiffness);
+            //Debug.Log(frontLeftWheelFriction.stiffness);
         }
     }
 
@@ -401,15 +481,12 @@ public class CarController : MonoBehaviour
         {
             case 0:
                 steeringLerpValue = .1f;
-                brakeForce = 400f;          //move this to its own dropdown, maybe "handbrake orientation => standard handbrake"
                 break;
             case 1:
                 steeringLerpValue = .3f;
-                brakeForce = 400f;          //move this to its own dropdown, maybe "handbrake orientation => standard handbrake"
                 break;
             case 2:
                 steeringLerpValue = .5f;
-                brakeForce = 200f;          //move this to its own dropdown, maybe "handbrake orientation => drifting handbrake"
                 break;
         }
  
@@ -459,11 +536,11 @@ public class CarController : MonoBehaviour
         //big test right here
         if (touchingGround)
         {
-            centerOfMassCurrent.localPosition = Vector3.Lerp(centerOfMassCurrent.localPosition, centerOfMassGround.localPosition, 0.5f);
+            centerOfMassCurrent.localPosition = Vector3.Lerp(centerOfMassCurrent.localPosition, centerOfMassGround.localPosition, 0.9f);
             //carRigidBody.centerOfMass = centerOfMassGround.localPosition;
         }
 
-        Debug.Log(centerOfMassCurrent.localPosition);
+        //Debug.Log(centerOfMassCurrent.localPosition);
     }
 
     public void PauseHandler(InputAction.CallbackContext context)

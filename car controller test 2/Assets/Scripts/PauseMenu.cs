@@ -17,11 +17,14 @@ public class PauseMenu : MonoBehaviour
     public GameObject pauseFirstButton;
 
     public TMPro.TMP_Dropdown QualityDropDown;
-    public TMPro.TMP_Dropdown AxleDropDown;
     public TMPro.TMP_Dropdown FPSDropDown;
+
+    public TMPro.TMP_Dropdown AxleDropDown;
     public TMPro.TMP_Dropdown MotorDropDown;
     public TMPro.TMP_Dropdown TireDropDown;
     public TMPro.TMP_Dropdown SteeringDropDown;
+    public TMPro.TMP_Dropdown SuspensionDropDown;
+    public TMPro.TMP_Dropdown HandbrakeDropDown;
 
     private void Awake()
     {
@@ -75,7 +78,12 @@ public class PauseMenu : MonoBehaviour
 
         int steering = PlayerPrefs.GetInt("steeringIndex", 0);
         SteeringDropDown.value = steering;
-        //QualitySettings.vSyncCount = 0;
+
+        int suspension = PlayerPrefs.GetInt("suspensionIndex", 0);
+        SuspensionDropDown.value = suspension;
+
+        int handbrake = PlayerPrefs.GetInt("handbrakeIndex", 0);
+        HandbrakeDropDown.value = handbrake;
     }
 
     private void Update()
@@ -206,6 +214,40 @@ public class PauseMenu : MonoBehaviour
         }
 
         PlayerPrefs.SetInt("steeringIndex", steeringIndex);
+    }
+    public void SetSuspension(int suspensionIndex)
+    {
+        switch(suspensionIndex)
+        {
+            case 0:
+                carController.suspensionSelection = 0;
+                break;
+            case 1:
+                carController.suspensionSelection = 1;
+                break;
+            case 2:
+                carController.suspensionSelection = 2;
+                break;
+        }
+
+        PlayerPrefs.SetInt("suspensionIndex", suspensionIndex);
+    }
+    public void SetHandbrake(int handbrakeIndex)
+    {
+        switch(handbrakeIndex)
+        {
+            case 0:
+                carController.handbrakeSelection = 0;
+                break;
+            case 1:
+                carController.handbrakeSelection = 1;
+                break;
+            case 2:
+                carController.handbrakeSelection = 2;
+                break;
+        }
+
+        PlayerPrefs.SetInt("handbrakeIndex", handbrakeIndex);
     }
 
 
