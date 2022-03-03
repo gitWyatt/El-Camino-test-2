@@ -17,10 +17,6 @@ public class CarController : MonoBehaviour
 
     public PauseMenu pauseMenu;
 
-    //I don't think I need this, might be leftover from old input system
-    //private const string HORIZONTAL = "Horizontal";
-    //private const string VERTICAL = "Vertical";
-
     private float transmissionForce;
 
     private float horizontalInput;
@@ -31,10 +27,12 @@ public class CarController : MonoBehaviour
     private float brakeCheck;
     private float resetCheck;
     private float flipCheck;
+    private float engageCheck;
 
     private bool isBraking;
     private bool isResetting;
     private bool isFlipping;
+    private bool isEngaging;
 
     private bool touchingGround;
     private float distToGround = 0.65f;
@@ -52,6 +50,10 @@ public class CarController : MonoBehaviour
     [SerializeField] public Text velocityOutput;
     [SerializeField] public Text speedOutput;
     [SerializeField] public Text gearBox;
+
+    [SerializeField] public int useButtonSelection;
+    [SerializeField] private float jumpForce;
+    [SerializeField] private float thrusterForce;
 
     [SerializeField] public bool frontWheelDrive;
     [SerializeField] public bool rearWheelDrive;
@@ -143,6 +145,7 @@ public class CarController : MonoBehaviour
     {
         GetInput();
         CheckGround();
+        HandleThruster();   //sloppy, but its because of the new input system
         HandleSuspension();
         HandleHandbrake();
         HandleMotor();
@@ -152,6 +155,7 @@ public class CarController : MonoBehaviour
         UpdateWheels();
         ResetCheck();
         DebugToConsole();
+        Debug.Log(isEngaging);
     }
 
     private void GetInput()
@@ -165,7 +169,8 @@ public class CarController : MonoBehaviour
         brakeCheck = controls.Player.Handbrake.ReadValue<float>();
         resetCheck = controls.Player.Reset.ReadValue<float>();
         flipCheck = controls.Player.Flip.ReadValue<float>();
-        //pauseCheck = controls.Player.Pause.ReadValue<float>();
+        controls.Player.Engage.performed += EngageHandler;
+        engageCheck = controls.Player.Engage.ReadValue<float>();
         controls.Player.Pause.performed += PauseHandler;
 
         if (brakeCheck > .5)
@@ -179,6 +184,10 @@ public class CarController : MonoBehaviour
         if (flipCheck > .5)
         { isFlipping = true; }
         else { isFlipping = false; }
+
+        if (engageCheck > .5)
+        { isEngaging = true; }
+        else { isEngaging = false; }
     }
 
     void CheckGround()
@@ -262,7 +271,7 @@ public class CarController : MonoBehaviour
                 driftRearSidewaysStiffness = offRoadBrakesDriftRearSidewaysStiffness;
                 break;
         }
-        Debug.Log(brakeForce);
+        //Debug.Log(brakeForce);
     }
 
     private void HandleMotor()
@@ -489,7 +498,7 @@ public class CarController : MonoBehaviour
                 steeringLerpValue = .5f;
                 break;
         }
- 
+
         frontLeftWheelCollider.steerAngle = Mathf.Lerp(currentSteerAngle, newSteerAngle, steeringLerpValue);
         frontRightWheelCollider.steerAngle = Mathf.Lerp(currentSteerAngle, newSteerAngle, steeringLerpValue);
 
@@ -543,22 +552,27 @@ public class CarController : MonoBehaviour
         //Debug.Log(centerOfMassCurrent.localPosition);
     }
 
+    public void EngageHandler(InputAction.CallbackContext context)
+    {
+        if (useButtonSelection == 1)
+        {
+            if (touchingGround)
+            {
+                carRigidBody.AddForce(transform.up * jumpForce);
+                carRigidBody.AddForce(transform.forward * (jumpForce / 10));
+            }
+        }
+    }
+    public void HandleThruster()
+    {
+        if (useButtonSelection == 2 && controls.Player.Engage.ReadValue<float>() > 0)
+        {
+            carRigidBody.AddForce(transform.forward * thrusterForce);
+        }
+    }
     public void PauseHandler(InputAction.CallbackContext context)
     {
         pauseMenu.OnPause();
-
-        if (Time.timeScale > 0.9f)
-        {
-            //verticalInput = controls.Menu.UpDown.ReadValue<float>();
-        }
-        else
-        {
-            //verticalInput = controls.Player.ForwardReverse.ReadValue<float>();
-        }
-
-
-        //FindObjectOfType<PauseMenu>().OnPause();
-        //Debug.Log("step 1");
     }
 
     private void HandleSpeedometer()

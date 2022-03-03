@@ -89,6 +89,15 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Engage"",
+                    ""type"": ""Button"",
+                    ""id"": ""1771e1b7-34f4-4662-81c6-af669444202f"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -377,6 +386,28 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
                     ""action"": ""Handbrake"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b2ddeaf5-45db-4969-a363-1c276bb8b5d6"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Engage"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5cd69494-5bb9-4551-9f7f-458f1e46fadf"",
+                    ""path"": ""<Keyboard>/leftShift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard and Mouse"",
+                    ""action"": ""Engage"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -547,6 +578,7 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
         m_Player_Reset = m_Player.FindAction("Reset", throwIfNotFound: true);
         m_Player_Pause = m_Player.FindAction("Pause", throwIfNotFound: true);
         m_Player_Handbrake = m_Player.FindAction("Handbrake", throwIfNotFound: true);
+        m_Player_Engage = m_Player.FindAction("Engage", throwIfNotFound: true);
         // Menu
         m_Menu = asset.FindActionMap("Menu", throwIfNotFound: true);
         m_Menu_Directional = m_Menu.FindAction("Directional", throwIfNotFound: true);
@@ -616,6 +648,7 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Reset;
     private readonly InputAction m_Player_Pause;
     private readonly InputAction m_Player_Handbrake;
+    private readonly InputAction m_Player_Engage;
     public struct PlayerActions
     {
         private @InputMaster m_Wrapper;
@@ -627,6 +660,7 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
         public InputAction @Reset => m_Wrapper.m_Player_Reset;
         public InputAction @Pause => m_Wrapper.m_Player_Pause;
         public InputAction @Handbrake => m_Wrapper.m_Player_Handbrake;
+        public InputAction @Engage => m_Wrapper.m_Player_Engage;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -657,6 +691,9 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
                 @Handbrake.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnHandbrake;
                 @Handbrake.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnHandbrake;
                 @Handbrake.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnHandbrake;
+                @Engage.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnEngage;
+                @Engage.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnEngage;
+                @Engage.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnEngage;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -682,6 +719,9 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
                 @Handbrake.started += instance.OnHandbrake;
                 @Handbrake.performed += instance.OnHandbrake;
                 @Handbrake.canceled += instance.OnHandbrake;
+                @Engage.started += instance.OnEngage;
+                @Engage.performed += instance.OnEngage;
+                @Engage.canceled += instance.OnEngage;
             }
         }
     }
@@ -746,6 +786,7 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
         void OnReset(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);
         void OnHandbrake(InputAction.CallbackContext context);
+        void OnEngage(InputAction.CallbackContext context);
     }
     public interface IMenuActions
     {

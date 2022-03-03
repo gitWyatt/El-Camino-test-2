@@ -67,6 +67,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Engage",
+                    "type": "Button",
+                    "id": "1771e1b7-34f4-4662-81c6-af669444202f",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -353,6 +362,28 @@
                     "processors": "",
                     "groups": "Keyboard and Mouse",
                     "action": "Handbrake",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b2ddeaf5-45db-4969-a363-1c276bb8b5d6",
+                    "path": "<Gamepad>/leftShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "Engage",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5cd69494-5bb9-4551-9f7f-458f1e46fadf",
+                    "path": "<Keyboard>/leftShift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard and Mouse",
+                    "action": "Engage",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

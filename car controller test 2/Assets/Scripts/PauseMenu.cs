@@ -26,6 +26,8 @@ public class PauseMenu : MonoBehaviour
     public TMPro.TMP_Dropdown SuspensionDropDown;
     public TMPro.TMP_Dropdown HandbrakeDropDown;
 
+    public TMPro.TMP_Dropdown UseButtonDropDown;
+
     private void Awake()
     {
         carController = GameObject.Find("Camino").GetComponent<CarController>();
@@ -46,7 +48,7 @@ public class PauseMenu : MonoBehaviour
         int quality = PlayerPrefs.GetInt("qualityIndex", 0);
         QualityDropDown.value = quality;
 
-        int axle = PlayerPrefs.GetInt("axleIndex", 0);
+        int axle = PlayerPrefs.GetInt("axleIndex", 1);
         AxleDropDown.value = axle;
 
         int fps = PlayerPrefs.GetInt("fpsIndex", 1);
@@ -76,14 +78,17 @@ public class PauseMenu : MonoBehaviour
         int tire = PlayerPrefs.GetInt("tireIndex", 0);
         TireDropDown.value = tire;
 
-        int steering = PlayerPrefs.GetInt("steeringIndex", 0);
+        int steering = PlayerPrefs.GetInt("steeringIndex", 1);
         SteeringDropDown.value = steering;
 
-        int suspension = PlayerPrefs.GetInt("suspensionIndex", 0);
+        int suspension = PlayerPrefs.GetInt("suspensionIndex", 1);
         SuspensionDropDown.value = suspension;
 
-        int handbrake = PlayerPrefs.GetInt("handbrakeIndex", 0);
+        int handbrake = PlayerPrefs.GetInt("handbrakeIndex", 1);
         HandbrakeDropDown.value = handbrake;
+
+        int useButton = PlayerPrefs.GetInt("useButtonIndex", 0);
+        UseButtonDropDown.value = useButton;
     }
 
     private void Update()
@@ -248,6 +253,23 @@ public class PauseMenu : MonoBehaviour
         }
 
         PlayerPrefs.SetInt("handbrakeIndex", handbrakeIndex);
+    }
+    public void SetUseButton(int useButtonIndex)
+    {
+        switch(useButtonIndex)
+        {
+            case 0:
+                carController.useButtonSelection = 0;
+                break;
+            case 1:
+                carController.useButtonSelection = 1;
+                break;
+            case 2:
+                carController.useButtonSelection = 2;
+                break;
+        }
+
+        PlayerPrefs.SetInt("useButtonIndex", useButtonIndex);
     }
 
 
