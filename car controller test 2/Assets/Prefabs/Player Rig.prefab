@@ -1561,12 +1561,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 742756420}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -1.5, z: 0.9}
+  m_LocalPosition: {x: 0, y: -1.5, z: 0.4585}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 6790256317913548495}
-  m_RootOrder: 5
+  m_Father: {fileID: 5645438811557640220}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &744546056
 GameObject:
@@ -4410,7 +4410,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2030047997}
   m_Layer: 0
-  m_Name: CenterOfMassGround
+  m_Name: CenterOfMassCenterGround
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4424,12 +4424,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2030047996}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -1.5, z: 0.9}
+  m_LocalPosition: {x: 0, y: -1.5, z: 0.4585}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 6790256317913548495}
-  m_RootOrder: 4
+  m_Father: {fileID: 5645438811557640220}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2095500657
 GameObject:
@@ -4767,7 +4767,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1428129084899743177}
   m_Layer: 0
-  m_Name: CenterOfMassAir
+  m_Name: CenterOfMassCenterAir
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4781,12 +4781,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1428129084899743190}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.9}
+  m_LocalPosition: {x: 0, y: 0, z: 0.4585}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 6790256317913548495}
-  m_RootOrder: 3
+  m_Father: {fileID: 5645438811557640220}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1428129085156548969
 GameObject:
@@ -4846,7 +4846,7 @@ WheelCollider:
   m_SidewaysFriction:
     m_ExtremumSlip: 1.7
     m_ExtremumValue: 2
-    m_AsymptoteSlip: 0.1
+    m_AsymptoteSlip: 1
     m_AsymptoteValue: 2
     m_Stiffness: 1
   m_Enabled: 1
@@ -4943,7 +4943,7 @@ WheelCollider:
   m_SidewaysFriction:
     m_ExtremumSlip: 1.7
     m_ExtremumValue: 2
-    m_AsymptoteSlip: 0.1
+    m_AsymptoteSlip: 1
     m_AsymptoteValue: 2
     m_Stiffness: 1
   m_Enabled: 1
@@ -5005,7 +5005,7 @@ WheelCollider:
   m_SidewaysFriction:
     m_ExtremumSlip: 1.7
     m_ExtremumValue: 2
-    m_AsymptoteSlip: 0.1
+    m_AsymptoteSlip: 1
     m_AsymptoteValue: 2
     m_Stiffness: 1
   m_Enabled: 1
@@ -5253,7 +5253,7 @@ WheelCollider:
   m_SidewaysFriction:
     m_ExtremumSlip: 1.7
     m_ExtremumValue: 2
-    m_AsymptoteSlip: 0.1
+    m_AsymptoteSlip: 1
     m_AsymptoteValue: 2
     m_Stiffness: 1
   m_Enabled: 1
@@ -5739,6 +5739,137 @@ MonoBehaviour:
   m_BiasX: 0
   m_BiasY: 0
   m_CenterOnActivate: 1
+--- !u!1 &1429326533063843074
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2826737079475709893}
+  m_Layer: 0
+  m_Name: CenterOfMassRearGround
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2826737079475709893
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1429326533063843074}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -1.5, z: -1.17}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5645438811557640220}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1724259747992908506
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5645438811557640220}
+  m_Layer: 0
+  m_Name: Centers of mass
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5645438811557640220
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1724259747992908506}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 742756421}
+  - {fileID: 1428129084899743177}
+  - {fileID: 2030047997}
+  - {fileID: 5804693856839994063}
+  - {fileID: 2326241294937464725}
+  - {fileID: 1738965520164279371}
+  - {fileID: 2826737079475709893}
+  m_Father: {fileID: 6790256317913548495}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &3589748820851273219
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2326241294937464725}
+  m_Layer: 0
+  m_Name: CenterOfMassFrontGround
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2326241294937464725
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3589748820851273219}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -1.5, z: 2.07}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5645438811557640220}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &5021941118368542165
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1738965520164279371}
+  m_Layer: 0
+  m_Name: CenterOfMassRearAir
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1738965520164279371
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5021941118368542165}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -1.17}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5645438811557640220}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6156427878405151861
 GameObject:
   m_ObjectHideFlags: 0
@@ -5774,9 +5905,7 @@ Transform:
   - {fileID: 1428129084672567515}
   - {fileID: 1428129085260515470}
   - {fileID: 402638275151862519}
-  - {fileID: 1428129084899743177}
-  - {fileID: 2030047997}
-  - {fileID: 742756421}
+  - {fileID: 5645438811557640220}
   m_Father: {fileID: 1428129085716929276}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5858,8 +5987,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81301f9940ebf47468bcba7d6281c605, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  centerOfMassAir: {fileID: 1428129084899743177}
-  centerOfMassGround: {fileID: 2030047997}
+  centerOfMassCenterAir: {fileID: 1428129084899743177}
+  centerOfMassCenterGround: {fileID: 2030047997}
+  centerOfMassFrontAir: {fileID: 5804693856839994063}
+  centerOfMassFrontGround: {fileID: 2326241294937464725}
+  centerOfMassRearAir: {fileID: 1738965520164279371}
+  centerOfMassRearGround: {fileID: 2826737079475709893}
   centerOfMassCurrent: {fileID: 742756421}
   pauseMenu: {fileID: 1428129085908563068}
   rpmOutput: {fileID: 1956978505}
@@ -5918,6 +6051,37 @@ MonoBehaviour:
   frontRightWheelTransform: {fileID: 485307736095529940}
   backLeftWheelTransform: {fileID: 1428129086507531166}
   backRightWheelTransform: {fileID: 1428129085842851344}
+--- !u!1 &9179750578781984004
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5804693856839994063}
+  m_Layer: 0
+  m_Name: CenterOfMassFrontAir
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5804693856839994063
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9179750578781984004}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 2.07}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5645438811557640220}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &4017779753040538590
 PrefabInstance:
   m_ObjectHideFlags: 0

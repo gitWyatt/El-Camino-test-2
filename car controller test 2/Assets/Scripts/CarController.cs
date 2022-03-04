@@ -9,8 +9,12 @@ public class CarController : MonoBehaviour
 {
     public InputMaster controls;
 
-    public Transform centerOfMassAir;
-    public Transform centerOfMassGround;
+    public Transform centerOfMassCenterAir;
+    public Transform centerOfMassCenterGround;
+    public Transform centerOfMassFrontAir;
+    public Transform centerOfMassFrontGround;
+    public Transform centerOfMassRearAir;
+    public Transform centerOfMassRearGround;
     public Transform centerOfMassCurrent;
 
     private Rigidbody carRigidBody;
@@ -44,7 +48,7 @@ public class CarController : MonoBehaviour
     private float currentGear = 1f;
     private float gearNumber = 6f;
     private float[] gearRatio = new float[] { 2.66f, 1.78f, 1.3f, 1f, .7f, .1f };  //unneeded as of now.  top gear used to be .5f instead of .1f
-
+    private float steerAngle;
 
     [SerializeField] public Text rpmOutput;
     [SerializeField] public Text velocityOutput;
@@ -484,7 +488,29 @@ public class CarController : MonoBehaviour
     private void HandleSteering()
     {
         currentSteerAngle = (frontLeftWheelCollider.steerAngle + frontRightWheelCollider.steerAngle) / 2;
-        float newSteerAngle = maxSteerAngle * horizontalInput;
+        switch (currentGear)
+        {
+            case 1:
+                steerAngle = maxSteerAngle;
+                break;
+            case 2:
+                steerAngle = maxSteerAngle;
+                break;
+            case 3:
+                steerAngle = maxSteerAngle * .8f;
+                break;
+            case 4:
+                steerAngle = maxSteerAngle * .6f;
+                break;
+            case 5:
+                steerAngle = maxSteerAngle * .4f;
+                break;
+            case 6:
+                steerAngle = maxSteerAngle * .2f;
+                break;
+        }
+
+        float newSteerAngle = steerAngle * horizontalInput;
 
         switch (steeringSelection)
         {
@@ -511,7 +537,19 @@ public class CarController : MonoBehaviour
     {
         if (touchingGround == false)
         {
-            centerOfMassCurrent.localPosition = Vector3.Lerp(centerOfMassCurrent.localPosition, centerOfMassAir.localPosition, 0.1f);
+            if (frontWheelDrive && !rearWheelDrive)
+            {
+                centerOfMassCurrent.localPosition = Vector3.Lerp(centerOfMassCurrent.localPosition, centerOfMassFrontAir.localPosition, 0.1f);
+            }
+            if (!frontWheelDrive && rearWheelDrive)
+            {
+                centerOfMassCurrent.localPosition = Vector3.Lerp(centerOfMassCurrent.localPosition, centerOfMassRearAir.localPosition, 0.1f);
+            }
+            if (frontWheelDrive && rearWheelDrive)
+            {
+                centerOfMassCurrent.localPosition = Vector3.Lerp(centerOfMassCurrent.localPosition, centerOfMassCenterAir.localPosition, 0.1f);
+            }
+            
             //carRigidBody.centerOfMass = centerOfMassAir.localPosition;
 
             float pitch;
@@ -545,8 +583,18 @@ public class CarController : MonoBehaviour
         //big test right here
         if (touchingGround)
         {
-            centerOfMassCurrent.localPosition = Vector3.Lerp(centerOfMassCurrent.localPosition, centerOfMassGround.localPosition, 0.9f);
-            //carRigidBody.centerOfMass = centerOfMassGround.localPosition;
+            if (frontWheelDrive && !rearWheelDrive)
+            {
+                centerOfMassCurrent.localPosition = Vector3.Lerp(centerOfMassCurrent.localPosition, centerOfMassFrontGround.localPosition, 0.9f);
+            }
+            if (!frontWheelDrive && rearWheelDrive)
+            {
+                centerOfMassCurrent.localPosition = Vector3.Lerp(centerOfMassCurrent.localPosition, centerOfMassRearGround.localPosition, 0.9f);
+            }
+            if (frontWheelDrive && rearWheelDrive)
+            {
+                centerOfMassCurrent.localPosition = Vector3.Lerp(centerOfMassCurrent.localPosition, centerOfMassCenterGround.localPosition, 0.9f);
+            }
         }
 
         //Debug.Log(centerOfMassCurrent.localPosition);
