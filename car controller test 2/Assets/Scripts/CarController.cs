@@ -161,7 +161,6 @@ public class CarController : MonoBehaviour
         UpdateWheels();
         ResetCheck();
         DebugToConsole();
-        Debug.Log(isEngaging);
     }
 
     private void GetInput()
@@ -513,6 +512,16 @@ public class CarController : MonoBehaviour
                 break;
         }
 
+        //if (transform.forward == Vector3.Normalize(carRigidBody.velocity))
+        //{
+        //    standardSidewaysStiffness = standardSidewaysStiffness * 2f;
+        //}
+
+        if (Vector3.Distance(transform.forward, Vector3.Normalize(carRigidBody.velocity)) < .25f)
+        {
+            standardSidewaysStiffness = standardSidewaysStiffness * 2.5f;
+        }
+
         float currentDriftFrontSidewaysStiffness = (frontLeftWheelFriction.stiffness + frontRightWheelFriction.stiffness) / 2;
         float currentDriftRearSidewaysStiffness = (backLeftWheelFriction.stiffness + backRightWheelFriction.stiffness) / 2;
 
@@ -556,7 +565,7 @@ public class CarController : MonoBehaviour
             backLeftWheelCollider.sidewaysFriction = backLeftWheelFriction;
             backRightWheelCollider.sidewaysFriction = backRightWheelFriction;
 
-            //Debug.Log(frontLeftWheelFriction.stiffness);
+            Debug.Log(standardSidewaysStiffness);
         }
     }
 
@@ -586,19 +595,37 @@ public class CarController : MonoBehaviour
         }
 
         float newSteerAngle = steerAngle * horizontalInput;
-
-        switch (steeringSelection)
+        if (frontWheelDrive)
         {
-            case 0:
-                steeringLerpValue = .1f;
-                break;
-            case 1:
-                steeringLerpValue = .3f;
-                break;
-            case 2:
-                steeringLerpValue = .5f;
-                break;
+            switch (steeringSelection)
+            {
+                case 0:
+                    steeringLerpValue = .03f;
+                    break;
+                case 1:
+                    steeringLerpValue = .07f;
+                    break;
+                case 2:
+                    steeringLerpValue = .2f;
+                    break;
+            }
         }
+        else
+        {
+            switch (steeringSelection)
+            {
+                case 0:
+                    steeringLerpValue = .05f;
+                    break;
+                case 1:
+                    steeringLerpValue = .1f;
+                    break;
+                case 2:
+                    steeringLerpValue = .3f;
+                    break;
+            }
+        }
+        
 
         frontLeftWheelCollider.steerAngle = Mathf.Lerp(currentSteerAngle, newSteerAngle, steeringLerpValue);
         frontRightWheelCollider.steerAngle = Mathf.Lerp(currentSteerAngle, newSteerAngle, steeringLerpValue);
