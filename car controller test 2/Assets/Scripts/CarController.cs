@@ -70,6 +70,8 @@ public class CarController : MonoBehaviour
     [SerializeField] private float streetMotorForce;
     [SerializeField] private float racingMotorForce;
 
+    [SerializeField] public int transmissionSelection;
+
     [SerializeField] private float brakeForce;
     [SerializeField] private float driftBrakesLerpValue;
     [SerializeField] public int handbrakeSelection;
@@ -331,70 +333,143 @@ public class CarController : MonoBehaviour
             engineRPM = (backLeftWheelCollider.rpm + backRightWheelCollider.rpm) / 2f * transmissionForce;
         }
 
-        if (engineRPM >= maxRPM)
+        if (transmissionSelection == 0)
         {
-            if (currentGear < gearNumber)
+            if (engineRPM >= maxRPM)
             {
-                currentGear++;
-
-                switch(currentGear)
+                if (currentGear < gearNumber)
                 {
-                    case 2:
-                        transmissionForce = 1.78f;
-                        break;
-                    case 3:
-                        transmissionForce = 1.3f;
-                        break;
-                    case 4:
-                        transmissionForce = 1f;
-                        break;
-                    case 5:
-                        transmissionForce = .7f;
-                        break;
-                    case 6:
-                        transmissionForce = .1f;    //was previously .5f
-                        break;
+                    currentGear++;
+
+                    switch (currentGear)
+                    {
+                        case 2:
+                            transmissionForce = 1.78f;
+                            break;
+                        case 3:
+                            transmissionForce = 1.3f;
+                            break;
+                        case 4:
+                            transmissionForce = 1f;
+                            break;
+                        case 5:
+                            transmissionForce = .7f;
+                            break;
+                        case 6:
+                            transmissionForce = .1f;    //was previously .5f
+                            break;
+                    }
+                }
+                else
+                {
+                    currentGear = 6;
+                    transmissionForce = .5f;
                 }
             }
-            else
+            if (engineRPM <= minRPM)
             {
-                currentGear = 6;
-                transmissionForce = .5f;
+                if (currentGear > 1)
+                {
+                    currentGear--;
+
+                    switch (currentGear)
+                    {
+                        case 1:
+                            transmissionForce = 2.66f;
+                            break;
+                        case 2:
+                            transmissionForce = 1.78f;
+                            break;
+                        case 3:
+                            transmissionForce = 1.3f;
+                            break;
+                        case 4:
+                            transmissionForce = 1f;
+                            break;
+                        case 5:
+                            transmissionForce = .7f;
+                            break;
+                    }
+                }
+                if (engineRPM < 0)
+                {
+                    transmissionForce = 1.78f;
+                }
+                else
+                {
+                    currentGear = 1;
+                    transmissionForce = 2.66f;
+                }
             }
         }
-        if (engineRPM <= minRPM)
-        {
-            if (currentGear > 1)
-            {
-                currentGear--;
 
-                switch (currentGear)
+        if (transmissionSelection == 1)
+        {
+            if (engineRPM >= maxRPM)
+            {
+                if (currentGear < gearNumber)
                 {
-                    case 1:
-                        transmissionForce = 2.66f;
-                        break;
-                    case 2:
-                        transmissionForce = 1.78f;
-                        break;
-                    case 3:
-                        transmissionForce = 1.3f;
-                        break;
-                    case 4:
-                        transmissionForce = 1f;
-                        break;
-                    case 5:
-                        transmissionForce = .7f;
-                        break;
+                    currentGear++;
+
+                    switch (currentGear)
+                    {
+                        case 2:
+                            transmissionForce = 1.4f;
+                            break;
+                        case 3:
+                            transmissionForce = 1f;
+                            break;
+                        case 4:
+                            transmissionForce = .7f;
+                            break;
+                        case 5:
+                            transmissionForce = .1f;
+                            break;
+                        case 6:
+                            transmissionForce = .01f;
+                            break;
+                    }
+                }
+                else
+                {
+                    currentGear = 6;
+                    transmissionForce = .5f;
                 }
             }
-            if (engineRPM < 0)
+            if (engineRPM <= minRPM)
             {
-                transmissionForce = 1.78f;
-            }
-            else
-            {
-                currentGear = 1;
-                transmissionForce = 2.66f;
+                if (currentGear > 1)
+                {
+                    currentGear--;
+
+                    switch (currentGear)
+                    {
+                        case 1:
+                            transmissionForce = 2f;
+                            break;
+                        case 2:
+                            transmissionForce = 1.4f;
+                            break;
+                        case 3:
+                            transmissionForce = 1f;
+                            break;
+                        case 4:
+                            transmissionForce = .7f;
+                            break;
+                        case 5:
+                            transmissionForce = .1f;
+                            break;
+                    }
+                }
+                if (engineRPM < 0)
+                {
+                    transmissionForce = 1.78f;
+                }
+                else
+                {
+                    currentGear = 1;
+                    transmissionForce = 2.66f;
+                }
             }
         }
 

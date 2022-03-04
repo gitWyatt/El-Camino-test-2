@@ -21,6 +21,7 @@ public class PauseMenu : MonoBehaviour
 
     public TMPro.TMP_Dropdown AxleDropDown;
     public TMPro.TMP_Dropdown MotorDropDown;
+    public TMPro.TMP_Dropdown TransmissionDropDown;
     public TMPro.TMP_Dropdown TireDropDown;
     public TMPro.TMP_Dropdown SteeringDropDown;
     public TMPro.TMP_Dropdown SuspensionDropDown;
@@ -74,6 +75,9 @@ public class PauseMenu : MonoBehaviour
 
         int motor = PlayerPrefs.GetInt("motorIndex", 0);
         MotorDropDown.value = motor;
+
+        int transmission = PlayerPrefs.GetInt("transmissionIndex", 0);
+        TransmissionDropDown.value = transmission;
 
         int tire = PlayerPrefs.GetInt("tireIndex", 0);
         TireDropDown.value = tire;
@@ -185,6 +189,20 @@ public class PauseMenu : MonoBehaviour
         }
 
         PlayerPrefs.SetInt("motorIndex", motorIndex);
+    }
+    public void SetTransmission(int transmissionIndex)
+    {
+        switch(transmissionIndex)
+        {
+            case 0:
+                carController.transmissionSelection = 0;
+                break;
+            case 1:
+                carController.transmissionSelection = 1;
+                break;
+        }
+
+        PlayerPrefs.SetInt("transmissionIndex", transmissionIndex);
     }
     public void SetTire(int tireIndex)
     {
