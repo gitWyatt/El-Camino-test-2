@@ -3892,7 +3892,7 @@ WheelCollider:
     m_AsymptoteValue: 2
     m_Stiffness: 1
   m_SidewaysFriction:
-    m_ExtremumSlip: 1.7
+    m_ExtremumSlip: 1.5
     m_ExtremumValue: 2
     m_AsymptoteSlip: 1
     m_AsymptoteValue: 2
@@ -3989,7 +3989,7 @@ WheelCollider:
     m_AsymptoteValue: 2
     m_Stiffness: 1
   m_SidewaysFriction:
-    m_ExtremumSlip: 1.7
+    m_ExtremumSlip: 1.5
     m_ExtremumValue: 2
     m_AsymptoteSlip: 1
     m_AsymptoteValue: 2
@@ -4051,7 +4051,7 @@ WheelCollider:
     m_AsymptoteValue: 2
     m_Stiffness: 1
   m_SidewaysFriction:
-    m_ExtremumSlip: 1.7
+    m_ExtremumSlip: 1.5
     m_ExtremumValue: 2
     m_AsymptoteSlip: 1
     m_AsymptoteValue: 2
@@ -4299,7 +4299,7 @@ WheelCollider:
     m_AsymptoteValue: 2
     m_Stiffness: 1
   m_SidewaysFriction:
-    m_ExtremumSlip: 1.7
+    m_ExtremumSlip: 1.5
     m_ExtremumValue: 2
     m_AsymptoteSlip: 1
     m_AsymptoteValue: 2
@@ -4413,8 +4413,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1428129086377603201}
-  m_LocalRotation: {x: 0.06274654, y: -1e-45, z: -0, w: 0.99802953}
-  m_LocalPosition: {x: 0, y: 13, z: -25}
+  m_LocalRotation: {x: 0.06274652, y: -0, z: -0.0000000074505797, w: 0.9980295}
+  m_LocalPosition: {x: 0.0000038146973, y: 13, z: -25.000004}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4599,8 +4599,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1428129086589540616}
-  m_LocalRotation: {x: 0.06274654, y: -1e-45, z: -0, w: 0.99802953}
-  m_LocalPosition: {x: 0, y: 13, z: -25}
+  m_LocalRotation: {x: 0.06274652, y: -0, z: -0.0000000074505797, w: 0.9980295}
+  m_LocalPosition: {x: 0.0000038146973, y: 13, z: -25.000004}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5928,9 +5928,9 @@ MonoBehaviour:
   m_Value: 0
   m_Options:
     m_Options:
-    - m_Text: Old Transmission
+    - m_Text: 4 Gears
       m_Image: {fileID: 0}
-    - m_Text: New Transmission
+    - m_Text: 6 Gears
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
@@ -6273,7 +6273,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Old Transmission
+  m_text: 4 Gears
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -6672,14 +6672,14 @@ MonoBehaviour:
   brakeForce: 400
   driftBrakesLerpValue: 0.06
   handbrakeSelection: 0
-  moreDriftBrakeForce: 200
+  moreDriftBrakeForce: 50
   lessDriftBrakeForce: 400
   basicBrakesDriftFrontSidewaysStiffness: 1
-  basicBrakesDriftRearSidewaysStiffness: 0.9
+  basicBrakesDriftRearSidewaysStiffness: 1
   offRoadBrakesDriftFrontSidewaysStiffness: 1.3
-  offRoadBrakesDriftRearSidewaysStiffness: 1.2
+  offRoadBrakesDriftRearSidewaysStiffness: 1.3
   driftBrakesDriftFrontSidewaysStiffness: 0.6
-  driftBrakesDriftRearSidewaysStiffness: 0.5
+  driftBrakesDriftRearSidewaysStiffness: 0.6
   tireSelection: 0
   basicBrakesStandardSidewaysStiffness: 1.5
   offRoadBrakesStandardSidewaysStiffness: 2

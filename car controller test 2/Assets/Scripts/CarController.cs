@@ -343,26 +343,20 @@ public class CarController : MonoBehaviour
                     switch (currentGear)
                     {
                         case 2:
-                            transmissionForce = 1.78f;
+                            transmissionForce = 1.4f;
                             break;
                         case 3:
-                            transmissionForce = 1.3f;
+                            transmissionForce = .8f;
                             break;
                         case 4:
-                            transmissionForce = 1f;
-                            break;
-                        case 5:
-                            transmissionForce = .7f;
-                            break;
-                        case 6:
-                            transmissionForce = .1f;    //was previously .5f
+                            transmissionForce = .01f;
                             break;
                     }
                 }
                 else
                 {
-                    currentGear = 6;
-                    transmissionForce = .5f;
+                    currentGear = 4;
+                    transmissionForce = .01f;
                 }
             }
             if (engineRPM <= minRPM)
@@ -374,19 +368,13 @@ public class CarController : MonoBehaviour
                     switch (currentGear)
                     {
                         case 1:
-                            transmissionForce = 2.66f;
+                            transmissionForce = 2f;
                             break;
                         case 2:
-                            transmissionForce = 1.78f;
+                            transmissionForce = 1.4f;
                             break;
                         case 3:
-                            transmissionForce = 1.3f;
-                            break;
-                        case 4:
-                            transmissionForce = 1f;
-                            break;
-                        case 5:
-                            transmissionForce = .7f;
+                            transmissionForce = .8f;
                             break;
                     }
                 }
@@ -397,7 +385,7 @@ public class CarController : MonoBehaviour
                 else
                 {
                     currentGear = 1;
-                    transmissionForce = 2.66f;
+                    transmissionForce = 2f;
                 }
             }
         }
@@ -572,26 +560,48 @@ public class CarController : MonoBehaviour
     private void HandleSteering()
     {
         currentSteerAngle = (frontLeftWheelCollider.steerAngle + frontRightWheelCollider.steerAngle) / 2;
-        switch (currentGear)
+        //switch (currentGear)
+        //{
+        //    case 1:
+        //        steerAngle = maxSteerAngle;
+        //        break;
+        //    case 2:
+        //        steerAngle = maxSteerAngle;
+        //        break;
+        //    case 3:
+        //        steerAngle = maxSteerAngle * .8f;
+        //        break;
+        //    case 4:
+        //        steerAngle = maxSteerAngle * .6f;
+        //        break;
+        //    case 5:
+        //        steerAngle = maxSteerAngle * .4f;
+        //        break;
+        //    case 6:
+        //        steerAngle = maxSteerAngle * .2f;
+        //        break;
+        //}
+
+        float velocity = carRigidBody.velocity.magnitude;
+        if (velocity < 25f)
         {
-            case 1:
-                steerAngle = maxSteerAngle;
-                break;
-            case 2:
-                steerAngle = maxSteerAngle;
-                break;
-            case 3:
-                steerAngle = maxSteerAngle * .8f;
-                break;
-            case 4:
-                steerAngle = maxSteerAngle * .6f;
-                break;
-            case 5:
-                steerAngle = maxSteerAngle * .4f;
-                break;
-            case 6:
-                steerAngle = maxSteerAngle * .2f;
-                break;
+            steerAngle = maxSteerAngle;
+        }
+        if (velocity >= 25f && velocity < 45f)
+        {
+            steerAngle = maxSteerAngle * .8f;
+        }
+        if (velocity >= 45f && velocity < 75f)
+        {
+            steerAngle = maxSteerAngle * .6f;
+        }
+        if (velocity >= 75f && velocity < 110f)
+        {
+            steerAngle = maxSteerAngle * .4f;
+        }
+        if (velocity >= 110f)
+        {
+            steerAngle = maxSteerAngle * .2f;
         }
 
         float newSteerAngle = steerAngle * horizontalInput;
