@@ -44,7 +44,7 @@ public class CarController : MonoBehaviour
     double mph;
     private float engineRPM;
     private float minRPM = 1000f;
-    private float maxRPM = 2500f;
+    private float maxRPM = 2550f;
     private float currentGear = 1f;
     private float gearNumber = 6f;
     private float[] gearRatio = new float[] { 2.66f, 1.78f, 1.3f, 1f, .7f, .1f };  //unneeded as of now.  top gear used to be .5f instead of .1f
@@ -94,11 +94,13 @@ public class CarController : MonoBehaviour
     [SerializeField] private float driftRearSidewaysStiffness;
 
     [SerializeField] private float maxSteerAngle;
-    [SerializeField] public int steeringSelection;
+    [SerializeField] public int steeringAngleSelection;
+    [SerializeField] private float streetSteerAngle;
+    [SerializeField] private float driftSteerAngle;
+    [SerializeField] public int steeringPowerSelection;
     [SerializeField] private float steeringLerpValue;
     [SerializeField] private float unpoweredSteeringLerpValue;
-    [SerializeField] private float streetSteeringLerpValue;
-    [SerializeField] private float driftSteeringLerpValue;
+    [SerializeField] private float poweredSteeringLerpValue;
 
     [SerializeField] private float suspensionPower;
     [SerializeField] public int suspensionSelection;
@@ -343,7 +345,7 @@ public class CarController : MonoBehaviour
                     switch (currentGear)
                     {
                         case 2:
-                            transmissionForce = 1.4f;
+                            transmissionForce = 1.6f;
                             break;
                         case 3:
                             transmissionForce = .8f;
@@ -368,10 +370,10 @@ public class CarController : MonoBehaviour
                     switch (currentGear)
                     {
                         case 1:
-                            transmissionForce = 2f;
+                            transmissionForce = 2.5f;
                             break;
                         case 2:
-                            transmissionForce = 1.4f;
+                            transmissionForce = 1.6f;
                             break;
                         case 3:
                             transmissionForce = .8f;
@@ -380,12 +382,12 @@ public class CarController : MonoBehaviour
                 }
                 if (engineRPM < 0)
                 {
-                    transmissionForce = 1.78f;
+                    transmissionForce = 2.5f;
                 }
                 else
                 {
                     currentGear = 1;
-                    transmissionForce = 2f;
+                    transmissionForce = 2.5f;
                 }
             }
         }
@@ -432,7 +434,7 @@ public class CarController : MonoBehaviour
                     switch (currentGear)
                     {
                         case 1:
-                            transmissionForce = 2f;
+                            transmissionForce = 2.4f;
                             break;
                         case 2:
                             transmissionForce = 1.4f;
@@ -559,7 +561,6 @@ public class CarController : MonoBehaviour
 
     private void HandleSteering()
     {
-        currentSteerAngle = (frontLeftWheelCollider.steerAngle + frontRightWheelCollider.steerAngle) / 2;
         //switch (currentGear)
         //{
         //    case 1:
@@ -582,59 +583,77 @@ public class CarController : MonoBehaviour
         //        break;
         //}
 
+        currentSteerAngle = (frontLeftWheelCollider.steerAngle + frontRightWheelCollider.steerAngle) / 2;
+
+        switch (steeringAngleSelection)
+        {
+            case 0:
+                maxSteerAngle = streetSteerAngle;
+                break;
+            case 1:
+                maxSteerAngle = driftSteerAngle;
+                break;
+        }
+
         float velocity = carRigidBody.velocity.magnitude;
-        if (velocity < 25f)
+        if (!isBraking)
         {
-            steerAngle = maxSteerAngle;
-        }
-        if (velocity >= 25f && velocity < 45f)
-        {
-            steerAngle = maxSteerAngle * .8f;
-        }
-        if (velocity >= 45f && velocity < 75f)
-        {
-            steerAngle = maxSteerAngle * .6f;
-        }
-        if (velocity >= 75f && velocity < 110f)
-        {
-            steerAngle = maxSteerAngle * .4f;
-        }
-        if (velocity >= 110f)
-        {
-            steerAngle = maxSteerAngle * .2f;
+            if (velocity < 25f)
+            {
+                steerAngle = maxSteerAngle * 1f;
+            }
+            if (velocity >= 25f && velocity < 45f)
+            {
+                steerAngle = maxSteerAngle * .7f;
+            }
+            if (velocity >= 45f && velocity < 75f)
+            {
+                steerAngle = maxSteerAngle * .5f;
+            }
+            if (velocity >= 75f && velocity < 110f)
+            {
+                steerAngle = maxSteerAngle * .35f;
+            }
+            if (velocity >= 110f)
+            {
+                steerAngle = maxSteerAngle * .2f;
+            }
         }
 
         float newSteerAngle = steerAngle * horizontalInput;
-        if (frontWheelDrive)
+        switch (steeringPowerSelection)
         {
-            switch (steeringSelection)
-            {
-                case 0:
-                    steeringLerpValue = .03f;
-                    break;
-                case 1:
-                    steeringLerpValue = .07f;
-                    break;
-                case 2:
-                    steeringLerpValue = .2f;
-                    break;
-            }
+            case 0:
+                steeringLerpValue = unpoweredSteeringLerpValue;
+                break;
+            case 1:
+                steeringLerpValue = poweredSteeringLerpValue;
+                break;
         }
-        else
-        {
-            switch (steeringSelection)
-            {
-                case 0:
-                    steeringLerpValue = .05f;
-                    break;
-                case 1:
-                    steeringLerpValue = .1f;
-                    break;
-                case 2:
-                    steeringLerpValue = .3f;
-                    break;
-            }
-        }
+        //if (frontWheelDrive)
+        //{
+        //    switch (steeringPowerSelection)
+        //    {
+        //        case 0:
+        //            steeringLerpValue = .6f;
+        //            break;
+        //        case 1:
+        //            steeringLerpValue = .9f;
+        //            break;
+        //    }
+        //}
+        //else
+        //{
+        //    switch (steeringPowerSelection)
+        //    {
+        //        case 0:
+        //            steeringLerpValue = .6f;
+        //            break;
+        //        case 1:
+        //            steeringLerpValue = .9f;
+        //            break;
+        //    }
+        //}
         
 
         frontLeftWheelCollider.steerAngle = Mathf.Lerp(currentSteerAngle, newSteerAngle, steeringLerpValue);

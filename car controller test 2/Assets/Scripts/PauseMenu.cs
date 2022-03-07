@@ -23,7 +23,8 @@ public class PauseMenu : MonoBehaviour
     public TMPro.TMP_Dropdown MotorDropDown;
     public TMPro.TMP_Dropdown TransmissionDropDown;
     public TMPro.TMP_Dropdown TireDropDown;
-    public TMPro.TMP_Dropdown SteeringDropDown;
+    public TMPro.TMP_Dropdown SteeringPowerDropDown;
+    public TMPro.TMP_Dropdown SteeringAngleDropDown;
     public TMPro.TMP_Dropdown SuspensionDropDown;
     public TMPro.TMP_Dropdown HandbrakeDropDown;
 
@@ -82,8 +83,11 @@ public class PauseMenu : MonoBehaviour
         int tire = PlayerPrefs.GetInt("tireIndex", 0);
         TireDropDown.value = tire;
 
-        int steering = PlayerPrefs.GetInt("steeringIndex", 1);
-        SteeringDropDown.value = steering;
+        int steeringPower = PlayerPrefs.GetInt("steeringPowerIndex", 1);
+        SteeringPowerDropDown.value = steeringPower;
+
+        int steeringAngle = PlayerPrefs.GetInt("steeringAngleIndex", 0);
+        SteeringAngleDropDown.value = steeringAngle;
 
         int suspension = PlayerPrefs.GetInt("suspensionIndex", 1);
         SuspensionDropDown.value = suspension;
@@ -221,22 +225,31 @@ public class PauseMenu : MonoBehaviour
 
         PlayerPrefs.SetInt("tireIndex", tireIndex);
     }
-    public void SetSteering(int steeringIndex)
+    public void SetSteeringPower(int steeringPowerIndex)
     {
-        switch(steeringIndex)
+        switch(steeringPowerIndex)
         {
             case 0:
-                carController.steeringSelection = 0;
+                carController.steeringPowerSelection = 0;
                 break;
             case 1:
-                carController.steeringSelection = 1;
-                break;
-            case 2:
-                carController.steeringSelection = 2;
+                carController.steeringPowerSelection = 1;
                 break;
         }
 
-        PlayerPrefs.SetInt("steeringIndex", steeringIndex);
+        PlayerPrefs.SetInt("steeringPowerIndex", steeringPowerIndex);
+    }
+    public void SetSteeringAngle(int steeringAngleIndex)
+    {
+        switch(steeringAngleIndex)
+        {
+            case 0:
+                carController.steeringAngleSelection = 0;
+                break;
+            case 1:
+                carController.steeringAngleSelection = 1;
+                break;
+        }
     }
     public void SetSuspension(int suspensionIndex)
     {
