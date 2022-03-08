@@ -8007,7 +8007,7 @@ MonoBehaviour:
   gearBox: {fileID: 1300120566}
   useButtonSelection: 0
   jumpForce: 2000000
-  thrusterForce: 59999
+  thrusterForce: 40000
   frontWheelDrive: 1
   rearWheelDrive: 0
   singleAxleMFAdjustment: 2.1
