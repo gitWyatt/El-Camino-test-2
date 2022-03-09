@@ -77,6 +77,7 @@ public class CarController : MonoBehaviour
     [SerializeField] public int handbrakeSelection;
     [SerializeField] private float moreDriftBrakeForce;
     [SerializeField] private float lessDriftBrakeForce;
+    [SerializeField] private float driftForwardStiffnessConstant;
     [SerializeField] private float basicBrakesDriftFrontSidewaysStiffness;
     [SerializeField] private float basicBrakesDriftRearSidewaysStiffness;
     [SerializeField] private float offRoadBrakesDriftFrontSidewaysStiffness;
@@ -345,10 +346,10 @@ public class CarController : MonoBehaviour
                     switch (currentGear)
                     {
                         case 2:
-                            transmissionForce = 1.6f;
+                            transmissionForce = 2f;
                             break;
                         case 3:
-                            transmissionForce = .8f;
+                            transmissionForce = 1f;
                             break;
                         case 4:
                             transmissionForce = .01f;
@@ -373,10 +374,10 @@ public class CarController : MonoBehaviour
                             transmissionForce = 2.5f;
                             break;
                         case 2:
-                            transmissionForce = 1.6f;
+                            transmissionForce = 2;
                             break;
                         case 3:
-                            transmissionForce = .8f;
+                            transmissionForce = 1f;
                             break;
                     }
                 }
@@ -478,45 +479,54 @@ public class CarController : MonoBehaviour
             backLeftWheelCollider.brakeTorque = currentBrakeForce;
         }
 
-        WheelFrictionCurve frontLeftWheelFriction = frontLeftWheelCollider.sidewaysFriction;
-        WheelFrictionCurve frontRightWheelFriction = frontRightWheelCollider.sidewaysFriction;
-        WheelFrictionCurve backLeftWheelFriction = backLeftWheelCollider.sidewaysFriction;
-        WheelFrictionCurve backRightWheelFriction = backRightWheelCollider.sidewaysFriction;
+        WheelFrictionCurve frontLeftWheelSidewaysFriction = frontLeftWheelCollider.sidewaysFriction;
+        WheelFrictionCurve frontRightWheelSidewaysFriction = frontRightWheelCollider.sidewaysFriction;
+        WheelFrictionCurve backLeftWheelSidewaysFriction = backLeftWheelCollider.sidewaysFriction;
+        WheelFrictionCurve backRightWheelSidewaysFriction = backRightWheelCollider.sidewaysFriction;
+
+        WheelFrictionCurve frontLeftWheelForwardFriction = frontLeftWheelCollider.forwardFriction;
+        WheelFrictionCurve frontRightWheelForwardFriction = frontRightWheelCollider.forwardFriction;
+        WheelFrictionCurve backLeftWheelForwardFriction = backLeftWheelCollider.forwardFriction;
+        WheelFrictionCurve backRightWheelForwardFriction = backRightWheelCollider.forwardFriction;
 
         switch (tireSelection)
         {
             case 0:
                 standardSidewaysStiffness = basicBrakesStandardSidewaysStiffness;
-                //driftFrontSidewaysStiffness = basicBrakesDriftFrontSidewaysStiffness;         //moved to brake selection
-                //driftRearSidewaysStiffness = basicBrakesDriftRearSidewaysStiffness;
                 break;
             case 1:
                 standardSidewaysStiffness = offRoadBrakesStandardSidewaysStiffness;
-                //driftFrontSidewaysStiffness = offRoadBrakesDriftFrontSidewaysStiffness;       //moved to brake selection
-                //driftRearSidewaysStiffness = offRoadBrakesDriftRearSidewaysStiffness;
                 break;
             case 2:
                 standardSidewaysStiffness = driftBrakesStandardSidewaysStiffness;
-                //driftFrontSidewaysStiffness = driftBrakesDriftFrontSidewaysStiffness;         //moved to brake selection
-                //driftRearSidewaysStiffness = driftBrakesDriftRearSidewaysStiffness;
                 break;
         }
-
-        //if (transform.forward == Vector3.Normalize(carRigidBody.velocity))
-        //{
-        //    standardSidewaysStiffness = standardSidewaysStiffness * 2f;
-        //}
 
         if (Vector3.Distance(transform.forward, Vector3.Normalize(carRigidBody.velocity)) < .25f)
         {
             standardSidewaysStiffness = standardSidewaysStiffness * 2.5f;
         }
 
-        float currentDriftFrontSidewaysStiffness = (frontLeftWheelFriction.stiffness + frontRightWheelFriction.stiffness) / 2;
-        float currentDriftRearSidewaysStiffness = (backLeftWheelFriction.stiffness + backRightWheelFriction.stiffness) / 2;
+        float currentDriftFrontSidewaysStiffness = (frontLeftWheelSidewaysFriction.stiffness + frontRightWheelSidewaysFriction.stiffness) / 2;
+        float currentDriftRearSidewaysStiffness = (backLeftWheelSidewaysFriction.stiffness + backRightWheelSidewaysFriction.stiffness) / 2;
 
         if (isBraking)
         {
+            //forward friction adjustment
+            if (frontWheelDrive && !rearWheelDrive)
+            {
+                frontLeftWheelForwardFriction.stiffness = frontLeftWheelForwardFriction.stiffness * driftForwardStiffnessConstant;
+                frontRightWheelForwardFriction.stiffness = frontRightWheelForwardFriction.stiffness * driftForwardStiffnessConstant;
+            }
+            if (rearWheelDrive && !frontWheelDrive)
+            {
+                backLeftWheelForwardFriction.stiffness = backLeftWheelForwardFriction.stiffness * driftForwardStiffnessConstant;
+                backRightWheelForwardFriction.stiffness = backRightWheelForwardFriction.stiffness * driftForwardStiffnessConstant;
+            }
+
+
+            //sideways friction adjustment
+
             //lerp
             //frontLeftWheelFriction.stiffness = Mathf.Lerp(currentDriftFrontSidewaysStiffness, driftFrontSidewaysStiffness, driftBrakesLerpValue);
             //frontRightWheelFriction.stiffness = Mathf.Lerp(currentDriftFrontSidewaysStiffness, driftFrontSidewaysStiffness, driftBrakesLerpValue);
@@ -524,25 +534,25 @@ public class CarController : MonoBehaviour
             //backRightWheelFriction.stiffness = Mathf.Lerp(currentDriftRearSidewaysStiffness, driftRearSidewaysStiffness, driftBrakesLerpValue);
 
             //non-lerp
-            frontLeftWheelFriction.stiffness = driftFrontSidewaysStiffness;
-            frontRightWheelFriction.stiffness = driftFrontSidewaysStiffness;
-            backLeftWheelFriction.stiffness = driftRearSidewaysStiffness;
-            backRightWheelFriction.stiffness = driftRearSidewaysStiffness;
+            frontLeftWheelSidewaysFriction.stiffness = driftFrontSidewaysStiffness;
+            frontRightWheelSidewaysFriction.stiffness = driftFrontSidewaysStiffness;
+            backLeftWheelSidewaysFriction.stiffness = driftRearSidewaysStiffness;
+            backRightWheelSidewaysFriction.stiffness = driftRearSidewaysStiffness;
 
-            frontLeftWheelCollider.sidewaysFriction = frontLeftWheelFriction;
-            frontRightWheelCollider.sidewaysFriction = frontRightWheelFriction;
-            backLeftWheelCollider.sidewaysFriction = backLeftWheelFriction;
-            backRightWheelCollider.sidewaysFriction = backRightWheelFriction;
+            frontLeftWheelCollider.sidewaysFriction = frontLeftWheelSidewaysFriction;
+            frontRightWheelCollider.sidewaysFriction = frontRightWheelSidewaysFriction;
+            backLeftWheelCollider.sidewaysFriction = backLeftWheelSidewaysFriction;
+            backRightWheelCollider.sidewaysFriction = backRightWheelSidewaysFriction;
 
             //Debug.Log(frontLeftWheelFriction.stiffness);
         }
         else if (!isBraking)
         {
             //lerp
-            frontLeftWheelFriction.stiffness = Mathf.Lerp(currentDriftFrontSidewaysStiffness, standardSidewaysStiffness, driftBrakesLerpValue);
-            frontRightWheelFriction.stiffness = Mathf.Lerp(currentDriftFrontSidewaysStiffness, standardSidewaysStiffness, driftBrakesLerpValue);
-            backLeftWheelFriction.stiffness = Mathf.Lerp(currentDriftRearSidewaysStiffness, standardSidewaysStiffness, driftBrakesLerpValue);
-            backRightWheelFriction.stiffness = Mathf.Lerp(currentDriftRearSidewaysStiffness, standardSidewaysStiffness, driftBrakesLerpValue);
+            frontLeftWheelSidewaysFriction.stiffness = Mathf.Lerp(currentDriftFrontSidewaysStiffness, standardSidewaysStiffness, driftBrakesLerpValue);
+            frontRightWheelSidewaysFriction.stiffness = Mathf.Lerp(currentDriftFrontSidewaysStiffness, standardSidewaysStiffness, driftBrakesLerpValue);
+            backLeftWheelSidewaysFriction.stiffness = Mathf.Lerp(currentDriftRearSidewaysStiffness, standardSidewaysStiffness, driftBrakesLerpValue);
+            backRightWheelSidewaysFriction.stiffness = Mathf.Lerp(currentDriftRearSidewaysStiffness, standardSidewaysStiffness, driftBrakesLerpValue);
 
             //non-lerp
             //frontLeftWheelFriction.stiffness = standardSidewaysStiffness;
@@ -550,10 +560,10 @@ public class CarController : MonoBehaviour
             //backLeftWheelFriction.stiffness = standardSidewaysStiffness;
             //backRightWheelFriction.stiffness = standardSidewaysStiffness;
 
-            frontLeftWheelCollider.sidewaysFriction = frontLeftWheelFriction;
-            frontRightWheelCollider.sidewaysFriction = frontRightWheelFriction;
-            backLeftWheelCollider.sidewaysFriction = backLeftWheelFriction;
-            backRightWheelCollider.sidewaysFriction = backRightWheelFriction;
+            frontLeftWheelCollider.sidewaysFriction = frontLeftWheelSidewaysFriction;
+            frontRightWheelCollider.sidewaysFriction = frontRightWheelSidewaysFriction;
+            backLeftWheelCollider.sidewaysFriction = backLeftWheelSidewaysFriction;
+            backRightWheelCollider.sidewaysFriction = backRightWheelSidewaysFriction;
 
             Debug.Log(standardSidewaysStiffness);
         }

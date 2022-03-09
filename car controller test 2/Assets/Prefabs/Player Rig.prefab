@@ -5762,8 +5762,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1428129086377603201}
-  m_LocalRotation: {x: 0.06274653, y: -0, z: -0.0000000074505797, w: 0.9980295}
-  m_LocalPosition: {x: 0.0000038146973, y: 13, z: -25.000004}
+  m_LocalRotation: {x: 0.06274653, y: 0.0000000042931196, z: -2.6991023e-10, w: 0.99802953}
+  m_LocalPosition: {x: 0, y: 13, z: -25}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -5948,8 +5948,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1428129086589540616}
-  m_LocalRotation: {x: 0.06274653, y: -0, z: -0.0000000074505797, w: 0.9980295}
-  m_LocalPosition: {x: 0.0000038146973, y: 13, z: -25.000004}
+  m_LocalRotation: {x: 0.06274653, y: 0.0000000042931196, z: -2.6991023e-10, w: 0.99802953}
+  m_LocalPosition: {x: 0, y: 13, z: -25}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -8021,10 +8021,11 @@ MonoBehaviour:
   brakeForce: 400
   driftBrakesLerpValue: 0.06
   handbrakeSelection: 0
-  moreDriftBrakeForce: -400
+  moreDriftBrakeForce: 0
   lessDriftBrakeForce: 400
-  basicBrakesDriftFrontSidewaysStiffness: 1
-  basicBrakesDriftRearSidewaysStiffness: 1
+  driftForwardStiffnessConstant: 2.5
+  basicBrakesDriftFrontSidewaysStiffness: 0.8
+  basicBrakesDriftRearSidewaysStiffness: 0.79
   offRoadBrakesDriftFrontSidewaysStiffness: 1.3
   offRoadBrakesDriftRearSidewaysStiffness: 1.3
   driftBrakesDriftFrontSidewaysStiffness: 0.4
