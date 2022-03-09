@@ -33,13 +33,13 @@ public class CarController : MonoBehaviour
     private float flipCheck;
     private float engageCheck;
 
-    private bool isBraking;
+    public bool isBraking;
     private bool isResetting;
     private bool isFlipping;
     private bool isEngaging;
 
-    private bool touchingGround;
-    private float distToGround = 0.65f;
+    public bool touchingGround;
+    //private float distToGround = 0.505f;
 
     double mph;
     private float engineRPM;
@@ -113,10 +113,10 @@ public class CarController : MonoBehaviour
     [SerializeField] private float controlYawFactor;
     [SerializeField] private float controlRollFactor;
 
-    [SerializeField] private WheelCollider frontLeftWheelCollider;
-    [SerializeField] private WheelCollider frontRightWheelCollider;
-    [SerializeField] private WheelCollider backLeftWheelCollider;
-    [SerializeField] private WheelCollider backRightWheelCollider;
+    [SerializeField] public WheelCollider frontLeftWheelCollider;
+    [SerializeField] public WheelCollider frontRightWheelCollider;
+    [SerializeField] public WheelCollider backLeftWheelCollider;
+    [SerializeField] public WheelCollider backRightWheelCollider;
 
     [SerializeField] private Transform frontLeftWheelTransform;
     [SerializeField] private Transform frontRightWheelTransform;
@@ -200,10 +200,21 @@ public class CarController : MonoBehaviour
 
     void CheckGround()
     {
-        if (Physics.Raycast(frontLeftWheelTransform.position, Vector3.down, distToGround) &&
-            Physics.Raycast(frontRightWheelTransform.position, Vector3.down, distToGround) &&
-            Physics.Raycast(backLeftWheelTransform.position, Vector3.down, distToGround) &&
-            Physics.Raycast(backRightWheelTransform.position, Vector3.down, distToGround))
+        //float distToGround = frontLeftWheelCollider.bounds.extents.y;
+        //if (Physics.Raycast(frontLeftWheelTransform.position, -Vector3.up, distToGround) &&
+        //    Physics.Raycast(frontRightWheelTransform.position, -Vector3.up, distToGround) &&
+        //    Physics.Raycast(backLeftWheelTransform.position, -Vector3.up, distToGround) &&
+        //    Physics.Raycast(backRightWheelTransform.position, -Vector3.up, distToGround))
+        //{
+        //    touchingGround = true;
+        //}
+        //else
+        //{
+        //    touchingGround = false;
+        //}
+        //Debug.Log(touchingGround);
+
+        if (frontLeftWheelCollider.isGrounded && backLeftWheelCollider.isGrounded && frontRightWheelCollider.isGrounded && backRightWheelCollider.isGrounded)
         {
             touchingGround = true;
         }
@@ -211,7 +222,6 @@ public class CarController : MonoBehaviour
         {
             touchingGround = false;
         }
-        //Debug.Log(touchingGround);
     }
 
     private void HandleSuspension()
