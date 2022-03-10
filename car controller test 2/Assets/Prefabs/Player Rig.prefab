@@ -8641,7 +8641,7 @@ MonoBehaviour:
   backLeftTireMarks: {fileID: 1097313178}
   backRightTireMarks: {fileID: 2065978270}
   sideSlipThreshold: 0.05
-  frontSlipThreshold: 0.1
+  frontSlipThreshold: 0.5
 --- !u!1 &6438645261477271109
 GameObject:
   m_ObjectHideFlags: 0

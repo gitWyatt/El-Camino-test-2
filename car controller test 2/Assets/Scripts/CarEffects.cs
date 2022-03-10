@@ -54,15 +54,14 @@ public class CarEffects : MonoBehaviour
         sideSlipBR = wheelDataBR.sidewaysSlip;
         frontSlipBR = wheelDataBR.forwardSlip;
 
-        if (sideSlipFL > sideSlipThreshold || frontSlipFL > frontSlipThreshold)
+        if (Mathf.Abs(sideSlipFL) > sideSlipThreshold || Mathf.Abs(frontSlipFL) > frontSlipThreshold)
         { startEmitterFL(); } else { stopEmitterFL(); }
-        if (sideSlipFR > sideSlipThreshold || frontSlipFR > frontSlipThreshold)
+        if (Mathf.Abs(sideSlipFR) > sideSlipThreshold || Mathf.Abs(frontSlipFR) > frontSlipThreshold)
         { startEmitterFR(); } else { stopEmitterFR(); }
-        if (sideSlipBL > sideSlipThreshold || frontSlipBL > frontSlipThreshold)
+        if (Mathf.Abs(sideSlipBL) > sideSlipThreshold || Mathf.Abs(frontSlipBL) > frontSlipThreshold)
         { startEmitterBL(); } else { stopEmitterBL(); }
-        if (sideSlipBR > sideSlipThreshold || frontSlipBR > frontSlipThreshold)
+        if (Mathf.Abs(sideSlipBR) > sideSlipThreshold || Mathf.Abs(frontSlipBR) > frontSlipThreshold)
         { startEmitterBR(); } else { stopEmitterBR(); }
-
 
 
         //if (carController.isBraking)
