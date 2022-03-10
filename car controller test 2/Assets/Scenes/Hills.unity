@@ -412,14 +412,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player Rig
       objectReference: {fileID: 0}
-    - target: {fileID: 1428129086377603200, guid: 6f40c0ea697cfd246bd8d94c6eed74b8, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0.06274652
-      objectReference: {fileID: 0}
-    - target: {fileID: 1428129086589540621, guid: 6f40c0ea697cfd246bd8d94c6eed74b8, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0.06274652
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6f40c0ea697cfd246bd8d94c6eed74b8, type: 3}
 --- !u!43 &1376684072
@@ -428,7 +420,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh27002
+  m_Name: pb_Mesh46228
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -999,7 +991,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2126314306}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1015.58, y: 131, z: 1576.1}
+  m_LocalPosition: {x: 1015.58, y: 131, z: 1567.9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
