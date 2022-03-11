@@ -250,6 +250,8 @@ public class PauseMenu : MonoBehaviour
                 carController.steeringAngleSelection = 1;
                 break;
         }
+
+        PlayerPrefs.SetInt("steeringAngleIndex", steeringAngleIndex);
     }
     public void SetSuspension(int suspensionIndex)
     {

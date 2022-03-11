@@ -618,7 +618,15 @@ public class CarController : MonoBehaviour
         float velocity = carRigidBody.velocity.magnitude;
         if (!isBraking)
         {
-            if (velocity < 25f)
+            if (velocity < 10f)
+            {
+                steerAngle = maxSteerAngle * 2.5f;
+            }
+            if (velocity >= 10f && velocity < 15f)
+            {
+                steerAngle = maxSteerAngle * 1.7f;
+            }
+            if (velocity >= 15f && velocity < 25f)
             {
                 steerAngle = maxSteerAngle * 1f;
             }
