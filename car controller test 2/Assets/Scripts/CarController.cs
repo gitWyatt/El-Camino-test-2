@@ -414,16 +414,16 @@ public class CarController : MonoBehaviour
                     switch (currentGear)
                     {
                         case 2:
-                            transmissionForce = 1.4f;
+                            transmissionForce = 2f;
                             break;
                         case 3:
-                            transmissionForce = 1f;
+                            transmissionForce = 1.5f;
                             break;
                         case 4:
-                            transmissionForce = .7f;
+                            transmissionForce = 1f;
                             break;
                         case 5:
-                            transmissionForce = .1f;
+                            transmissionForce = .5f;
                             break;
                         case 6:
                             transmissionForce = .01f;
@@ -433,7 +433,7 @@ public class CarController : MonoBehaviour
                 else
                 {
                     currentGear = 6;
-                    transmissionForce = .5f;
+                    transmissionForce = .01f;
                 }
             }
             if (engineRPM <= minRPM)
@@ -445,30 +445,30 @@ public class CarController : MonoBehaviour
                     switch (currentGear)
                     {
                         case 1:
-                            transmissionForce = 2.4f;
+                            transmissionForce = 2.5f;
                             break;
                         case 2:
-                            transmissionForce = 1.4f;
+                            transmissionForce = 2f;
                             break;
                         case 3:
-                            transmissionForce = 1f;
+                            transmissionForce = 1.5f;
                             break;
                         case 4:
-                            transmissionForce = .7f;
+                            transmissionForce = 1f;
                             break;
                         case 5:
-                            transmissionForce = .1f;
+                            transmissionForce = .5f;
                             break;
                     }
                 }
                 if (engineRPM < 0)
                 {
-                    transmissionForce = 1.78f;
+                    transmissionForce = 2.5f;
                 }
                 else
                 {
                     currentGear = 1;
-                    transmissionForce = 2.66f;
+                    transmissionForce = 2.5f;
                 }
             }
         }
