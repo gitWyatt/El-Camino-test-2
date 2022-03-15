@@ -58,6 +58,8 @@ public class CarController : MonoBehaviour
     [SerializeField] public int useButtonSelection;
     [SerializeField] private float jumpForce;
     [SerializeField] private float thrusterForce;
+    [SerializeField] private float groundBoostForce;
+    [SerializeField] public bool groundBoosting = false;
 
     [SerializeField] public bool frontWheelDrive;
     [SerializeField] public bool rearWheelDrive;
@@ -775,6 +777,16 @@ public class CarController : MonoBehaviour
         if (useButtonSelection == 2 && controls.Player.Engage.ReadValue<float>() > 0)
         {
             carRigidBody.AddForce(transform.forward * thrusterForce);
+        }
+
+        if (useButtonSelection == 3 && controls.Player.Engage.ReadValue<float>() > 0 && touchingGround)
+        {
+            carRigidBody.AddForce(transform.forward * groundBoostForce);
+            groundBoosting = true;
+        }
+        else
+        {
+            groundBoosting = false;
         }
     }
     public void PauseHandler(InputAction.CallbackContext context)

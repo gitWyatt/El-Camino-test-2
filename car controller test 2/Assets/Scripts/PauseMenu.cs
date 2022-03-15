@@ -300,6 +300,9 @@ public class PauseMenu : MonoBehaviour
             case 2:
                 carController.useButtonSelection = 2;
                 break;
+            case 3:
+                carController.useButtonSelection = 3;
+                break;
         }
 
         PlayerPrefs.SetInt("useButtonIndex", useButtonIndex);

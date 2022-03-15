@@ -15,7 +15,7 @@ C:/Unity repos/El-Camino-test-2/car controller test 2
 -logFile
 Logs/AssetImportWorker0.log
 -srvPort
-49672
+51843
 Successfully changed project path to: C:/Unity repos/El-Camino-test-2/car controller test 2
 C:/Unity repos/El-Camino-test-2/car controller test 2
 [UnityMemory] Configuration Parameters - Can be set up in boot.config
@@ -47,7 +47,7 @@ C:/Unity repos/El-Camino-test-2/car controller test 2
     "memorysetup-temp-allocator-size-cloud-worker=32768"
     "memorysetup-temp-allocator-size-gi-baking-worker=262144"
     "memorysetup-temp-allocator-size-gfx=262144"
-Refreshing native plugins compatible for Editor in 104.81 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 127.60 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Initialize engine version: 2021.2.14f1 (bcb93e5482d2)
 [Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/2021.2.14f1/Editor/Data/Resources/UnitySubsystems
@@ -63,93 +63,93 @@ Initialize mono
 Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/2021.2.14f1/Editor/Data/Managed'
 Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/2021.2.14f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
 Mono config path = 'C:/Program Files/Unity/Hub/Editor/2021.2.14f1/Editor/Data/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56708
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56756
 Begin MonoManager ReloadAssembly
 Registering precompiled unity dll's ...
 Register platform support module: C:/Program Files/Unity/Hub/Editor/2021.2.14f1/Editor/Data/PlaybackEngines/MacStandaloneSupport/UnityEditor.OSXStandalone.Extensions.dll
 Register platform support module: C:/Program Files/Unity/Hub/Editor/2021.2.14f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
-Registered in 0.010937 seconds.
+Registered in 0.009604 seconds.
 Native extension for WindowsStandalone target not found
 Native extension for OSXStandalone target not found
-Refreshing native plugins compatible for Editor in 102.36 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 118.67 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Mono: successfully reloaded assembly
-- Completed reload, in  0.671 seconds
+- Completed reload, in  0.737 seconds
 Domain Reload Profiling:
-	ReloadAssembly (671ms)
-		BeginReloadAssembly (80ms)
+	ReloadAssembly (737ms)
+		BeginReloadAssembly (77ms)
 			ExecutionOrderSort (0ms)
 			DisableScriptedObjects (0ms)
 			BackupInstance (0ms)
 			ReleaseScriptingObjects (0ms)
 			CreateAndSetChildDomain (1ms)
-		EndReloadAssembly (476ms)
-			LoadAssemblies (78ms)
+		EndReloadAssembly (534ms)
+			LoadAssemblies (74ms)
 			RebuildTransferFunctionScriptingTraits (0ms)
-			SetupTypeCache (102ms)
+			SetupTypeCache (109ms)
 			ReleaseScriptCaches (0ms)
-			RebuildScriptCaches (26ms)
-			SetupLoadedEditorAssemblies (297ms)
+			RebuildScriptCaches (29ms)
+			SetupLoadedEditorAssemblies (340ms)
 				LogAssemblyErrors (0ms)
-				InitializePlatformSupportModulesInManaged (11ms)
+				InitializePlatformSupportModulesInManaged (14ms)
 				SetLoadedEditorAssemblies (0ms)
-				RefreshPlugins (102ms)
+				RefreshPlugins (119ms)
 				BeforeProcessingInitializeOnLoad (1ms)
-				ProcessInitializeOnLoadAttributes (139ms)
-				ProcessInitializeOnLoadMethodAttributes (43ms)
+				ProcessInitializeOnLoadAttributes (156ms)
+				ProcessInitializeOnLoadMethodAttributes (49ms)
 				AfterProcessingInitializeOnLoad (0ms)
 				EditorAssembliesLoaded (0ms)
 			ExecutionOrderSort2 (0ms)
 			AwakeInstancesAfterBackupRestoration (0ms)
 Platform modules already initialized, skipping
 Registering precompiled user dll's ...
-Registered in 0.006498 seconds.
+Registered in 0.008409 seconds.
 Begin MonoManager ReloadAssembly
 Symbol file LoadedFromMemory doesn't match image C:\Unity repos\El-Camino-test-2\car controller test 2\Library\PackageCache\com.unity.visualscripting@1.7.6\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
 Symbol file LoadedFromMemory doesn't match image C:\Unity repos\El-Camino-test-2\car controller test 2\Library\PackageCache\com.unity.visualscripting@1.7.6\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
 Native extension for WindowsStandalone target not found
 Native extension for OSXStandalone target not found
-Refreshing native plugins compatible for Editor in 104.49 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 115.52 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Package Manager log level set to [2]
 Mono: successfully reloaded assembly
-- Completed reload, in  1.375 seconds
+- Completed reload, in  1.544 seconds
 Domain Reload Profiling:
-	ReloadAssembly (1376ms)
-		BeginReloadAssembly (102ms)
+	ReloadAssembly (1545ms)
+		BeginReloadAssembly (119ms)
 			ExecutionOrderSort (0ms)
 			DisableScriptedObjects (5ms)
 			BackupInstance (0ms)
 			ReleaseScriptingObjects (0ms)
-			CreateAndSetChildDomain (18ms)
-		EndReloadAssembly (1159ms)
-			LoadAssemblies (79ms)
+			CreateAndSetChildDomain (19ms)
+		EndReloadAssembly (1302ms)
+			LoadAssemblies (85ms)
 			RebuildTransferFunctionScriptingTraits (0ms)
-			SetupTypeCache (291ms)
+			SetupTypeCache (310ms)
 			ReleaseScriptCaches (1ms)
-			RebuildScriptCaches (68ms)
-			SetupLoadedEditorAssemblies (674ms)
+			RebuildScriptCaches (81ms)
+			SetupLoadedEditorAssemblies (767ms)
 				LogAssemblyErrors (0ms)
-				InitializePlatformSupportModulesInManaged (8ms)
+				InitializePlatformSupportModulesInManaged (7ms)
 				SetLoadedEditorAssemblies (0ms)
-				RefreshPlugins (105ms)
-				BeforeProcessingInitializeOnLoad (110ms)
-				ProcessInitializeOnLoadAttributes (383ms)
-				ProcessInitializeOnLoadMethodAttributes (59ms)
-				AfterProcessingInitializeOnLoad (9ms)
+				RefreshPlugins (116ms)
+				BeforeProcessingInitializeOnLoad (130ms)
+				ProcessInitializeOnLoadAttributes (433ms)
+				ProcessInitializeOnLoadMethodAttributes (70ms)
+				AfterProcessingInitializeOnLoad (11ms)
 				EditorAssembliesLoaded (0ms)
 			ExecutionOrderSort2 (0ms)
 			AwakeInstancesAfterBackupRestoration (5ms)
 Platform modules already initialized, skipping
 ========================================================================
 Worker process is ready to serve import requests
-Launched and connected shader compiler UnityShaderCompiler.exe after 0.09 seconds
-Refreshing native plugins compatible for Editor in 1.76 ms, found 3 plugins.
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.11 seconds
+Refreshing native plugins compatible for Editor in 1.03 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Unloading 5272 Unused Serialized files (Serialized files now loaded: 0)
 Unloading 66 unused Assets / (1.9 MB). Loaded Objects now: 5857.
-Memory consumption went from 212.4 MB to 210.5 MB.
-Total: 4.072400 ms (FindLiveObjects: 0.490100 ms CreateObjectMapping: 0.150900 ms MarkObjects: 3.000800 ms  DeleteObjects: 0.429200 ms)
+Memory consumption went from 212.6 MB to 210.7 MB.
+Total: 6.258500 ms (FindLiveObjects: 0.482900 ms CreateObjectMapping: 0.185300 ms MarkObjects: 5.148600 ms  DeleteObjects: 0.439600 ms)
 
 AssetImportParameters requested are different than current active one (requested -> active):
   custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
@@ -163,82 +163,430 @@ AssetImportParameters requested are different than current active one (requested
   custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
 ========================================================================
 Received Import Request.
-  Time since last request: 3168.675984 seconds.
-  path: Assets/package manager junk/EasyRoads3D/textures
-  artifactKey: Guid(c3a402d6ac607764fa576fc3b82fbd5a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/package manager junk/EasyRoads3D/textures using Guid(c3a402d6ac607764fa576fc3b82fbd5a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '54c84009504b773dd64fc8015e5f0569') in 0.016308 seconds 
+  Time since last request: 18557.146941 seconds.
+  path: Assets/Textures/Terrain brushes/New style/Brushes/light grass.png
+  artifactKey: Guid(8a37fed2aff7bf3468b52cf1dcb88be7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Textures/Terrain brushes/New style/Brushes/light grass.png using Guid(8a37fed2aff7bf3468b52cf1dcb88be7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5b49e8a2e0ead323c3bb8cd4872df3cd') in 0.105034 seconds 
 ========================================================================
 Received Import Request.
-  Time since last request: 1.391563 seconds.
-  path: Assets/package manager junk/EasyRoads3D/textures/roads
-  artifactKey: Guid(6507fc1e994c0684ea1fdef1f9e02ecb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/package manager junk/EasyRoads3D/textures/roads using Guid(6507fc1e994c0684ea1fdef1f9e02ecb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5c8b1c8180f5750de10ad188525d4ddf') in 0.009012 seconds 
+  Time since last request: 0.000021 seconds.
+  path: Assets/Textures/Terrain brushes/New style/Brushes/mud.png
+  artifactKey: Guid(7ff7d4a2823913646a399a511a054e71) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Textures/Terrain brushes/New style/Brushes/mud.png using Guid(7ff7d4a2823913646a399a511a054e71) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7f170c0c73718c1bddc36005a4de3286') in 0.012099 seconds 
 ========================================================================
 Received Import Request.
-  Time since last request: 0.065533 seconds.
-  path: Assets/package manager junk/EasyRoads3D/textures/roads/default_M_S_AO.tga
-  artifactKey: Guid(3200bc0e82d9ada43b5d1cfc5a253a9a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/package manager junk/EasyRoads3D/textures/roads/default_M_S_AO.tga using Guid(3200bc0e82d9ada43b5d1cfc5a253a9a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b456f8c7daf83f1560509461c1a73884') in 0.069759 seconds 
+  Time since last request: 0.000025 seconds.
+  path: Assets/Textures/Terrain brushes/New style/Brushes/light rock.png
+  artifactKey: Guid(2becefbe4695db241a7bf72472d03a57) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Textures/Terrain brushes/New style/Brushes/light rock.png using Guid(2becefbe4695db241a7bf72472d03a57) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8693fe246a40ddd6db797de9e2f681fc') in 0.012782 seconds 
 ========================================================================
 Received Import Request.
-  Time since last request: 0.000024 seconds.
-  path: Assets/package manager junk/EasyRoads3D/textures/roads/road_b.jpg
-  artifactKey: Guid(dbd66363f37e6534880f241dfae1d06c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/package manager junk/EasyRoads3D/textures/roads/road_b.jpg using Guid(dbd66363f37e6534880f241dfae1d06c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4adcb6e8897a37ffec5dbfb81630ed01') in 0.119218 seconds 
+  Time since last request: 0.000026 seconds.
+  path: Assets/Textures/Terrain brushes/New style/Brushes/dark rock.png
+  artifactKey: Guid(dc9b944a6f2b369499603766601f4ba9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Textures/Terrain brushes/New style/Brushes/dark rock.png using Guid(dc9b944a6f2b369499603766601f4ba9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '662b3e77643d66321705f83a2a914653') in 0.012563 seconds 
 ========================================================================
 Received Import Request.
-  Time since last request: 0.000017 seconds.
-  path: Assets/package manager junk/EasyRoads3D/textures/roads/sidewalk.tga
-  artifactKey: Guid(7e9e6a83e36e4b142bd56f8fecd2bbae) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/package manager junk/EasyRoads3D/textures/roads/sidewalk.tga using Guid(7e9e6a83e36e4b142bd56f8fecd2bbae) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a94e9fdbb6adf967340b46132d8893e6') in 0.019897 seconds 
+  Time since last request: 3.170258 seconds.
+  path: Assets/Textures/Terrain brushes/New style/Normals/dark rock normal map.png
+  artifactKey: Guid(6aff55dc5f0e029499c6cc4c98ca34bb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Textures/Terrain brushes/New style/Normals/dark rock normal map.png using Guid(6aff55dc5f0e029499c6cc4c98ca34bb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '034eaf0dd428c7b0ebc3c89667fe023f') in 0.013074 seconds 
 ========================================================================
 Received Import Request.
-  Time since last request: 0.000028 seconds.
-  path: Assets/package manager junk/EasyRoads3D/textures/roads/roundabout connection.tga
-  artifactKey: Guid(388fce124f165ab4fa917515a7d90385) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/package manager junk/EasyRoads3D/textures/roads/roundabout connection.tga using Guid(388fce124f165ab4fa917515a7d90385) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f1928d026e076b7a227f37253770a345') in 0.017189 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 7.640918 seconds.
-  path: Assets/package manager junk/EasyRoads3D/textures/editor/favOffFree.png
-  artifactKey: Guid(6e72efafe24d89440ad1eac37036f47c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/package manager junk/EasyRoads3D/textures/editor/favOffFree.png using Guid(6e72efafe24d89440ad1eac37036f47c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8149ca6511deea8f62f14e90820e0c7c') in 0.031369 seconds 
+  Time since last request: 0.000021 seconds.
+  path: Assets/Textures/Terrain brushes/New style/Normals/mud normal map.png
+  artifactKey: Guid(7f8106c706113dc47bc58d2287f17aa9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Textures/Terrain brushes/New style/Normals/mud normal map.png using Guid(7f8106c706113dc47bc58d2287f17aa9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '997afdcffe6f707e0f89746bfa06b559') in 0.011832 seconds 
 ========================================================================
 Received Import Request.
   Time since last request: 0.000022 seconds.
-  path: Assets/package manager junk/EasyRoads3D/textures/editor/m_road.png
-  artifactKey: Guid(46e81e5d2c8b2144582558b65e45db86) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/package manager junk/EasyRoads3D/textures/editor/m_road.png using Guid(46e81e5d2c8b2144582558b65e45db86) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9de48a260672961f90f5c97bc4a97c17') in 0.019612 seconds 
+  path: Assets/Textures/Terrain brushes/New style/Normals/light grass normal map.png
+  artifactKey: Guid(12b790524763a7848aaf2d6738c2d082) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Textures/Terrain brushes/New style/Normals/light grass normal map.png using Guid(12b790524763a7848aaf2d6738c2d082) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7ce547df0d4d9a42edef2d2eafad6fb5') in 0.011249 seconds 
 ========================================================================
 Received Import Request.
-  Time since last request: 0.000019 seconds.
-  path: Assets/package manager junk/EasyRoads3D/textures/editor/unlocked.png
-  artifactKey: Guid(8b70bdf1ef68d1f429183b0746cc82be) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/package manager junk/EasyRoads3D/textures/editor/unlocked.png using Guid(8b70bdf1ef68d1f429183b0746cc82be) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2159c434a470f7bb93c8164a0eb390d6') in 0.016634 seconds 
+  Time since last request: 131.244081 seconds.
+  path: Assets/Textures/Terrain brushes/old style/Layers/Light Rock Layer.terrainlayer
+  artifactKey: Guid(f415d9da77f25e24ca82e03a11ca89b0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Textures/Terrain brushes/old style/Layers/Light Rock Layer.terrainlayer using Guid(f415d9da77f25e24ca82e03a11ca89b0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '721cc0347788962ed0a62d4731357f5c') in 0.041989 seconds 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.008371 seconds.
+Begin MonoManager ReloadAssembly
+Symbol file LoadedFromMemory doesn't match image C:\Unity repos\El-Camino-test-2\car controller test 2\Library\PackageCache\com.unity.visualscripting@1.7.6\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
+Symbol file LoadedFromMemory doesn't match image C:\Unity repos\El-Camino-test-2\car controller test 2\Library\PackageCache\com.unity.visualscripting@1.7.6\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
+Native extension for WindowsStandalone target not found
+Native extension for OSXStandalone target not found
+Refreshing native plugins compatible for Editor in 0.91 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.376 seconds
+Domain Reload Profiling:
+	ReloadAssembly (1377ms)
+		BeginReloadAssembly (156ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (5ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (47ms)
+		EndReloadAssembly (1125ms)
+			LoadAssemblies (91ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (308ms)
+			ReleaseScriptCaches (2ms)
+			RebuildScriptCaches (50ms)
+			SetupLoadedEditorAssemblies (624ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (14ms)
+				SetLoadedEditorAssemblies (0ms)
+				RefreshPlugins (1ms)
+				BeforeProcessingInitializeOnLoad (105ms)
+				ProcessInitializeOnLoadAttributes (411ms)
+				ProcessInitializeOnLoadMethodAttributes (79ms)
+				AfterProcessingInitializeOnLoad (13ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (7ms)
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 2.65 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 5174 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 35 unused Assets / (1.9 MB). Loaded Objects now: 5877.
+Memory consumption went from 212.8 MB to 210.9 MB.
+Total: 3.931200 ms (FindLiveObjects: 0.422700 ms CreateObjectMapping: 0.123700 ms MarkObjects: 3.014500 ms  DeleteObjects: 0.369300 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
 ========================================================================
 Received Import Request.
-  Time since last request: 0.000068 seconds.
-  path: Assets/package manager junk/EasyRoads3D/textures/editor/m_prefabs.png
-  artifactKey: Guid(ffc15be4bded7b34f9f406cde082a4a2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/package manager junk/EasyRoads3D/textures/editor/m_prefabs.png using Guid(ffc15be4bded7b34f9f406cde082a4a2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '39d3f0f2c244c2a5e79b1969f90c53c9') in 0.016259 seconds 
+  Time since last request: 1955.589823 seconds.
+  path: Assets/Textures/Terrain brushes/New style/Layers/N Grass Layer.terrainlayer
+  artifactKey: Guid(72d7f9542019e174a91c5b5049ea2e43) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Textures/Terrain brushes/New style/Layers/N Grass Layer.terrainlayer using Guid(72d7f9542019e174a91c5b5049ea2e43) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2f62fc899579e62ccebe101cca3c8a27') in 0.052356 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000026 seconds.
+  path: Assets/Textures/Terrain brushes/New style/Layers/N Mud Layer.terrainlayer
+  artifactKey: Guid(df5a63c1008e9cb418fa09efd664fdaa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Textures/Terrain brushes/New style/Layers/N Mud Layer.terrainlayer using Guid(df5a63c1008e9cb418fa09efd664fdaa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '64e02f4bcb6d23f85c2c54a7c44e15f2') in 0.010417 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000027 seconds.
+  path: Assets/Textures/Terrain brushes/New style/Layers/N Light Rock Layer.terrainlayer
+  artifactKey: Guid(4cb4bd1a8f6a5f74689711f02680240c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Textures/Terrain brushes/New style/Layers/N Light Rock Layer.terrainlayer using Guid(4cb4bd1a8f6a5f74689711f02680240c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '45cac2615eb356cde60ceb8f4514f5bb') in 0.009566 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 345.085126 seconds.
+  path: Assets/Textures/Terrain brushes/New style/Layers/N Dark Rock Layer.terrainlayer
+  artifactKey: Guid(ba52bdf52cd38554cb004c4df6ce1be4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Textures/Terrain brushes/New style/Layers/N Dark Rock Layer.terrainlayer using Guid(ba52bdf52cd38554cb004c4df6ce1be4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00327b68a37dc167eb0143b080fb3b79') in 0.013734 seconds 
 ========================================================================
 Received Import Request.
   Time since last request: 0.000024 seconds.
-  path: Assets/package manager junk/EasyRoads3D/textures/editor/locked.png
-  artifactKey: Guid(95bcc58da45020345aeaaaf89ea8a000) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/package manager junk/EasyRoads3D/textures/editor/locked.png using Guid(95bcc58da45020345aeaaaf89ea8a000) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '24ab81d9a2a37cb3ed8cf732e354eec5') in 0.017009 seconds 
+  path: Assets/Textures/Terrain brushes/New style/Brushes/light grass.png
+  artifactKey: Guid(8a37fed2aff7bf3468b52cf1dcb88be7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Textures/Terrain brushes/New style/Brushes/light grass.png using Guid(8a37fed2aff7bf3468b52cf1dcb88be7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b5fd4918c1711e4162011215be1dd502') in 0.031149 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000024 seconds.
+  path: Assets/Textures/Terrain brushes/New style/Layers/N Mud Layer.terrainlayer
+  artifactKey: Guid(df5a63c1008e9cb418fa09efd664fdaa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Textures/Terrain brushes/New style/Layers/N Mud Layer.terrainlayer using Guid(df5a63c1008e9cb418fa09efd664fdaa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3b50ad6645645109074840de283383b0') in 0.013243 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000022 seconds.
+  path: Assets/Textures/Terrain brushes/New style/Brushes/mud.png
+  artifactKey: Guid(7ff7d4a2823913646a399a511a054e71) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Textures/Terrain brushes/New style/Brushes/mud.png using Guid(7ff7d4a2823913646a399a511a054e71) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '59b0b7fd6ac6f7faf66d54c2628ec04e') in 0.014128 seconds 
 ========================================================================
 Received Import Request.
   Time since last request: 0.000030 seconds.
-  path: Assets/package manager junk/EasyRoads3D/textures/editor/m_build.png
-  artifactKey: Guid(881f73f964cf5104abc91a5f657615a8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/package manager junk/EasyRoads3D/textures/editor/m_build.png using Guid(881f73f964cf5104abc91a5f657615a8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '147081d7b89d277626ad7ec065ca3e00') in 0.018312 seconds 
+  path: Assets/Textures/Terrain brushes/New style/Layers/N Light Grass Layer.terrainlayer
+  artifactKey: Guid(4c0755e11eae4d54fb736d86f4d507b8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Textures/Terrain brushes/New style/Layers/N Light Grass Layer.terrainlayer using Guid(4c0755e11eae4d54fb736d86f4d507b8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '19a14009c58d21aea3e073dc29510e3e') in 0.011208 seconds 
 ========================================================================
 Received Import Request.
-  Time since last request: 22.902046 seconds.
-  path: Assets/package manager junk/EasyRoads3D/Resources/ERProRoad.prefab
-  artifactKey: Guid(1f87f95e79e2c104f808bba536652594) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/package manager junk/EasyRoads3D/Resources/ERProRoad.prefab using Guid(1f87f95e79e2c104f808bba536652594) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f1c905997601eb132ff8606f92cdf2d6') in 0.028160 seconds 
+  Time since last request: 0.000075 seconds.
+  path: Assets/Textures/Terrain brushes/New style/Layers/N Light Rock Layer.terrainlayer
+  artifactKey: Guid(4cb4bd1a8f6a5f74689711f02680240c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Textures/Terrain brushes/New style/Layers/N Light Rock Layer.terrainlayer using Guid(4cb4bd1a8f6a5f74689711f02680240c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a57ad565f9c478037dac90ea96f20259') in 0.013672 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000027 seconds.
+  path: Assets/Textures/Terrain brushes/New style/Brushes/light rock.png
+  artifactKey: Guid(2becefbe4695db241a7bf72472d03a57) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Textures/Terrain brushes/New style/Brushes/light rock.png using Guid(2becefbe4695db241a7bf72472d03a57) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9964f640d73fed17cbbc709f4c1decc9') in 0.015140 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000032 seconds.
+  path: Assets/Textures/Terrain brushes/New style/Brushes/dark rock.png
+  artifactKey: Guid(dc9b944a6f2b369499603766601f4ba9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Textures/Terrain brushes/New style/Brushes/dark rock.png using Guid(dc9b944a6f2b369499603766601f4ba9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6eca943aa180f88fbf67db808ba69b6a') in 0.012799 seconds 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.007203 seconds.
+Begin MonoManager ReloadAssembly
+Symbol file LoadedFromMemory doesn't match image C:\Unity repos\El-Camino-test-2\car controller test 2\Library\PackageCache\com.unity.visualscripting@1.7.6\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
+Symbol file LoadedFromMemory doesn't match image C:\Unity repos\El-Camino-test-2\car controller test 2\Library\PackageCache\com.unity.visualscripting@1.7.6\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
+Native extension for WindowsStandalone target not found
+Native extension for OSXStandalone target not found
+Refreshing native plugins compatible for Editor in 0.95 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.379 seconds
+Domain Reload Profiling:
+	ReloadAssembly (1380ms)
+		BeginReloadAssembly (160ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (4ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (47ms)
+		EndReloadAssembly (1113ms)
+			LoadAssemblies (98ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (292ms)
+			ReleaseScriptCaches (2ms)
+			RebuildScriptCaches (59ms)
+			SetupLoadedEditorAssemblies (627ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (15ms)
+				SetLoadedEditorAssemblies (0ms)
+				RefreshPlugins (1ms)
+				BeforeProcessingInitializeOnLoad (91ms)
+				ProcessInitializeOnLoadAttributes (432ms)
+				ProcessInitializeOnLoadMethodAttributes (76ms)
+				AfterProcessingInitializeOnLoad (11ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (6ms)
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 3.98 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 5174 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 35 unused Assets / (1.9 MB). Loaded Objects now: 5891.
+Memory consumption went from 212.8 MB to 211.0 MB.
+Total: 3.939800 ms (FindLiveObjects: 0.439200 ms CreateObjectMapping: 0.128200 ms MarkObjects: 2.887200 ms  DeleteObjects: 0.484200 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Import Request.
+  Time since last request: 694.436669 seconds.
+  path: Assets/package manager junk/Handpainted_Grass_and_Ground_Textures/Demo/terrain_layers/dirt_clay_left.terrainlayer
+  artifactKey: Guid(c713baf133ac7f840b6e5f2a7e1fcdc7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/package manager junk/Handpainted_Grass_and_Ground_Textures/Demo/terrain_layers/dirt_clay_left.terrainlayer using Guid(c713baf133ac7f840b6e5f2a7e1fcdc7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'bcfec0228c46d860fb6ef90e7b1c3f4c') in 0.076139 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000036 seconds.
+  path: Assets/package manager junk/Handpainted_Grass_and_Ground_Textures/Demo/terrain_layers/dirt_lighted_right.terrainlayer
+  artifactKey: Guid(85999f731165c8a458b1795d7bfb2f6c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/package manager junk/Handpainted_Grass_and_Ground_Textures/Demo/terrain_layers/dirt_lighted_right.terrainlayer using Guid(85999f731165c8a458b1795d7bfb2f6c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6a37b2b489ad49c984eead0c450ae034') in 0.014371 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000040 seconds.
+  path: Assets/package manager junk/Handpainted_Grass_and_Ground_Textures/Demo/terrain_layers/dirt_overcorrupted_down.terrainlayer
+  artifactKey: Guid(89258d896d872294bb3a0cefacbc3158) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/package manager junk/Handpainted_Grass_and_Ground_Textures/Demo/terrain_layers/dirt_overcorrupted_down.terrainlayer using Guid(89258d896d872294bb3a0cefacbc3158) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '23c988820f96057c438d13587161593c') in 0.014322 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000025 seconds.
+  path: Assets/package manager junk/Handpainted_Grass_and_Ground_Textures/Demo/terrain_layers/dirt_lighted_rocks_right.terrainlayer
+  artifactKey: Guid(93048c3e21ad4ea48a891e7dfba702ff) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/package manager junk/Handpainted_Grass_and_Ground_Textures/Demo/terrain_layers/dirt_lighted_rocks_right.terrainlayer using Guid(93048c3e21ad4ea48a891e7dfba702ff) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd74f04164f5e7c4f8743ce8fb2c57b56') in 0.016840 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000044 seconds.
+  path: Assets/package manager junk/Handpainted_Grass_and_Ground_Textures/Demo/terrain_layers/dirt_desatured_right.terrainlayer
+  artifactKey: Guid(81ae3aa24351ac3468c21be8f174a9ea) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/package manager junk/Handpainted_Grass_and_Ground_Textures/Demo/terrain_layers/dirt_desatured_right.terrainlayer using Guid(81ae3aa24351ac3468c21be8f174a9ea) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e0fab49c232c1c04e20d86b153dc374d') in 0.016773 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000058 seconds.
+  path: Assets/package manager junk/Handpainted_Grass_and_Ground_Textures/Demo/terrain_layers/dirt_clay_up.terrainlayer
+  artifactKey: Guid(799b17a5976350a4699e3fe5773d8e83) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/package manager junk/Handpainted_Grass_and_Ground_Textures/Demo/terrain_layers/dirt_clay_up.terrainlayer using Guid(799b17a5976350a4699e3fe5773d8e83) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4f9921c76b154491071c92f90cfbe013') in 0.013797 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000033 seconds.
+  path: Assets/package manager junk/Handpainted_Grass_and_Ground_Textures/Demo/terrain_layers/Grass_corrupted_right.terrainlayer
+  artifactKey: Guid(5a8233d884b35ae4581f8f254c1995be) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/package manager junk/Handpainted_Grass_and_Ground_Textures/Demo/terrain_layers/Grass_corrupted_right.terrainlayer using Guid(5a8233d884b35ae4581f8f254c1995be) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f41248f2dc3adcd9b09b5308d78d4809') in 0.012904 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000039 seconds.
+  path: Assets/package manager junk/Handpainted_Grass_and_Ground_Textures/Demo/terrain_layers/dirt_claydarked_up.terrainlayer
+  artifactKey: Guid(8d1901c5994c2e845b5026dcbc721c13) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/package manager junk/Handpainted_Grass_and_Ground_Textures/Demo/terrain_layers/dirt_claydarked_up.terrainlayer using Guid(8d1901c5994c2e845b5026dcbc721c13) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a87c09090862a823f40eda32c2e4e99a') in 0.013542 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000024 seconds.
+  path: Assets/package manager junk/Handpainted_Grass_and_Ground_Textures/Demo/terrain_layers/dirt_overdesatured_right.terrainlayer
+  artifactKey: Guid(3275dd885f90676448381cc2a20d87ea) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/package manager junk/Handpainted_Grass_and_Ground_Textures/Demo/terrain_layers/dirt_overdesatured_right.terrainlayer using Guid(3275dd885f90676448381cc2a20d87ea) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6a8289930e89808539da4924d9a7c4d8') in 0.012824 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000024 seconds.
+  path: Assets/package manager junk/Handpainted_Grass_and_Ground_Textures/Demo/terrain_layers/dirt_claydarked_left.terrainlayer
+  artifactKey: Guid(69aae8f389094174fa2ca70f9268a251) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/package manager junk/Handpainted_Grass_and_Ground_Textures/Demo/terrain_layers/dirt_claydarked_left.terrainlayer using Guid(69aae8f389094174fa2ca70f9268a251) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '49a520271d4a00ccb9fe3db4abe24219') in 0.014656 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000022 seconds.
+  path: Assets/package manager junk/Handpainted_Grass_and_Ground_Textures/Demo/terrain_layers/dirt_desatured_down.terrainlayer
+  artifactKey: Guid(a2067e44dd8d50144b0a359c7513a3ba) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/package manager junk/Handpainted_Grass_and_Ground_Textures/Demo/terrain_layers/dirt_desatured_down.terrainlayer using Guid(a2067e44dd8d50144b0a359c7513a3ba) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1bf3513a78f4cf338e35d994ed0219c7') in 0.014785 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000022 seconds.
+  path: Assets/package manager junk/Handpainted_Grass_and_Ground_Textures/Demo/terrain_layers/dirt_claydarked_right.terrainlayer
+  artifactKey: Guid(79459100015b83e448ec508ceae4fc57) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/package manager junk/Handpainted_Grass_and_Ground_Textures/Demo/terrain_layers/dirt_claydarked_right.terrainlayer using Guid(79459100015b83e448ec508ceae4fc57) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7f68b68dc4b7e4ba2bddcd7e22e296f2') in 0.012559 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000031 seconds.
+  path: Assets/package manager junk/Handpainted_Grass_and_Ground_Textures/Demo/terrain_layers/dirt_overcorrupted_up.terrainlayer
+  artifactKey: Guid(a597e1737097f994a9beacb7152ea611) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/package manager junk/Handpainted_Grass_and_Ground_Textures/Demo/terrain_layers/dirt_overcorrupted_up.terrainlayer using Guid(a597e1737097f994a9beacb7152ea611) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9ebc51529f9a64f3c8767e096b6946b0') in 0.014637 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000033 seconds.
+  path: Assets/package manager junk/Handpainted_Grass_and_Ground_Textures/Demo/terrain_layers/dirt_desatured_rocks_left.terrainlayer
+  artifactKey: Guid(2af4e57ff8bc78e4a88241418c051a76) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/package manager junk/Handpainted_Grass_and_Ground_Textures/Demo/terrain_layers/dirt_desatured_rocks_left.terrainlayer using Guid(2af4e57ff8bc78e4a88241418c051a76) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2ffb479606cef8b0d4438cac23df9f05') in 0.015615 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000031 seconds.
+  path: Assets/package manager junk/Handpainted_Grass_and_Ground_Textures/Demo/terrain_layers/dirt_normal_down.terrainlayer
+  artifactKey: Guid(2b319025aaf66334aa785399b8ac33ce) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/package manager junk/Handpainted_Grass_and_Ground_Textures/Demo/terrain_layers/dirt_normal_down.terrainlayer using Guid(2b319025aaf66334aa785399b8ac33ce) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e671fc15a52c92ed689cd814d17ad3ee') in 0.018809 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000022 seconds.
+  path: Assets/package manager junk/Handpainted_Grass_and_Ground_Textures/Demo/terrain_layers/dirt_corrupted_lighted_left.terrainlayer
+  artifactKey: Guid(732b43abd374c374d978d756f1c4a5ac) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/package manager junk/Handpainted_Grass_and_Ground_Textures/Demo/terrain_layers/dirt_corrupted_lighted_left.terrainlayer using Guid(732b43abd374c374d978d756f1c4a5ac) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a9d89a37e88f2773201274c90bb5ce73') in 0.016030 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000027 seconds.
+  path: Assets/package manager junk/Handpainted_Grass_and_Ground_Textures/Demo/terrain_layers/dirt_lighted_rocks_up.terrainlayer
+  artifactKey: Guid(174f1f8e3d6d9f541bcafd1c4823cd5c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/package manager junk/Handpainted_Grass_and_Ground_Textures/Demo/terrain_layers/dirt_lighted_rocks_up.terrainlayer using Guid(174f1f8e3d6d9f541bcafd1c4823cd5c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2e48f7a4e7540451576d7fcb4bbb3e9b') in 0.014269 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000023 seconds.
+  path: Assets/package manager junk/Handpainted_Grass_and_Ground_Textures/Demo/terrain_layers/Grass_bluetint_right.terrainlayer
+  artifactKey: Guid(d05b6b35cf7b1484bb2f64c0a74476dd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/package manager junk/Handpainted_Grass_and_Ground_Textures/Demo/terrain_layers/Grass_bluetint_right.terrainlayer using Guid(d05b6b35cf7b1484bb2f64c0a74476dd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '199d9d5adca7365dcbe4e28d03bca9e1') in 0.014141 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000016 seconds.
+  path: Assets/package manager junk/Handpainted_Grass_and_Ground_Textures/Demo/terrain_layers/dirt_claydarked_down.terrainlayer
+  artifactKey: Guid(421ead4c2a1387945a283cc08d0ad7ae) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/package manager junk/Handpainted_Grass_and_Ground_Textures/Demo/terrain_layers/dirt_claydarked_down.terrainlayer using Guid(421ead4c2a1387945a283cc08d0ad7ae) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f0041e7cc6e28e01207ebf6a39b3d638') in 0.014404 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000156 seconds.
+  path: Assets/package manager junk/Handpainted_Grass_and_Ground_Textures/Demo/terrain_layers/dirt_normal_left.terrainlayer
+  artifactKey: Guid(9d4c363caf962fc4db3f057f27debd78) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/package manager junk/Handpainted_Grass_and_Ground_Textures/Demo/terrain_layers/dirt_normal_left.terrainlayer using Guid(9d4c363caf962fc4db3f057f27debd78) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1017f964422c39da16487f2c42cc39f8') in 0.012609 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000026 seconds.
+  path: Assets/package manager junk/Handpainted_Grass_and_Ground_Textures/Demo/terrain_layers/Grass_bluetint_left.terrainlayer
+  artifactKey: Guid(4f578fafc038b3e47889d8591aeabb7a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/package manager junk/Handpainted_Grass_and_Ground_Textures/Demo/terrain_layers/Grass_bluetint_left.terrainlayer using Guid(4f578fafc038b3e47889d8591aeabb7a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '467d530129a6fa112ef88395c49f3ffa') in 0.014389 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000034 seconds.
+  path: Assets/package manager junk/Handpainted_Grass_and_Ground_Textures/Demo/terrain_layers/dirt_desatured_up.terrainlayer
+  artifactKey: Guid(bcb6b5f0b45e65f41a03dfd1c55f60d3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/package manager junk/Handpainted_Grass_and_Ground_Textures/Demo/terrain_layers/dirt_desatured_up.terrainlayer using Guid(bcb6b5f0b45e65f41a03dfd1c55f60d3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '36fae55636299f977142a94bf2e5534b') in 0.014847 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000035 seconds.
+  path: Assets/package manager junk/Handpainted_Grass_and_Ground_Textures/Demo/terrain_layers/dirt_lighted_up.terrainlayer
+  artifactKey: Guid(1f75228414d5254428e95e86edd17bb3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/package manager junk/Handpainted_Grass_and_Ground_Textures/Demo/terrain_layers/dirt_lighted_up.terrainlayer using Guid(1f75228414d5254428e95e86edd17bb3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e92a9d6615255d20ce29afad463681d7') in 0.014504 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000032 seconds.
+  path: Assets/package manager junk/Handpainted_Grass_and_Ground_Textures/Demo/terrain_layers/dirt_lighted_left.terrainlayer
+  artifactKey: Guid(8868eb00d1fb1564881e9adbc06e83c8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/package manager junk/Handpainted_Grass_and_Ground_Textures/Demo/terrain_layers/dirt_lighted_left.terrainlayer using Guid(8868eb00d1fb1564881e9adbc06e83c8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9f90599be947a3a25e648cb873393ab3') in 0.012825 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000022 seconds.
+  path: Assets/package manager junk/Handpainted_Grass_and_Ground_Textures/Demo/terrain_layers/dirt_desatured_rocks_right.terrainlayer
+  artifactKey: Guid(623b445a6e0248847a90129992558440) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/package manager junk/Handpainted_Grass_and_Ground_Textures/Demo/terrain_layers/dirt_desatured_rocks_right.terrainlayer using Guid(623b445a6e0248847a90129992558440) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '52623fc1e861ec4c732de60f89b1f87a') in 0.015289 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 1.770204 seconds.
+  path: Assets/package manager junk/Handpainted_Grass_and_Ground_Textures/Demo/terrain_layers/Grass_darked_right.terrainlayer
+  artifactKey: Guid(1b91aa2ac8fa2b04b972e4af2dfa295b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/package manager junk/Handpainted_Grass_and_Ground_Textures/Demo/terrain_layers/Grass_darked_right.terrainlayer using Guid(1b91aa2ac8fa2b04b972e4af2dfa295b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '33acad4d0fe93b2ae649cd24fba0d089') in 0.016962 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000023 seconds.
+  path: Assets/package manager junk/Handpainted_Grass_and_Ground_Textures/Demo/terrain_layers/Grass_normal_left.terrainlayer
+  artifactKey: Guid(8266026e5ca9bc247a41d77e26bb8052) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/package manager junk/Handpainted_Grass_and_Ground_Textures/Demo/terrain_layers/Grass_normal_left.terrainlayer using Guid(8266026e5ca9bc247a41d77e26bb8052) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1f6cd5a782c1df42d66605cd80494121') in 0.015659 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000026 seconds.
+  path: Assets/package manager junk/Handpainted_Grass_and_Ground_Textures/Demo/terrain_layers/Grass_desatured_right.terrainlayer
+  artifactKey: Guid(e788cd2c1fd684744ba303b8cb656bf3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/package manager junk/Handpainted_Grass_and_Ground_Textures/Demo/terrain_layers/Grass_desatured_right.terrainlayer using Guid(e788cd2c1fd684744ba303b8cb656bf3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3acc2d796288f3dbad221662ca9a4d1b') in 0.013793 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000020 seconds.
+  path: Assets/package manager junk/Handpainted_Grass_and_Ground_Textures/Demo/terrain_layers/Grass_desatured_up.terrainlayer
+  artifactKey: Guid(3e876ba4c3fbcb44892786b86e12a40d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/package manager junk/Handpainted_Grass_and_Ground_Textures/Demo/terrain_layers/Grass_desatured_up.terrainlayer using Guid(3e876ba4c3fbcb44892786b86e12a40d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '177f3ab22ec290769c099ce70af8366c') in 0.013887 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000018 seconds.
+  path: Assets/package manager junk/Handpainted_Grass_and_Ground_Textures/Demo/terrain_layers/Grass_lighted_left.terrainlayer
+  artifactKey: Guid(f090ea60b20d02c4ba801580101c5465) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/package manager junk/Handpainted_Grass_and_Ground_Textures/Demo/terrain_layers/Grass_lighted_left.terrainlayer using Guid(f090ea60b20d02c4ba801580101c5465) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '09cac0622e50ccac9e9f1a132537916f') in 0.014435 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000030 seconds.
+  path: Assets/package manager junk/Handpainted_Grass_and_Ground_Textures/Demo/terrain_layers/Grass_lighted_up.terrainlayer
+  artifactKey: Guid(466d1d3acac3ca2408920fe63d4cb054) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/package manager junk/Handpainted_Grass_and_Ground_Textures/Demo/terrain_layers/Grass_lighted_up.terrainlayer using Guid(466d1d3acac3ca2408920fe63d4cb054) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '83f78c34be791d6c8e4cf877e42610de') in 0.015007 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 2.997192 seconds.
+  path: Assets/package manager junk/Handpainted_Grass_and_Ground_Textures/Demo/terrain_layers/Grass_normal_up.terrainlayer
+  artifactKey: Guid(d89b6494d9fbc994182207fed5df47a0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/package manager junk/Handpainted_Grass_and_Ground_Textures/Demo/terrain_layers/Grass_normal_up.terrainlayer using Guid(d89b6494d9fbc994182207fed5df47a0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd9690c6474eefdcf4b960fc1e1f39666') in 0.014461 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000020 seconds.
+  path: Assets/package manager junk/Handpainted_Grass_and_Ground_Textures/Demo/terrain_layers/Grass_overcorrupted_up.terrainlayer
+  artifactKey: Guid(66ebd6a3e966c7447a9f9b40428d928a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/package manager junk/Handpainted_Grass_and_Ground_Textures/Demo/terrain_layers/Grass_overcorrupted_up.terrainlayer using Guid(66ebd6a3e966c7447a9f9b40428d928a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '70b6b6bf74f2a313146c49d34ead32f2') in 0.019259 seconds 
 Editor requested this worker to shutdown with reason: Scaling down because of idle timeout
 AssetImportWorker is now disconnected from the server
 Process exiting

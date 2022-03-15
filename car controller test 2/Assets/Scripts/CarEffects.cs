@@ -9,12 +9,17 @@ public class CarEffects : MonoBehaviour
     [SerializeField] public TrailRenderer backLeftTireMarks;
     [SerializeField] public TrailRenderer backRightTireMarks;
 
+    [SerializeField] public TrailRenderer backLeftFireMarks;
+    [SerializeField] public TrailRenderer backRightFireMarks;
+
     CarController carController;
     
     private bool tireMarksFLFlag;
     private bool tireMarksFRFlag;
     private bool tireMarksBLFlag;
     private bool tireMarksBRFlag;
+
+    private bool fireMarksFlag;
 
     private float sideSlipFL;
     private float sideSlipFR;
@@ -37,6 +42,7 @@ public class CarEffects : MonoBehaviour
     private void Update()
     {
         CheckDrift();
+        CheckBoost();
     }
 
     private void CheckDrift()
@@ -131,5 +137,32 @@ public class CarEffects : MonoBehaviour
         if (!tireMarksBRFlag) return;
         backRightTireMarks.emitting = false;
         tireMarksBRFlag = false;
+    }
+
+    private void CheckBoost()
+    {
+        if (carController.groundBoosting)
+        {
+            startFireTrail();
+        }
+        else
+        {
+            stopFireTrail();
+        }
+    }
+
+    private void startFireTrail()
+    {
+        if (fireMarksFlag) return;
+        backLeftFireMarks.emitting = true;
+        backRightFireMarks.emitting = true;
+        fireMarksFlag = true;
+    }
+    private void stopFireTrail()
+    {
+        if (!fireMarksFlag) return;
+        backLeftFireMarks.emitting = false;
+        backRightFireMarks.emitting = false;
+        fireMarksFlag = false;
     }
 }
