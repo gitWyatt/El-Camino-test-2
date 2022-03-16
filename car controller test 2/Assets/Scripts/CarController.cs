@@ -818,11 +818,18 @@ public class CarController : MonoBehaviour
         }
 
         //Ground booster
-        if (useButtonSelection == 3 && controls.Player.Engage.ReadValue<float>() > 0 && touchingGround && playerGroundBoostFuel > 0 && groundBoostFlag)
+        if (useButtonSelection == 3 && controls.Player.Engage.ReadValue<float>() > 0 && playerGroundBoostFuel > 0 && groundBoostFlag)
         {
-            carRigidBody.AddForce(transform.forward * groundBoostForce);
+            if (touchingGround)
+            {
+                carRigidBody.AddForce(transform.forward * groundBoostForce);
+                groundBoosting = true;
+            }
+            else
+            {
+                groundBoosting = false;
+            }
             playerGroundBoostFuel -= groundBoostDrain;
-            groundBoosting = true;
         }
         else
         {
