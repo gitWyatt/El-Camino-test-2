@@ -12,6 +12,8 @@ public class CarEffects : MonoBehaviour
     [SerializeField] public TrailRenderer backLeftFireMarks;
     [SerializeField] public TrailRenderer backRightFireMarks;
 
+    [SerializeField] public ParticleSystem thruster;
+
     CarController carController;
     
     private bool tireMarksFLFlag;
@@ -20,6 +22,7 @@ public class CarEffects : MonoBehaviour
     private bool tireMarksBRFlag;
 
     private bool fireMarksFlag;
+    private bool thrusterFlag = false;
 
     private float sideSlipFL;
     private float sideSlipFR;
@@ -37,6 +40,8 @@ public class CarEffects : MonoBehaviour
     private void Awake()
     {
         carController = GameObject.Find("Camino").GetComponent<CarController>();
+        var thrusterEmission = thruster.emission;
+        thrusterEmission.enabled = false;
     }
 
     private void Update()
@@ -149,6 +154,15 @@ public class CarEffects : MonoBehaviour
         {
             stopFireTrail();
         }
+
+        if (carController.airBoosting)
+        {
+            startThrusterTrail();
+        }
+        else
+        {
+            stopThrusterTrail();
+        }
     }
 
     private void startFireTrail()
@@ -164,5 +178,19 @@ public class CarEffects : MonoBehaviour
         backLeftFireMarks.emitting = false;
         backRightFireMarks.emitting = false;
         fireMarksFlag = false;
+    }
+    private void startThrusterTrail()
+    {
+        if (thrusterFlag) return;
+        var thrusterEmission = thruster.emission;
+        thrusterEmission.enabled = true;
+        thrusterFlag = true;
+    }
+    private void stopThrusterTrail()
+    {
+        if (!thrusterFlag) return;
+        var thrusterEmission = thruster.emission;
+        thrusterEmission.enabled = false;
+        thrusterFlag = false;
     }
 }

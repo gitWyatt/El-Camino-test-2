@@ -59,6 +59,7 @@ public class CarController : MonoBehaviour
     [SerializeField] private float jumpForce;
     [SerializeField] private float thrusterForce;
     [SerializeField] private float groundBoostForce;
+    [SerializeField] public bool airBoosting = false;
     [SerializeField] public bool groundBoosting = false;
 
     [SerializeField] public bool frontWheelDrive;
@@ -577,7 +578,6 @@ public class CarController : MonoBehaviour
             backLeftWheelCollider.sidewaysFriction = backLeftWheelSidewaysFriction;
             backRightWheelCollider.sidewaysFriction = backRightWheelSidewaysFriction;
 
-            Debug.Log(standardSidewaysStiffness);
         }
     }
 
@@ -777,6 +777,11 @@ public class CarController : MonoBehaviour
         if (useButtonSelection == 2 && controls.Player.Engage.ReadValue<float>() > 0)
         {
             carRigidBody.AddForce(transform.forward * thrusterForce);
+            airBoosting = true;
+        }
+        else
+        {
+            airBoosting = false;
         }
 
         if (useButtonSelection == 3 && controls.Player.Engage.ReadValue<float>() > 0 && touchingGround)
