@@ -34,6 +34,7 @@ public class CarController : MonoBehaviour
     private float engageCheck;
 
     public bool isBraking;
+    public bool isReversing;
     private bool isResetting;
     private bool isFlipping;
     private bool isEngaging;
@@ -54,6 +55,8 @@ public class CarController : MonoBehaviour
     [SerializeField] public Text velocityOutput;
     [SerializeField] public Text speedOutput;
     [SerializeField] public Text gearBox;
+    [SerializeField] public Image boostMeter;
+    [SerializeField] public CanvasGroup boostCanvasGroup;
 
     [SerializeField] public int useButtonSelection;
     [SerializeField] private float jumpForce;
@@ -61,6 +64,19 @@ public class CarController : MonoBehaviour
     [SerializeField] private float groundBoostForce;
     [SerializeField] public bool airBoosting = false;
     [SerializeField] public bool groundBoosting = false;
+
+    public float playerAirThrusterFuel = 100f;
+    public bool airThrusterFlag = false;
+    [SerializeField] private float maxAirThrusterFuel = 100f;
+    [SerializeField] private float airThrusterDrain = 0.5f;
+    [SerializeField] private float airThrusterRegen = 0.5f;
+    [SerializeField] private float airThrusterCutoff = 40f;
+    public float playerGroundBoostFuel = 100f;
+    public bool groundBoostFlag = false;
+    [SerializeField] private float maxGroundBoostFuel = 100f;
+    [SerializeField] private float groundBoostDrain = 0.5f;
+    [SerializeField] private float groundBoostRegen = 0.5f;
+    [SerializeField] private float groundBoostCutoff = 70f;
 
     [SerializeField] public bool frontWheelDrive;
     [SerializeField] public bool rearWheelDrive;
@@ -126,6 +142,8 @@ public class CarController : MonoBehaviour
     [SerializeField] private Transform backLeftWheelTransform;
     [SerializeField] private Transform backRightWheelTransform;
 
+    Color thatPurpleyColor;
+
     private void Awake()
     {
         if (controls == null)
@@ -133,6 +151,7 @@ public class CarController : MonoBehaviour
             controls = new InputMaster();
         }
         Time.timeScale = 1f;
+        thatPurpleyColor = boostMeter.color;
     }
 
     private void Start()
@@ -187,6 +206,10 @@ public class CarController : MonoBehaviour
         if (brakeCheck > .5)
         { isBraking = true; }
         else { isBraking = false; }
+
+        if (gas < 0)
+        { isReversing = true; }
+        else { isReversing = false; }
 
         if (resetCheck > .5)
         { isResetting = true; }
@@ -774,23 +797,43 @@ public class CarController : MonoBehaviour
     }
     public void HandleThruster()
     {
-        if (useButtonSelection == 2 && controls.Player.Engage.ReadValue<float>() > 0)
+        //Air thruster
+        if (useButtonSelection == 2 && controls.Player.Engage.ReadValue<float>() > 0 && playerAirThrusterFuel > 0 && airThrusterFlag)
         {
             carRigidBody.AddForce(transform.forward * thrusterForce);
+            playerAirThrusterFuel -= airThrusterDrain;
             airBoosting = true;
         }
         else
         {
+            if (playerAirThrusterFuel <= maxAirThrusterFuel)
+            {
+                if (playerAirThrusterFuel <= airThrusterCutoff) { airThrusterFlag = false; } 
+                else { airThrusterFlag = true; }
+
+                playerAirThrusterFuel += airThrusterRegen;
+            }
+
             airBoosting = false;
         }
 
-        if (useButtonSelection == 3 && controls.Player.Engage.ReadValue<float>() > 0 && touchingGround)
+        //Ground booster
+        if (useButtonSelection == 3 && controls.Player.Engage.ReadValue<float>() > 0 && touchingGround && playerGroundBoostFuel > 0 && groundBoostFlag)
         {
             carRigidBody.AddForce(transform.forward * groundBoostForce);
+            playerGroundBoostFuel -= groundBoostDrain;
             groundBoosting = true;
         }
         else
         {
+            if (playerGroundBoostFuel <= maxGroundBoostFuel)
+            {
+                if (playerGroundBoostFuel <= groundBoostCutoff) { groundBoostFlag = false; }
+                else { groundBoostFlag = true; }
+
+                playerGroundBoostFuel += groundBoostRegen;
+            }
+
             groundBoosting = false;
         }
     }
@@ -809,6 +852,36 @@ public class CarController : MonoBehaviour
         rpmOutput.text = "eRPM: " + engineRPM.ToString("F0");
         velocityOutput.text = "Units: " + carVelocity.magnitude.ToString("F0");
         speedOutput.text = "MPH: " + mph.ToString("F0");
+        if (useButtonSelection == 0 || useButtonSelection == 1)
+        {
+            boostCanvasGroup.alpha = 0;
+        }
+        if (useButtonSelection == 2)
+        {
+            boostCanvasGroup.alpha = 1;
+            boostMeter.fillAmount = playerAirThrusterFuel / maxAirThrusterFuel;
+            if (playerAirThrusterFuel <= airThrusterCutoff)
+            {
+                boostMeter.color = Color.red;
+            }
+            else
+            {
+                boostMeter.color = thatPurpleyColor;
+            }
+        }
+        if (useButtonSelection == 3)
+        {
+            boostCanvasGroup.alpha = 1;
+            boostMeter.fillAmount = playerGroundBoostFuel / maxGroundBoostFuel;
+            if (playerGroundBoostFuel <= groundBoostCutoff)
+            {
+                boostMeter.color = Color.red;
+            }
+            else
+            {
+                boostMeter.color = thatPurpleyColor;
+            }
+        }
     }
 
     private void UpdateWheels()

@@ -14,6 +14,10 @@ public class CarEffects : MonoBehaviour
 
     [SerializeField] public ParticleSystem thruster;
 
+    [SerializeField] public Transform leftTailLight;
+    [SerializeField] public Transform rightTailLight;
+
+
     CarController carController;
     
     private bool tireMarksFLFlag;
@@ -42,12 +46,17 @@ public class CarEffects : MonoBehaviour
         carController = GameObject.Find("Camino").GetComponent<CarController>();
         var thrusterEmission = thruster.emission;
         thrusterEmission.enabled = false;
+        var leftTailLightRenderer = leftTailLight.GetComponent<MeshRenderer>();
+        var rightTailLightRenderer = rightTailLight.GetComponent<MeshRenderer>();
+        leftTailLightRenderer.enabled = false;
+        rightTailLightRenderer.enabled = false;
     }
 
     private void Update()
     {
         CheckDrift();
         CheckBoost();
+        CheckLights();
     }
 
     private void CheckDrift()
@@ -192,5 +201,23 @@ public class CarEffects : MonoBehaviour
         var thrusterEmission = thruster.emission;
         thrusterEmission.enabled = false;
         thrusterFlag = false;
+    }
+
+    private void CheckLights()
+    {
+        if (carController.isBraking || carController.isReversing)
+        {
+            var leftTailLightRenderer = leftTailLight.GetComponent<MeshRenderer>();
+            var rightTailLightRenderer = rightTailLight.GetComponent<MeshRenderer>();
+            leftTailLightRenderer.enabled = true;
+            rightTailLightRenderer.enabled = true;
+        }
+        else
+        {
+            var leftTailLightRenderer = leftTailLight.GetComponent<MeshRenderer>();
+            var rightTailLightRenderer = rightTailLight.GetComponent<MeshRenderer>();
+            leftTailLightRenderer.enabled = false;
+            rightTailLightRenderer.enabled = false;
+        }
     }
 }
