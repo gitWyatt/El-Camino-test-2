@@ -6889,8 +6889,8 @@ WheelCollider:
   m_SidewaysFriction:
     m_ExtremumSlip: 1.5
     m_ExtremumValue: 2
-    m_AsymptoteSlip: 1
-    m_AsymptoteValue: 2
+    m_AsymptoteSlip: 2
+    m_AsymptoteValue: 1
     m_Stiffness: 1
   m_Enabled: 1
 --- !u!1 &1428129085189163014
@@ -6986,8 +6986,8 @@ WheelCollider:
   m_SidewaysFriction:
     m_ExtremumSlip: 1.5
     m_ExtremumValue: 2
-    m_AsymptoteSlip: 1
-    m_AsymptoteValue: 2
+    m_AsymptoteSlip: 2
+    m_AsymptoteValue: 1
     m_Stiffness: 1
   m_Enabled: 1
 --- !u!1 &1428129085242269852
@@ -7048,8 +7048,8 @@ WheelCollider:
   m_SidewaysFriction:
     m_ExtremumSlip: 1.5
     m_ExtremumValue: 2
-    m_AsymptoteSlip: 1
-    m_AsymptoteValue: 2
+    m_AsymptoteSlip: 2
+    m_AsymptoteValue: 1
     m_Stiffness: 1
   m_Enabled: 1
 --- !u!1 &1428129085260515471
@@ -7297,8 +7297,8 @@ WheelCollider:
   m_SidewaysFriction:
     m_ExtremumSlip: 1.5
     m_ExtremumValue: 2
-    m_AsymptoteSlip: 1
-    m_AsymptoteValue: 2
+    m_AsymptoteSlip: 2
+    m_AsymptoteValue: 1
     m_Stiffness: 1
   m_Enabled: 1
 --- !u!1 &1428129086069956932
@@ -8082,7 +8082,7 @@ MonoBehaviour:
   driftBrakesLerpValue: 0.06
   handbrakeSelection: 0
   moreDriftBrakeForce: 0
-  lessDriftBrakeForce: 400
+  lessDriftBrakeForce: 200
   driftForwardStiffnessConstant: 2.5
   basicBrakesDriftFrontSidewaysStiffness: 0.8
   basicBrakesDriftRearSidewaysStiffness: 0.9

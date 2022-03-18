@@ -669,7 +669,7 @@ public class CarController : MonoBehaviour
             }
             if (velocity >= 110f)
             {
-                steerAngle = maxSteerAngle * .2f;
+                steerAngle = maxSteerAngle * .35f;
             }
         }
 
