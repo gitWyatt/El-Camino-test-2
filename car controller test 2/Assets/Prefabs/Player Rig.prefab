@@ -1592,7 +1592,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2030047996}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -1.5, z: 0.4585}
+  m_LocalPosition: {x: 0, y: -2.5, z: 0.4585}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6884,7 +6884,7 @@ WheelCollider:
     m_ExtremumSlip: 1
     m_ExtremumValue: 2
     m_AsymptoteSlip: 2
-    m_AsymptoteValue: 2
+    m_AsymptoteValue: 1
     m_Stiffness: 1
   m_SidewaysFriction:
     m_ExtremumSlip: 1.5
@@ -6981,7 +6981,7 @@ WheelCollider:
     m_ExtremumSlip: 1
     m_ExtremumValue: 2
     m_AsymptoteSlip: 2
-    m_AsymptoteValue: 2
+    m_AsymptoteValue: 1
     m_Stiffness: 1
   m_SidewaysFriction:
     m_ExtremumSlip: 1.5
@@ -7043,7 +7043,7 @@ WheelCollider:
     m_ExtremumSlip: 1
     m_ExtremumValue: 2
     m_AsymptoteSlip: 2
-    m_AsymptoteValue: 2
+    m_AsymptoteValue: 1
     m_Stiffness: 1
   m_SidewaysFriction:
     m_ExtremumSlip: 1.5
@@ -7292,7 +7292,7 @@ WheelCollider:
     m_ExtremumSlip: 1
     m_ExtremumValue: 2
     m_AsymptoteSlip: 2
-    m_AsymptoteValue: 2
+    m_AsymptoteValue: 1
     m_Stiffness: 1
   m_SidewaysFriction:
     m_ExtremumSlip: 1.5
@@ -7807,7 +7807,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1429326533063843074}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -1.5, z: -1.17}
+  m_LocalPosition: {x: 0, y: -2.5, z: -1.17}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7876,7 +7876,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3589748820851273219}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -1.5, z: 2.07}
+  m_LocalPosition: {x: 0, y: -2.5, z: 2.07}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -8052,7 +8052,7 @@ MonoBehaviour:
   boostCanvasGroup: {fileID: 538585504}
   useButtonSelection: 0
   jumpForce: 2000000
-  thrusterForce: 40000
+  thrusterForce: 20000
   groundBoostForce: 10000
   airBoosting: 0
   groundBoosting: 0
