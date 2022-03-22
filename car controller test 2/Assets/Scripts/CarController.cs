@@ -7,6 +7,8 @@ using UnityEngine.InputSystem;
 
 public class CarController : MonoBehaviour
 {
+    CarEffects carEffects;
+
     public InputMaster controls;
 
     public Transform centerOfMassCenterAir;
@@ -157,6 +159,7 @@ public class CarController : MonoBehaviour
             controls = new InputMaster();
         }
         Time.timeScale = 1f;
+        carEffects = GameObject.Find("Camino").GetComponent<CarEffects>();
         thatPurpleyColor = boostMeter.color;
     }
 
@@ -872,6 +875,22 @@ public class CarController : MonoBehaviour
                 carRigidBody.useGravity = true;
             }
 
+            //handle wing animations
+            if (carRigidBody.velocity.magnitude >= 50f)
+            {
+                if (carEffects.wingsOpen == false)
+                {
+                    carEffects.AnimateWingsOpen();
+                }
+            }
+            else
+            {
+                if (carEffects.wingsOpen == true)
+                {
+                    carEffects.AnimateWingsClose();
+                }
+
+            }
 
 
             //Debug.Log(flightGravityActual);
@@ -923,6 +942,7 @@ public class CarController : MonoBehaviour
         {
             if (touchingGround)
             {
+                carEffects.AnimateJump();
                 carRigidBody.AddForce(transform.up * jumpForce);
                 carRigidBody.AddForce(transform.forward * (jumpForce / 10));
             }

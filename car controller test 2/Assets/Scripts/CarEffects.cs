@@ -19,7 +19,11 @@ public class CarEffects : MonoBehaviour
 
     [SerializeField] public GameObject airThrusters;
     [SerializeField] public GameObject groundBoosters;
+    [SerializeField] public GameObject wings;
+    [SerializeField] Animator wingsAnimator;
 
+    [SerializeField] public GameObject jumpJacks;
+    [SerializeField] Animator jumpAnimator;
 
     CarController carController;
     
@@ -40,6 +44,8 @@ public class CarEffects : MonoBehaviour
     private float frontSlipFR;
     private float frontSlipBL;
     private float frontSlipBR;
+
+    public bool wingsOpen = false;
 
     [SerializeField] float sideSlipThreshold;
     [SerializeField] float frontSlipThreshold;
@@ -70,18 +76,32 @@ public class CarEffects : MonoBehaviour
             case 0:
                 airThrusters.SetActive(false);
                 groundBoosters.SetActive(false);
+                jumpJacks.SetActive(false);
                 break;
             case 1:
                 airThrusters.SetActive(false);
                 groundBoosters.SetActive(false);
+                jumpJacks.SetActive(true);
                 break;
             case 2:
                 airThrusters.SetActive(true);
                 groundBoosters.SetActive(false);
+                jumpJacks.SetActive(false);
                 break;
             case 3:
                 airThrusters.SetActive(false);
                 groundBoosters.SetActive(true);
+                jumpJacks.SetActive(false);
+                break;
+        }
+
+        switch (carController.passiveSelection)
+        {
+            case 0:
+                wings.SetActive(false);
+                break;
+            case 1:
+                wings.SetActive(true);
                 break;
         }
     }
@@ -245,6 +265,30 @@ public class CarEffects : MonoBehaviour
             var rightTailLightRenderer = rightTailLight.GetComponent<MeshRenderer>();
             leftTailLightRenderer.enabled = false;
             rightTailLightRenderer.enabled = false;
+        }
+    }
+
+    public void AnimateJump()
+    {
+        if (jumpAnimator != null)
+        {
+            jumpAnimator.SetTrigger("Jump");
+        }
+    }
+    public void AnimateWingsOpen()
+    {
+        if (wingsAnimator != null)
+        {
+            wingsAnimator.SetTrigger("Open");
+            wingsOpen = true;
+        }
+    }
+    public void AnimateWingsClose()
+    {
+        if (wingsAnimator != null)
+        {
+            wingsAnimator.SetTrigger("Close");
+            wingsOpen = false;
         }
     }
 }
