@@ -58,6 +58,12 @@ public class CarController : MonoBehaviour
     [SerializeField] public Image boostMeter;
     [SerializeField] public CanvasGroup boostCanvasGroup;
 
+    [SerializeField] private float flightGravity;
+    [SerializeField] private float flightUpwardsForce;
+    [SerializeField] float upwardsForce;
+    [SerializeField] float upwardsPull;
+
+    [SerializeField] public int passiveSelection;
     [SerializeField] public int useButtonSelection;
     [SerializeField] private float jumpForce;
     [SerializeField] private float thrusterForce;
@@ -182,6 +188,7 @@ public class CarController : MonoBehaviour
         HandleMotor();
         HandleSteering();
         HandleRotation();
+        HandlePassive();
         HandleSpeedometer();
         UpdateWheels();
         ResetCheck();
@@ -545,12 +552,12 @@ public class CarController : MonoBehaviour
 
         if (Vector3.Distance(transform.forward, Vector3.Normalize(carRigidBody.velocity)) > .35f)
         {
-            standardSidewaysStiffness = standardSidewaysStiffness * .7f;
-            Debug.Log("ALSDKFJLASDKJFAJSD");
+            standardSidewaysStiffness = standardSidewaysStiffness * .9f;
+            //Debug.Log("ALSDKFJLASDKJFAJSD");
         }
         else
         {
-            Debug.Log("farts lol");
+            //Debug.Log("farts lol");
         }
 
 
@@ -803,6 +810,111 @@ public class CarController : MonoBehaviour
         }
 
         //Debug.Log(centerOfMassCurrent.localPosition);
+    }
+    private void HandlePassive()
+    {
+        if (passiveSelection == 1)
+        {
+            float velocity = Vector3.Dot(carRigidBody.velocity, transform.forward);
+
+            if (carRigidBody.velocity.magnitude >= 50f && Vector3.Dot(carRigidBody.velocity, transform.forward) > 0 && Physics.Raycast(transform.position, Vector3.down, 200f))
+            {
+                carRigidBody.useGravity = false;
+                carRigidBody.AddForce(0, -10000, 0); //false gravity
+                Vector3 newDirection = carRigidBody.velocity.normalized;
+
+                //carRigidBody.transform.LookAt(Vector3.Lerp(carRigidBody.transform.forward, (newPosition + transform.position), .9f));
+                //carRigidBody.transform.LookAt(newPosition + transform.position);
+
+                float carBackwardAngle = transform.forward.y;
+                if (carBackwardAngle > .2f)
+                {
+                    carBackwardAngle = .2f;
+                }
+                if (carBackwardAngle > 0f) // tilt back
+                {
+                    carRigidBody.AddForce(transform.up * velocity * flightGravity * carBackwardAngle);
+                }
+
+                float carForwardAngle = transform.forward.y;
+                if (carForwardAngle < -.3f)
+                {
+                    carForwardAngle = -.3f;
+                }
+                if (carForwardAngle < 0f) // tilt forward
+                {
+                    carRigidBody.AddForce(transform.forward * velocity * flightGravity * -carForwardAngle * 2f);
+                }
+
+                float carRollAngle = carRigidBody.transform.eulerAngles.z;
+                
+                if (carRollAngle > 80f && carRollAngle < 180f)
+                {
+                    carRollAngle = 80f;
+                }
+                if (carRollAngle < 280f && carRollAngle > 180f)
+                {
+                    carRollAngle = 280f;
+                }
+                if (carRollAngle > 15f) // roll side to side
+                {
+                    carRigidBody.AddForce(transform.up * velocity * flightGravity * (carRollAngle * .0005f));
+                }
+                if (carRollAngle < 345f) // roll side to side
+                {
+                    carRigidBody.AddForce(transform.up * velocity * flightGravity * ((360f - carRollAngle) * .0005f));
+                }
+                
+                Debug.Log(carBackwardAngle);
+            }
+            else
+            {
+                carRigidBody.useGravity = true;
+            }
+
+
+
+            //Debug.Log(flightGravityActual);
+            //Debug.Log(transform.forward.y);
+
+
+
+            //float upwardsPullPoint = velocity / 50f;
+
+            //float flightGravityPercentage = velocity / 100f;
+            //float flightGravityActual = flightGravity * flightGravityPercentage;
+            //if (carRigidBody.velocity.magnitude >= 50f && Vector3.Dot(carRigidBody.velocity, transform.forward) > 0)
+            //{
+            //    carRigidBody.useGravity = false;
+            //    carRigidBody.AddForce(0, -10000, 0); //false gravity
+            //    carRigidBody.AddForce(transform.up * flightGravityActual);
+            //}
+            //else
+            //{
+            //    carRigidBody.useGravity = true;
+            //}
+
+
+
+            //upwardsPull = flightUpwardsForce * upwardsPullPoint;
+            //if (upwardsPull > 60000)
+            //{
+            //    upwardsPull = 60000;
+            //}
+            //if (carRigidBody.velocity.magnitude >= 50f && Vector3.Dot(carRigidBody.velocity, transform.forward) > 0)
+            //{
+            //    carRigidBody.AddForce(transform.up * upwardsPull);
+            //}
+
+            //Debug.Log(transform.forward.y);
+
+            //if (Vector3.Distance(transform.forward, Vector3.Normalize(carRigidBody.velocity)) > .02f)
+            //{
+            //    Vector3 carForward = transform.forward;
+            //    Vector3 velocityForward = Vector3.Normalize(carRigidBody.velocity);
+            //    Vector3.Lerp(carForward, velocityForward, .9f);
+            //}
+        }
     }
 
     public void EngageHandler(InputAction.CallbackContext context)

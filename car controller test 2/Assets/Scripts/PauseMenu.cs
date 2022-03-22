@@ -28,6 +28,7 @@ public class PauseMenu : MonoBehaviour
     public TMPro.TMP_Dropdown SuspensionDropDown;
     public TMPro.TMP_Dropdown HandbrakeDropDown;
 
+    public TMPro.TMP_Dropdown PassiveDropDown;
     public TMPro.TMP_Dropdown UseButtonDropDown;
 
     private void Awake()
@@ -95,6 +96,9 @@ public class PauseMenu : MonoBehaviour
         int handbrake = PlayerPrefs.GetInt("handbrakeIndex", 1);
         HandbrakeDropDown.value = handbrake;
 
+        int passive = PlayerPrefs.GetInt("passiveIndex", 0);
+        PassiveDropDown.value = passive;
+
         int useButton = PlayerPrefs.GetInt("useButtonIndex", 0);
         UseButtonDropDown.value = useButton;
     }
@@ -158,7 +162,16 @@ public class PauseMenu : MonoBehaviour
         //pauseMenuUI.SetActive(false);
         SceneManager.LoadScene(3);
     }
-
+    public void LoadRoadTest1()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(4);
+    }
+    public void LoadRoadTest2()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(5);
+    }
 
     public void SetPoweredAxle(int axleIndex)
     {
@@ -286,6 +299,20 @@ public class PauseMenu : MonoBehaviour
         }
 
         PlayerPrefs.SetInt("handbrakeIndex", handbrakeIndex);
+    }
+    public void SetPassive(int passiveIndex)
+    {
+        switch(passiveIndex)
+        {
+            case 0:
+                carController.passiveSelection = 0;
+                break;
+            case 1:
+                carController.passiveSelection = 1;
+                break;
+        }
+
+        PlayerPrefs.SetInt("passiveIndex", passiveIndex);
     }
     public void SetUseButton(int useButtonIndex)
     {

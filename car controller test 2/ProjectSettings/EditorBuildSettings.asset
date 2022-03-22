@@ -17,5 +17,11 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Hills.unity
     guid: 18d098e8349a43b4caf3b9e123dc61c7
+  - enabled: 1
+    path: Assets/Scenes/Road test.unity
+    guid: 5f95946674c4b184fa7b61dbe5204bc2
+  - enabled: 1
+    path: Assets/Scenes/Road test 2.unity
+    guid: 01ba530caefaddd49a1fe27ced618dbc
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: c60e01bef1f564742acd3190d83217c3, type: 2}

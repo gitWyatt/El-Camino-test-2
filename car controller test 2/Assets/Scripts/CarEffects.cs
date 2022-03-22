@@ -17,6 +17,9 @@ public class CarEffects : MonoBehaviour
     [SerializeField] public Transform leftTailLight;
     [SerializeField] public Transform rightTailLight;
 
+    [SerializeField] public GameObject airThrusters;
+    [SerializeField] public GameObject groundBoosters;
+
 
     CarController carController;
     
@@ -54,9 +57,33 @@ public class CarEffects : MonoBehaviour
 
     private void Update()
     {
+        CheckTransforms();
         CheckDrift();
         CheckBoost();
         CheckLights();
+    }
+
+    private void CheckTransforms()
+    {
+        switch (carController.useButtonSelection)
+        {
+            case 0:
+                airThrusters.SetActive(false);
+                groundBoosters.SetActive(false);
+                break;
+            case 1:
+                airThrusters.SetActive(false);
+                groundBoosters.SetActive(false);
+                break;
+            case 2:
+                airThrusters.SetActive(true);
+                groundBoosters.SetActive(false);
+                break;
+            case 3:
+                airThrusters.SetActive(false);
+                groundBoosters.SetActive(true);
+                break;
+        }
     }
 
     private void CheckDrift()
