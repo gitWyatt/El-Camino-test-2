@@ -12,6 +12,9 @@ public class CarEffects : MonoBehaviour
     [SerializeField] public TrailRenderer backLeftFireMarks;
     [SerializeField] public TrailRenderer backRightFireMarks;
 
+    [SerializeField] public TrailRenderer leftAkiraTrail;
+    [SerializeField] public TrailRenderer rightAkiraTrail;
+
     [SerializeField] public ParticleSystem thruster;
 
     [SerializeField] public Transform leftTailLight;
@@ -32,7 +35,11 @@ public class CarEffects : MonoBehaviour
     private bool tireMarksBLFlag;
     private bool tireMarksBRFlag;
 
+    [SerializeField] private bool fireMarksSwitch;
     private bool fireMarksFlag;
+    [SerializeField] private bool akiraTrailSwitch;
+    private bool akiraTrailFlag = true;
+
     private bool thrusterFlag = false;
 
     private float sideSlipFL;
@@ -202,13 +209,22 @@ public class CarEffects : MonoBehaviour
 
     private void CheckBoost()
     {
-        if (carController.groundBoosting)
+        if (carController.groundBoosting && fireMarksSwitch)
         {
             startFireTrail();
         }
         else
         {
             stopFireTrail();
+        }
+
+        if (carController.groundBoosting && akiraTrailSwitch)
+        {
+            startAkiraTrail();
+        }
+        else
+        {
+            stopAkiraTrail();
         }
 
         if (carController.airBoosting)
@@ -235,6 +251,20 @@ public class CarEffects : MonoBehaviour
         backRightFireMarks.emitting = false;
         fireMarksFlag = false;
     }
+    private void startAkiraTrail()
+    {
+        if (akiraTrailFlag) return;
+        leftAkiraTrail.emitting = true;
+        rightAkiraTrail.emitting = true;
+        akiraTrailFlag = true;
+    }
+    private void stopAkiraTrail()
+    {
+        if (!akiraTrailFlag) return;
+        leftAkiraTrail.emitting = false;
+        rightAkiraTrail.emitting = false;
+        akiraTrailFlag = false;
+    }
     private void startThrusterTrail()
     {
         if (thrusterFlag) return;
@@ -252,7 +282,7 @@ public class CarEffects : MonoBehaviour
 
     private void CheckLights()
     {
-        if (carController.isBraking || carController.isReversing)
+        if (carController.isBraking || carController.isReversing || akiraTrailFlag)
         {
             var leftTailLightRenderer = leftTailLight.GetComponent<MeshRenderer>();
             var rightTailLightRenderer = rightTailLight.GetComponent<MeshRenderer>();
