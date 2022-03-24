@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class CarEffects : MonoBehaviour
 {
+    [SerializeField] public GameObject carBody;
+
     [SerializeField] public TrailRenderer frontLeftTireMarks;
     [SerializeField] public TrailRenderer frontRightTireMarks;
     [SerializeField] public TrailRenderer backLeftTireMarks;
@@ -27,6 +29,13 @@ public class CarEffects : MonoBehaviour
 
     [SerializeField] public GameObject jumpJacks;
     [SerializeField] Animator jumpAnimator;
+
+    [SerializeField] public GameObject hydraulics;
+
+    [SerializeField] private Mesh elCaminoMesh;
+    [SerializeField] private Material elCaminoPaint;
+    [SerializeField] private Mesh fumigatorMesh;
+    [SerializeField] private Material fumigatorPaint;
 
     CarController carController;
     
@@ -84,21 +93,25 @@ public class CarEffects : MonoBehaviour
                 airThrusters.SetActive(false);
                 groundBoosters.SetActive(false);
                 jumpJacks.SetActive(false);
+                hydraulics.SetActive(false);
                 break;
             case 1:
                 airThrusters.SetActive(false);
                 groundBoosters.SetActive(false);
                 jumpJacks.SetActive(true);
+                hydraulics.SetActive(true);
                 break;
             case 2:
                 airThrusters.SetActive(true);
                 groundBoosters.SetActive(false);
                 jumpJacks.SetActive(false);
+                hydraulics.SetActive(false);
                 break;
             case 3:
                 airThrusters.SetActive(false);
                 groundBoosters.SetActive(true);
                 jumpJacks.SetActive(false);
+                hydraulics.SetActive(false);
                 break;
         }
 
@@ -320,5 +333,32 @@ public class CarEffects : MonoBehaviour
             wingsAnimator.SetTrigger("Close");
             wingsOpen = false;
         }
+    }
+
+    public void SetBodyElCamino()
+    {
+        //var mesh = carBody.GetComponent<MeshFilter>();
+        carBody.GetComponent<MeshFilter>().mesh = elCaminoMesh;
+        //mesh = elCaminoMesh;
+
+        //working
+        carBody.GetComponent<Renderer>().material = elCaminoPaint;
+
+        //elCaminoMesh = carBody.GetComponent<MeshFilter>();
+        //elCaminoMesh.sharedMesh = Resources.Load<Mesh>("El Camino");
+        //elCaminoMesh.GetComponent<Renderer>().material = elCaminoPaint;
+    }
+    public void SetBodyFumigator()
+    {
+        //var mesh = carBody.GetComponent<MeshFilter>();
+        carBody.GetComponent<MeshFilter>().mesh = fumigatorMesh;
+        //mesh = fumigatorMesh;
+
+        //working
+        carBody.GetComponent<Renderer>().material = fumigatorPaint;
+
+        //fumigatorMesh = carBody.GetComponent<MeshFilter>();
+        //fumigatorMesh.sharedMesh = Resources.Load<Mesh>("El Camino.003");
+        //fumigatorMesh.GetComponent<Renderer>().material = fumigatorPaint;
     }
 }

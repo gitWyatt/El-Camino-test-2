@@ -12,9 +12,13 @@ public class PauseMenu : MonoBehaviour
 
     CarController carController;
 
+    CarEffects carEffects;
+
     public GameObject pauseMenuUI;
 
     public GameObject pauseFirstButton;
+
+    public TMPro.TMP_Dropdown BodyDropdown;
 
     public TMPro.TMP_Dropdown QualityDropDown;
     public TMPro.TMP_Dropdown FPSDropDown;
@@ -34,6 +38,7 @@ public class PauseMenu : MonoBehaviour
     private void Awake()
     {
         carController = GameObject.Find("Camino").GetComponent<CarController>();
+        carEffects = GameObject.Find("Camino").GetComponent<CarEffects>();
         controls = new InputMaster();
         //clear selected object
         EventSystem.current.SetSelectedGameObject(null);
@@ -48,6 +53,9 @@ public class PauseMenu : MonoBehaviour
 
     private void Start()
     {
+        int body = PlayerPrefs.GetInt("bodyIndex", 0);
+        BodyDropdown.value = body;
+
         int quality = PlayerPrefs.GetInt("qualityIndex", 0);
         QualityDropDown.value = quality;
 
@@ -173,6 +181,22 @@ public class PauseMenu : MonoBehaviour
         SceneManager.LoadScene(5);
     }
 
+    public void SetBody(int bodyIndex)
+    {
+        switch (bodyIndex)
+        {
+            case 0:
+                carController.bodySelection = 0;
+                carEffects.SetBodyElCamino();
+                break;
+            case 1:
+                carController.bodySelection = 1;
+                carEffects.SetBodyFumigator();
+                break;
+        }
+
+        PlayerPrefs.SetInt("bodyIndex", bodyIndex);
+    }
     public void SetPoweredAxle(int axleIndex)
     {
         if (axleIndex == 0)

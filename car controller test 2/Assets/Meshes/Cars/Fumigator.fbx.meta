@@ -1,35 +1,8 @@
 fileFormatVersion: 2
-guid: 6decd77ff39cc08419cb5f873815309c
+guid: 11b8782e01255d247be8a0abce67078f
 ModelImporter:
   serializedVersion: 21202
-  internalIDToNameTable:
-  - first:
-      74: 7721715186239825389
-    second: Armature.001|Action
-  - first:
-      74: -7523534810428418115
-    second: Armature.001|Action.001
-  - first:
-      74: -4398270123438568637
-    second: Armature.001|Action.002
-  - first:
-      74: 7007551240903112307
-    second: Armature.001|Action.003
-  - first:
-      74: 2264077025236624520
-    second: Armature.001|Armature.001Action
-  - first:
-      74: -5784005261616917065
-    second: Armature.001|Armature.001Action.001
-  - first:
-      74: 20800058173819242
-    second: Armature.001|UpDown
-  - first:
-      74: 3676696516414149142
-    second: Armature.001|UpDown.001
-  - first:
-      74: 5796678796469013359
-    second: Armature.001|UpDown.002
+  internalIDToNameTable: []
   externalObjects: {}
   materials:
     materialImportMode: 2
@@ -58,36 +31,7 @@ ModelImporter:
     animationWrapMode: 0
     extraExposedTransformPaths: []
     extraUserProperties: []
-    clipAnimations:
-    - serializedVersion: 16
-      name: Armature.001|UpDown
-      takeName: Armature.001|UpDown
-      internalID: 0
-      firstFrame: 0
-      lastFrame: 10
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      hasAdditiveReferencePose: 0
-      loopTime: 0
-      loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
-      transformMask: []
-      maskType: 3
-      maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
+    clipAnimations: []
     isReadable: 0
   meshes:
     lODScreenPercentages: []

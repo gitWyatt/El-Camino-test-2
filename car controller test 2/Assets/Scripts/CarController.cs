@@ -53,6 +53,8 @@ public class CarController : MonoBehaviour
     private float[] gearRatio = new float[] { 2.66f, 1.78f, 1.3f, 1f, .7f, .1f };  //unneeded as of now.  top gear used to be .5f instead of .1f
     private float steerAngle;
 
+    [SerializeField] public int bodySelection;
+
     [SerializeField] public Text rpmOutput;
     [SerializeField] public Text velocityOutput;
     [SerializeField] public Text speedOutput;
@@ -820,7 +822,7 @@ public class CarController : MonoBehaviour
         {
             float velocity = Vector3.Dot(carRigidBody.velocity, transform.forward);
 
-            if (carRigidBody.velocity.magnitude >= 50f && Vector3.Dot(carRigidBody.velocity, transform.forward) > 0 && Physics.Raycast(transform.position, Vector3.down, 200f))
+            if (carRigidBody.velocity.magnitude >= 50f && Vector3.Dot(carRigidBody.velocity, transform.forward) > -.9f && Physics.Raycast(transform.position, Vector3.down, 200f))
             {
                 carRigidBody.useGravity = false;
                 carRigidBody.AddForce(0, -10000, 0); //false gravity
@@ -828,6 +830,9 @@ public class CarController : MonoBehaviour
 
                 //carRigidBody.transform.LookAt(Vector3.Lerp(carRigidBody.transform.forward, (newPosition + transform.position), .9f));
                 //carRigidBody.transform.LookAt(newPosition + transform.position);
+
+                Vector3 nonGlobalUpwardVector = transform.up;
+                nonGlobalUpwardVector.y = 0;
 
                 float carBackwardAngle = transform.forward.y;
                 if (carBackwardAngle > .2f)
@@ -839,14 +844,22 @@ public class CarController : MonoBehaviour
                     carRigidBody.AddForce(transform.up * velocity * flightGravity * carBackwardAngle);
                 }
 
-                float carForwardAngle = transform.forward.y;
-                if (carForwardAngle < -.3f)
+                //test, generic upwards force dependent from velocity independent from angle
+                float velocityCapped = velocity;
+                if (velocityCapped >= 100f)
                 {
-                    carForwardAngle = -.3f;
+                    velocityCapped = 100f;
+                }
+                carRigidBody.AddForce(transform.up * velocityCapped * flightGravity * .15f);
+
+                float carForwardAngle = transform.forward.y;
+                if (carForwardAngle < -.5f)
+                {
+                    carForwardAngle = -.5f;
                 }
                 if (carForwardAngle < 0f) // tilt forward
                 {
-                    carRigidBody.AddForce(transform.forward * velocity * flightGravity * -carForwardAngle * 2f);
+                    carRigidBody.AddForce(transform.forward * velocity * flightGravity * -carForwardAngle);
                 }
 
                 float carRollAngle = carRigidBody.transform.eulerAngles.z;
@@ -859,13 +872,17 @@ public class CarController : MonoBehaviour
                 {
                     carRollAngle = 280f;
                 }
+
+
                 if (carRollAngle > 15f) // roll side to side
                 {
-                    carRigidBody.AddForce(transform.up * velocity * flightGravity * (carRollAngle * .0005f));
+                    carRigidBody.AddForce(nonGlobalUpwardVector * velocity * flightGravity * (carRollAngle * .002f));
+                    //carRigidBody.AddForce(transform.up * velocity * flightGravity * (carRollAngle * .0005f));
                 }
                 if (carRollAngle < 345f) // roll side to side
                 {
-                    carRigidBody.AddForce(transform.up * velocity * flightGravity * ((360f - carRollAngle) * .0005f));
+                    carRigidBody.AddForce(nonGlobalUpwardVector * velocity * flightGravity * ((360f - carRollAngle) * .002f));
+                    //carRigidBody.AddForce(transform.up * velocity * flightGravity * ((360f - carRollAngle) * .0005f));
                 }
                 
                 Debug.Log(carBackwardAngle);
@@ -931,7 +948,8 @@ public class CarController : MonoBehaviour
             //{
             //    Vector3 carForward = transform.forward;
             //    Vector3 velocityForward = Vector3.Normalize(carRigidBody.velocity);
-            //    Vector3.Lerp(carForward, velocityForward, .9f);
+            //    transform.forward = Vector3.MoveTowards(carForward, velocityForward, .1f);
+            //    //Vector3.Lerp(carForward, velocityForward, .9f);
             //}
         }
     }
