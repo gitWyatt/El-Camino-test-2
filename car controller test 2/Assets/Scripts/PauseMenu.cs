@@ -83,10 +83,10 @@ public class PauseMenu : MonoBehaviour
         }
         FPSDropDown.value = fps;
 
-        int motor = PlayerPrefs.GetInt("motorIndex", 0);
+        int motor = PlayerPrefs.GetInt("motorIndex", 1);
         MotorDropDown.value = motor;
 
-        int transmission = PlayerPrefs.GetInt("transmissionIndex", 0);
+        int transmission = PlayerPrefs.GetInt("transmissionIndex", 1);
         TransmissionDropDown.value = transmission;
 
         int tire = PlayerPrefs.GetInt("tireIndex", 0);
