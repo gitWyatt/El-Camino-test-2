@@ -995,6 +995,12 @@ public class CarController : MonoBehaviour
             {
                 carRigidBody.AddForce(transform.forward * groundBoostForce);
                 groundBoosting = true;
+
+
+                //frontLeftWheelCollider.motorTorque = frontLeftWheelCollider.motorTorque * 10f;
+                //frontRightWheelCollider.motorTorque = frontRightWheelCollider.motorTorque * 10f;
+                //backLeftWheelCollider.motorTorque = backLeftWheelCollider.motorTorque * 10f;
+                //backRightWheelCollider.motorTorque = backRightWheelCollider.motorTorque * 10f;
             }
             else
             {

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 111124054}
   - component: {fileID: 111124055}
   m_Layer: 0
-  m_Name: Left Akira Trail
+  m_Name: Left Akira Trail Camino
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -24,8 +24,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 111124053}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0, y: -0.23, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.22998977, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -196,8 +196,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 2003702692}
-  - {fileID: 776937832}
+  - {fileID: 6685104475369453902}
+  - {fileID: 1360123887}
   m_Father: {fileID: 357698079}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -691,6 +691,105 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!1 &585757189
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 585757190}
+  - component: {fileID: 585757193}
+  - component: {fileID: 585757192}
+  - component: {fileID: 585757191}
+  m_Layer: 0
+  m_Name: Left tail light
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &585757190
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 585757189}
+  m_LocalRotation: {x: 0.7070532, y: -0.008706569, z: 0.008706569, w: -0.7070532}
+  m_LocalPosition: {x: -1.3468847, y: -0.05819702, z: -3.6050026}
+  m_LocalScale: {x: 0.0678637, y: 1, z: 0.036955338}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1991262613733511454}
+  m_Father: {fileID: 1360123887}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 271.411, y: 90, z: -90}
+--- !u!33 &585757193
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 585757189}
+  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &585757192
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 585757189}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 22ead8ea1f6784f48932b2f3fe862670, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &585757191
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 585757189}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &742756420
 GameObject:
   m_ObjectHideFlags: 0
@@ -748,13 +847,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 776937831}
-  m_LocalRotation: {x: 0.7070532, y: -0.00870657, z: 0.00870657, w: -0.7070532}
-  m_LocalPosition: {x: -1.347, y: -0.05819702, z: -3.605}
-  m_LocalScale: {x: 0.0678637, y: 1, z: 0.03695534}
+  m_LocalRotation: {x: 0.7070532, y: -0.008706569, z: 0.008706569, w: -0.7070532}
+  m_LocalPosition: {x: -1.3468847, y: -0.05819702, z: -3.6050026}
+  m_LocalScale: {x: 0.0678637, y: 1, z: 0.036955338}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 111124054}
-  m_Father: {fileID: 274098304}
+  m_Father: {fileID: 6685104475369453902}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 271.411, y: 90, z: -90}
 --- !u!33 &776937835
@@ -1102,6 +1201,105 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!1 &1032637291
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1032637292}
+  - component: {fileID: 1032637295}
+  - component: {fileID: 1032637294}
+  - component: {fileID: 1032637293}
+  m_Layer: 0
+  m_Name: Right tail light
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1032637292
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1032637291}
+  m_LocalRotation: {x: 0.7070532, y: 0.008708774, z: -0.008708774, w: -0.7070532}
+  m_LocalPosition: {x: 1.3468858, y: -0.05819702, z: -3.6050026}
+  m_LocalScale: {x: 0.0678637, y: 1, z: 0.036955345}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 4371316509772416379}
+  m_Father: {fileID: 1360123887}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 271.411, y: -90, z: 90}
+--- !u!33 &1032637295
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1032637291}
+  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &1032637294
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1032637291}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 22ead8ea1f6784f48932b2f3fe862670, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &1032637293
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1032637291}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &1035183017
 GameObject:
   m_ObjectHideFlags: 0
@@ -1526,6 +1724,8 @@ MonoBehaviour:
     - m_Text: El Camino
       m_Image: {fileID: 0}
     - m_Text: Fumigator
+      m_Image: {fileID: 0}
+    - m_Text: Toyota ae86
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
@@ -2035,7 +2235,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pauseMenuUI: {fileID: 1428129084725443375}
   pauseFirstButton: {fileID: 1428129084922525086}
-  BodyDropdown: {fileID: 1106791503}
+  BodyDropDown: {fileID: 1106791503}
   QualityDropDown: {fileID: 4017779751154136408}
   FPSDropDown: {fileID: 5731568196409698397}
   AxleDropDown: {fileID: 1428129085631123196}
@@ -2085,6 +2285,39 @@ RectTransform:
   m_AnchoredPosition: {x: 4.418106, y: 0}
   m_SizeDelta: {x: 8.8363, y: 50}
   m_Pivot: {x: 0.5, y: 1}
+--- !u!1 &1360123886
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1360123887}
+  m_Layer: 0
+  m_Name: ae86
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &1360123887
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1360123886}
+  m_LocalRotation: {x: 0.008633212, y: -0, z: -0, w: 0.99996275}
+  m_LocalPosition: {x: -0.000000034745284, y: 0.074142456, z: 0.39599416}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1032637292}
+  - {fileID: 585757190}
+  m_Father: {fileID: 274098304}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0.989, y: 0, z: 0}
 --- !u!1 &1467013134
 GameObject:
   m_ObjectHideFlags: 0
@@ -2753,7 +2986,7 @@ GameObject:
   - component: {fileID: 1759964191}
   - component: {fileID: 1759964192}
   m_Layer: 0
-  m_Name: Right Akira Trail
+  m_Name: Right Akira Trail Camino
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2766,8 +2999,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1759964190}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0, y: -0.23, z: -0}
+  m_LocalRotation: {x: -0, y: -9.3132246e-10, z: -4.6566123e-10, w: 1}
+  m_LocalPosition: {x: 0, y: -0.2299898, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2980,12 +3213,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2003702691}
   m_LocalRotation: {x: 0.7070532, y: 0.008708774, z: -0.008708774, w: -0.7070532}
-  m_LocalPosition: {x: 1.347, y: -0.05819702, z: -3.605}
-  m_LocalScale: {x: 0.0678637, y: 1, z: 0.03695534}
+  m_LocalPosition: {x: 1.3468858, y: -0.05819702, z: -3.6050026}
+  m_LocalScale: {x: 0.0678637, y: 1, z: 0.036955345}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1759964191}
-  m_Father: {fileID: 274098304}
+  m_Father: {fileID: 6685104475369453902}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 271.411, y: -90, z: 90}
 --- !u!33 &2003702695
@@ -8369,6 +8602,39 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!1 &305296056013287755
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6685104475369453902}
+  m_Layer: 0
+  m_Name: Camino
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &6685104475369453902
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 305296056013287755}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 2003702692}
+  - {fileID: 776937832}
+  m_Father: {fileID: 274098304}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &352385083525915022
 GameObject:
   m_ObjectHideFlags: 0
@@ -10256,6 +10522,137 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!1 &4942852684873329847
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4371316509772416379}
+  - component: {fileID: 1550355086266741231}
+  m_Layer: 0
+  m_Name: Right Akira Trail ae86
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4371316509772416379
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4942852684873329847}
+  m_LocalRotation: {x: -0.008630543, y: -4.6566123e-10, z: 0.00021263861, w: 0.9999628}
+  m_LocalPosition: {x: 0, y: -0.22, z: -3.6}
+  m_LocalScale: {x: 1, y: 1.0002872, z: 0.9922953}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1032637292}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!96 &1550355086266741231
+TrailRenderer:
+  serializedVersion: 2
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4942852684873329847}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 0
+  m_LightProbeUsage: 0
+  m_ReflectionProbeUsage: 0
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 22ead8ea1f6784f48932b2f3fe862670, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Time: 5
+  m_Parameters:
+    serializedVersion: 3
+    widthMultiplier: 1
+    widthCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0.5980377
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    colorGradient:
+      serializedVersion: 2
+      key0: {r: 1, g: 1, b: 1, a: 1}
+      key1: {r: 1, g: 1, b: 1, a: 1}
+      key2: {r: 0, g: 0, b: 0, a: 0}
+      key3: {r: 0, g: 0, b: 0, a: 0}
+      key4: {r: 0, g: 0, b: 0, a: 0}
+      key5: {r: 0, g: 0, b: 0, a: 0}
+      key6: {r: 0, g: 0, b: 0, a: 0}
+      key7: {r: 0, g: 0, b: 0, a: 0}
+      ctime0: 0
+      ctime1: 65535
+      ctime2: 0
+      ctime3: 0
+      ctime4: 0
+      ctime5: 0
+      ctime6: 0
+      ctime7: 0
+      atime0: 0
+      atime1: 65535
+      atime2: 0
+      atime3: 0
+      atime4: 0
+      atime5: 0
+      atime6: 0
+      atime7: 0
+      m_Mode: 0
+      m_NumColorKeys: 2
+      m_NumAlphaKeys: 2
+    numCornerVertices: 0
+    numCapVertices: 0
+    alignment: 0
+    textureMode: 0
+    shadowBias: 0.5
+    generateLightingData: 0
+  m_MinVertexDistance: 0.1
+  m_Autodestruct: 0
+  m_Emitting: 1
 --- !u!1 &5021941118368542165
 GameObject:
   m_ObjectHideFlags: 0
@@ -10363,6 +10760,137 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &5524068904266520917
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1991262613733511454}
+  - component: {fileID: 995187096277758329}
+  m_Layer: 0
+  m_Name: Left Akira Trail ae86
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1991262613733511454
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5524068904266520917}
+  m_LocalRotation: {x: -0.008630543, y: 9.3132246e-10, z: -0.0002125846, w: 0.9999628}
+  m_LocalPosition: {x: 0.1, y: -0.22, z: -3.6}
+  m_LocalScale: {x: 1, y: 1.000287, z: 0.9922952}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 585757190}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!96 &995187096277758329
+TrailRenderer:
+  serializedVersion: 2
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5524068904266520917}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 0
+  m_LightProbeUsage: 0
+  m_ReflectionProbeUsage: 0
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 22ead8ea1f6784f48932b2f3fe862670, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Time: 5
+  m_Parameters:
+    serializedVersion: 3
+    widthMultiplier: 1
+    widthCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0.5980377
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    colorGradient:
+      serializedVersion: 2
+      key0: {r: 1, g: 1, b: 1, a: 1}
+      key1: {r: 1, g: 1, b: 1, a: 1}
+      key2: {r: 0, g: 0, b: 0, a: 0}
+      key3: {r: 0, g: 0, b: 0, a: 0}
+      key4: {r: 0, g: 0, b: 0, a: 0}
+      key5: {r: 0, g: 0, b: 0, a: 0}
+      key6: {r: 0, g: 0, b: 0, a: 0}
+      key7: {r: 0, g: 0, b: 0, a: 0}
+      ctime0: 0
+      ctime1: 65535
+      ctime2: 0
+      ctime3: 0
+      ctime4: 0
+      ctime5: 0
+      ctime6: 0
+      ctime7: 0
+      atime0: 0
+      atime1: 65535
+      atime2: 0
+      atime3: 0
+      atime4: 0
+      atime5: 0
+      atime6: 0
+      atime7: 0
+      m_Mode: 0
+      m_NumColorKeys: 2
+      m_NumAlphaKeys: 2
+    numCornerVertices: 0
+    numCapVertices: 0
+    alignment: 0
+    textureMode: 0
+    shadowBias: 0.5
+    generateLightingData: 0
+  m_MinVertexDistance: 0.1
+  m_Autodestruct: 0
+  m_Emitting: 1
 --- !u!1 &5571084512059022344
 GameObject:
   m_ObjectHideFlags: 0
@@ -10895,11 +11423,19 @@ MonoBehaviour:
   backRightTireMarks: {fileID: 2065978270}
   backLeftFireMarks: {fileID: 1517086756}
   backRightFireMarks: {fileID: 1759379352}
-  leftAkiraTrail: {fileID: 111124055}
-  rightAkiraTrail: {fileID: 1759964192}
+  leftAkiraTrailCamino: {fileID: 111124055}
+  rightAkiraTrailCamino: {fileID: 1759964192}
+  leftAkiraTrailAE86: {fileID: 995187096277758329}
+  rightAkiraTrailAE86: {fileID: 1550355086266741231}
   thruster: {fileID: 2084600619}
+  caminoTailLightGroup: {fileID: 305296056013287755}
   leftTailLight: {fileID: 776937832}
   rightTailLight: {fileID: 2003702692}
+  ae86TailLightGroup: {fileID: 1360123886}
+  leftTailLightAE86: {fileID: 585757190}
+  rightTailLightAE86: {fileID: 1032637292}
+  leftTailLightRenderer: {fileID: 776937834}
+  rightTailLightRenderer: {fileID: 2003702694}
   airThrusters: {fileID: 60515477344280221}
   groundBoosters: {fileID: 4662156949661587023}
   wings: {fileID: 919132149099573117}
@@ -10911,9 +11447,12 @@ MonoBehaviour:
   elCaminoPaint: {fileID: 2100000, guid: a5b53f99453050142988207d9f80fb28, type: 2}
   fumigatorMesh: {fileID: 4468289141387850273, guid: 11b8782e01255d247be8a0abce67078f, type: 3}
   fumigatorPaint: {fileID: 2100000, guid: 4c4698123c365b34a8a454abe31bce2c, type: 2}
+  ae86Mesh: {fileID: 6302564365713339395, guid: b21f45108f9dcd34687a6cbd1e4e11c6, type: 3}
+  ae86Paint: {fileID: 2100000, guid: b6c0c2be80e97ab43ac547cf9c23d274, type: 2}
   fireMarksSwitch: 0
   akiraTrailSwitch: 1
   wingsOpen: 0
+  bodySelection: 0
   sideSlipThreshold: 0.05
   frontSlipThreshold: 0.5
 --- !u!1 &6227839931964697197

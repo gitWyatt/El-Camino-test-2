@@ -18,7 +18,7 @@ public class PauseMenu : MonoBehaviour
 
     public GameObject pauseFirstButton;
 
-    public TMPro.TMP_Dropdown BodyDropdown;
+    public TMPro.TMP_Dropdown BodyDropDown;
 
     public TMPro.TMP_Dropdown QualityDropDown;
     public TMPro.TMP_Dropdown FPSDropDown;
@@ -54,7 +54,7 @@ public class PauseMenu : MonoBehaviour
     private void Start()
     {
         int body = PlayerPrefs.GetInt("bodyIndex", 0);
-        BodyDropdown.value = body;
+        BodyDropDown.value = body;
 
         int quality = PlayerPrefs.GetInt("qualityIndex", 0);
         QualityDropDown.value = quality;
@@ -109,6 +109,8 @@ public class PauseMenu : MonoBehaviour
 
         int useButton = PlayerPrefs.GetInt("useButtonIndex", 0);
         UseButtonDropDown.value = useButton;
+
+        Debug.Log("fuck");
     }
 
     private void Update()
@@ -187,11 +189,18 @@ public class PauseMenu : MonoBehaviour
         {
             case 0:
                 carController.bodySelection = 0;
+                carEffects.bodySelection = 0;
                 carEffects.SetBodyElCamino();
                 break;
             case 1:
                 carController.bodySelection = 1;
+                carEffects.bodySelection = 1;
                 carEffects.SetBodyFumigator();
+                break;
+            case 2:
+                carController.bodySelection = 2;
+                carEffects.bodySelection = 2;
+                carEffects.SetBodyAE86();
                 break;
         }
 

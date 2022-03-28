@@ -14,13 +14,22 @@ public class CarEffects : MonoBehaviour
     [SerializeField] public TrailRenderer backLeftFireMarks;
     [SerializeField] public TrailRenderer backRightFireMarks;
 
-    [SerializeField] public TrailRenderer leftAkiraTrail;
-    [SerializeField] public TrailRenderer rightAkiraTrail;
+    [SerializeField] public TrailRenderer leftAkiraTrailCamino;
+    [SerializeField] public TrailRenderer rightAkiraTrailCamino;
+    [SerializeField] public TrailRenderer leftAkiraTrailAE86;
+    [SerializeField] public TrailRenderer rightAkiraTrailAE86;
 
     [SerializeField] public ParticleSystem thruster;
 
+    [SerializeField] public GameObject caminoTailLightGroup;
     [SerializeField] public Transform leftTailLight;
     [SerializeField] public Transform rightTailLight;
+    [SerializeField] public GameObject ae86TailLightGroup;
+    [SerializeField] public Transform leftTailLightAE86;
+    [SerializeField] public Transform rightTailLightAE86;
+
+    public Renderer leftTailLightRenderer;
+    public Renderer rightTailLightRenderer;
 
     [SerializeField] public GameObject airThrusters;
     [SerializeField] public GameObject groundBoosters;
@@ -36,6 +45,8 @@ public class CarEffects : MonoBehaviour
     [SerializeField] private Material elCaminoPaint;
     [SerializeField] private Mesh fumigatorMesh;
     [SerializeField] private Material fumigatorPaint;
+    [SerializeField] private Mesh ae86Mesh;
+    [SerializeField] private Material ae86Paint;
 
     CarController carController;
     
@@ -62,6 +73,8 @@ public class CarEffects : MonoBehaviour
     private float frontSlipBR;
 
     public bool wingsOpen = false;
+
+    public int bodySelection;
 
     [SerializeField] float sideSlipThreshold;
     [SerializeField] float frontSlipThreshold;
@@ -266,17 +279,59 @@ public class CarEffects : MonoBehaviour
     }
     private void startAkiraTrail()
     {
-        if (akiraTrailFlag) return;
-        leftAkiraTrail.emitting = true;
-        rightAkiraTrail.emitting = true;
-        akiraTrailFlag = true;
+        switch (bodySelection)
+        {
+            case 0:
+                if (akiraTrailFlag) return;
+                leftAkiraTrailCamino.emitting = true;
+                rightAkiraTrailCamino.emitting = true;
+                akiraTrailFlag = true;
+                break;
+            case 1:
+                if (akiraTrailFlag) return;
+                leftAkiraTrailCamino.emitting = true;
+                rightAkiraTrailCamino.emitting = true;
+                akiraTrailFlag = true;
+                break;
+            case 2:
+                if (akiraTrailFlag) return;
+                leftAkiraTrailAE86.emitting = true;
+                rightAkiraTrailAE86.emitting = true;
+                akiraTrailFlag = true;
+                break;
+        }
+        //if (akiraTrailFlag) return;
+        //leftAkiraTrail.emitting = true;
+        //rightAkiraTrail.emitting = true;
+        //akiraTrailFlag = true;
     }
     private void stopAkiraTrail()
     {
-        if (!akiraTrailFlag) return;
-        leftAkiraTrail.emitting = false;
-        rightAkiraTrail.emitting = false;
-        akiraTrailFlag = false;
+        switch (bodySelection)
+        {
+            case 0:
+                if (!akiraTrailFlag) return;
+                leftAkiraTrailCamino.emitting = false;
+                rightAkiraTrailCamino.emitting = false;
+                akiraTrailFlag = false;
+                break;
+            case 1:
+                if (!akiraTrailFlag) return;
+                leftAkiraTrailCamino.emitting = false;
+                rightAkiraTrailCamino.emitting = false;
+                akiraTrailFlag = false;
+                break;
+            case 2:
+                if (!akiraTrailFlag) return;
+                leftAkiraTrailAE86.emitting = false;
+                rightAkiraTrailAE86.emitting = false;
+                akiraTrailFlag = false;
+                break;
+        }
+        //if (!akiraTrailFlag) return;
+        //leftAkiraTrail.emitting = false;
+        //rightAkiraTrail.emitting = false;
+        //akiraTrailFlag = false;
     }
     private void startThrusterTrail()
     {
@@ -295,17 +350,36 @@ public class CarEffects : MonoBehaviour
 
     private void CheckLights()
     {
+        switch (bodySelection)
+        {
+            case 0:
+                leftTailLightRenderer = leftTailLight.GetComponent<MeshRenderer>();
+                rightTailLightRenderer = rightTailLight.GetComponent<MeshRenderer>();
+                caminoTailLightGroup.SetActive(true);
+                ae86TailLightGroup.SetActive(false);
+                break;
+            case 1:
+                leftTailLightRenderer = leftTailLight.GetComponent<MeshRenderer>();
+                rightTailLightRenderer = rightTailLight.GetComponent<MeshRenderer>();
+                caminoTailLightGroup.SetActive(true);
+                ae86TailLightGroup.SetActive(false);
+                break;
+            case 2:
+                leftTailLightRenderer = leftTailLightAE86.GetComponent<MeshRenderer>();
+                rightTailLightRenderer = rightTailLightAE86.GetComponent<MeshRenderer>();
+                caminoTailLightGroup.SetActive(false);
+                ae86TailLightGroup.SetActive(true);
+                break;
+        }
+
         if (carController.isBraking || carController.isReversing || akiraTrailFlag)
         {
-            var leftTailLightRenderer = leftTailLight.GetComponent<MeshRenderer>();
-            var rightTailLightRenderer = rightTailLight.GetComponent<MeshRenderer>();
+            
             leftTailLightRenderer.enabled = true;
             rightTailLightRenderer.enabled = true;
         }
         else
         {
-            var leftTailLightRenderer = leftTailLight.GetComponent<MeshRenderer>();
-            var rightTailLightRenderer = rightTailLight.GetComponent<MeshRenderer>();
             leftTailLightRenderer.enabled = false;
             rightTailLightRenderer.enabled = false;
         }
@@ -337,28 +411,26 @@ public class CarEffects : MonoBehaviour
 
     public void SetBodyElCamino()
     {
-        //var mesh = carBody.GetComponent<MeshFilter>();
         carBody.GetComponent<MeshFilter>().mesh = elCaminoMesh;
-        //mesh = elCaminoMesh;
-
-        //working
         carBody.GetComponent<Renderer>().material = elCaminoPaint;
 
-        //elCaminoMesh = carBody.GetComponent<MeshFilter>();
-        //elCaminoMesh.sharedMesh = Resources.Load<Mesh>("El Camino");
-        //elCaminoMesh.GetComponent<Renderer>().material = elCaminoPaint;
+        leftAkiraTrailCamino.emitting = false;
+        rightAkiraTrailCamino.emitting = false;
     }
     public void SetBodyFumigator()
     {
-        //var mesh = carBody.GetComponent<MeshFilter>();
         carBody.GetComponent<MeshFilter>().mesh = fumigatorMesh;
-        //mesh = fumigatorMesh;
-
-        //working
         carBody.GetComponent<Renderer>().material = fumigatorPaint;
 
-        //fumigatorMesh = carBody.GetComponent<MeshFilter>();
-        //fumigatorMesh.sharedMesh = Resources.Load<Mesh>("El Camino.003");
-        //fumigatorMesh.GetComponent<Renderer>().material = fumigatorPaint;
+        leftAkiraTrailCamino.emitting = false;
+        rightAkiraTrailCamino.emitting = false;
+    }
+    public void SetBodyAE86()
+    {
+        carBody.GetComponent<MeshFilter>().mesh = ae86Mesh;
+        carBody.GetComponent<Renderer>().material = ae86Paint;
+
+        leftAkiraTrailAE86.emitting = false;
+        rightAkiraTrailAE86.emitting = false;
     }
 }

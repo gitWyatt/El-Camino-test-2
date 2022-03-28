@@ -3,7 +3,32 @@ guid: 04b3b56fba43aae42a12378ad4c441d0
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - carBody: {instanceID: 0}
+  - frontLeftTireMarks: {instanceID: 0}
+  - frontRightTireMarks: {instanceID: 0}
+  - backLeftTireMarks: {instanceID: 0}
+  - backRightTireMarks: {instanceID: 0}
+  - backLeftFireMarks: {instanceID: 0}
+  - backRightFireMarks: {instanceID: 0}
+  - leftAkiraTrail: {instanceID: 0}
+  - rightAkiraTrail: {instanceID: 0}
+  - thruster: {instanceID: 0}
+  - leftTailLight: {instanceID: 0}
+  - rightTailLight: {instanceID: 0}
+  - airThrusters: {instanceID: 0}
+  - groundBoosters: {instanceID: 0}
+  - wings: {instanceID: 0}
+  - wingsAnimator: {instanceID: 0}
+  - jumpJacks: {instanceID: 0}
+  - jumpAnimator: {instanceID: 0}
+  - hydraulics: {instanceID: 0}
+  - elCaminoMesh: {fileID: -4627658647717005163, guid: d04c353733e3a0342b0a47ae9d83d57d, type: 3}
+  - elCaminoPaint: {fileID: 2100000, guid: a5b53f99453050142988207d9f80fb28, type: 2}
+  - fumigatorMesh: {fileID: 4468289141387850273, guid: 11b8782e01255d247be8a0abce67078f, type: 3}
+  - fumigatorPaint: {fileID: -3522955778539423533, guid: 11b8782e01255d247be8a0abce67078f, type: 3}
+  - ae86Mesh: {fileID: 3736336472631287421, guid: b21f45108f9dcd34687a6cbd1e4e11c6, type: 3}
+  - ae86Paint: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
