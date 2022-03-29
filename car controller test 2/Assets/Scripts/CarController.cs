@@ -146,11 +146,30 @@ public class CarController : MonoBehaviour
     [SerializeField] public WheelCollider frontRightWheelCollider;
     [SerializeField] public WheelCollider backLeftWheelCollider;
     [SerializeField] public WheelCollider backRightWheelCollider;
-
     [SerializeField] private Transform frontLeftWheelTransform;
     [SerializeField] private Transform frontRightWheelTransform;
     [SerializeField] private Transform backLeftWheelTransform;
     [SerializeField] private Transform backRightWheelTransform;
+
+    [SerializeField] public GameObject regularWheelGroup;
+    [SerializeField] public WheelCollider frontLeftRegularWheelCollider;
+    [SerializeField] public WheelCollider frontRightRegularWheelCollider;
+    [SerializeField] public WheelCollider backLeftRegularWheelCollider;
+    [SerializeField] public WheelCollider backRightRegularWheelCollider;
+    [SerializeField] private Transform frontLeftRegularWheelTransform;
+    [SerializeField] private Transform frontRightRegularWheelTransform;
+    [SerializeField] private Transform backLeftRegularWheelTransform;
+    [SerializeField] private Transform backRightRegularWheelTransform;
+
+    [SerializeField] public GameObject bigWheelGroup;
+    [SerializeField] public WheelCollider frontLeftBigWheelCollider;
+    [SerializeField] public WheelCollider frontRightBigWheelCollider;
+    [SerializeField] public WheelCollider backLeftBigWheelCollider;
+    [SerializeField] public WheelCollider backRightBigWheelCollider;
+    [SerializeField] private Transform frontLeftBigWheelTransform;
+    [SerializeField] private Transform frontRightBigWheelTransform;
+    [SerializeField] private Transform backLeftBigWheelTransform;
+    [SerializeField] private Transform backRightBigWheelTransform;
 
     Color thatPurpleyColor;
 
@@ -383,6 +402,7 @@ public class CarController : MonoBehaviour
             engineRPM = (backLeftWheelCollider.rpm + backRightWheelCollider.rpm) / 2f * transmissionForce;
         }
 
+        //4 SPEED TRANSMISSION
         if (transmissionSelection == 0)
         {
             if (engineRPM >= maxRPM)
@@ -441,6 +461,7 @@ public class CarController : MonoBehaviour
             }
         }
 
+        //6 SPEED TRANSMISSION
         if (transmissionSelection == 1)
         {
             if (engineRPM >= maxRPM)
@@ -510,7 +531,76 @@ public class CarController : MonoBehaviour
                 }
             }
         }
+        //6 SPEED SPORT
+        if (transmissionSelection == 2)
+        {
+            if (engineRPM >= maxRPM)
+            {
+                if (currentGear < gearNumber)
+                {
+                    currentGear++;
 
+                    switch (currentGear)
+                    {
+                        case 2:
+                            transmissionForce = 3f;
+                            break;
+                        case 3:
+                            transmissionForce = 2f;
+                            break;
+                        case 4:
+                            transmissionForce = 1.3f;
+                            break;
+                        case 5:
+                            transmissionForce = .7f;
+                            break;
+                        case 6:
+                            transmissionForce = .01f;
+                            break;
+                    }
+                }
+                else
+                {
+                    currentGear = 6;
+                    transmissionForce = .01f;
+                }
+            }
+            if (engineRPM <= minRPM)
+            {
+                if (currentGear > 1)
+                {
+                    currentGear--;
+
+                    switch (currentGear)
+                    {
+                        case 1:
+                            transmissionForce = 3.5f;
+                            break;
+                        case 2:
+                            transmissionForce = 3f;
+                            break;
+                        case 3:
+                            transmissionForce = 2f;
+                            break;
+                        case 4:
+                            transmissionForce = 1.3f;
+                            break;
+                        case 5:
+                            transmissionForce = .7f;
+                            break;
+                    }
+                }
+                if (engineRPM < 0)
+                {
+                    transmissionForce = 3.5f;
+                }
+                else
+                {
+                    currentGear = 1;
+                    transmissionForce = 3.5f;
+                }
+            }
+        }
     }
 
     private void ApplyBraking()
@@ -951,6 +1041,37 @@ public class CarController : MonoBehaviour
             //    transform.forward = Vector3.MoveTowards(carForward, velocityForward, .1f);
             //    //Vector3.Lerp(carForward, velocityForward, .9f);
             //}
+        }
+
+        if (passiveSelection == 2)
+        {
+            regularWheelGroup.SetActive(false);
+            bigWheelGroup.SetActive(true);
+
+            frontLeftWheelCollider = frontLeftBigWheelCollider;
+            frontRightWheelCollider = frontRightBigWheelCollider;
+            backLeftWheelCollider = backLeftBigWheelCollider;
+            backRightWheelCollider = backRightBigWheelCollider;
+
+            frontLeftWheelTransform = frontLeftBigWheelTransform;
+            frontRightWheelTransform = frontRightBigWheelTransform;
+            backLeftWheelTransform = backLeftBigWheelTransform;
+            backRightWheelTransform = backRightBigWheelTransform;
+        }
+        else
+        {
+            regularWheelGroup.SetActive(true);
+            bigWheelGroup.SetActive(false);
+
+            frontLeftWheelCollider = frontLeftRegularWheelCollider;
+            frontRightWheelCollider = frontRightRegularWheelCollider;
+            backLeftWheelCollider = backLeftRegularWheelCollider;
+            backRightWheelCollider = backRightRegularWheelCollider;
+
+            frontLeftWheelTransform = frontLeftRegularWheelTransform;
+            frontRightWheelTransform = frontRightRegularWheelTransform;
+            backLeftWheelTransform = backLeftRegularWheelTransform;
+            backRightWheelTransform = backRightRegularWheelTransform;
         }
     }
 

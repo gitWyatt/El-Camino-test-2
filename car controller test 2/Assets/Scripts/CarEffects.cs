@@ -6,14 +6,6 @@ public class CarEffects : MonoBehaviour
 {
     [SerializeField] public GameObject carBody;
 
-    [SerializeField] public TrailRenderer frontLeftTireMarks;
-    [SerializeField] public TrailRenderer frontRightTireMarks;
-    [SerializeField] public TrailRenderer backLeftTireMarks;
-    [SerializeField] public TrailRenderer backRightTireMarks;
-
-    [SerializeField] public TrailRenderer backLeftFireMarks;
-    [SerializeField] public TrailRenderer backRightFireMarks;
-
     [SerializeField] public TrailRenderer leftAkiraTrailCamino;
     [SerializeField] public TrailRenderer rightAkiraTrailCamino;
     [SerializeField] public TrailRenderer leftAkiraTrailAE86;
@@ -79,6 +71,32 @@ public class CarEffects : MonoBehaviour
     [SerializeField] float sideSlipThreshold;
     [SerializeField] float frontSlipThreshold;
 
+    [SerializeField] public TrailRenderer frontLeftTireMarks;
+    [SerializeField] public TrailRenderer frontRightTireMarks;
+    [SerializeField] public TrailRenderer backLeftTireMarks;
+    [SerializeField] public TrailRenderer backRightTireMarks;
+
+    [SerializeField] public TrailRenderer backLeftFireMarks;
+    [SerializeField] public TrailRenderer backRightFireMarks;
+
+    //regular
+    [SerializeField] public TrailRenderer frontLeftRegularTireMarks;
+    [SerializeField] public TrailRenderer frontRightRegularTireMarks;
+    [SerializeField] public TrailRenderer backLeftRegularTireMarks;
+    [SerializeField] public TrailRenderer backRightRegularTireMarks;
+
+    [SerializeField] public TrailRenderer backLeftRegularFireMarks;
+    [SerializeField] public TrailRenderer backRightRegularFireMarks;
+
+    //big
+    [SerializeField] public TrailRenderer frontLeftBigTireMarks;
+    [SerializeField] public TrailRenderer frontRightBigTireMarks;
+    [SerializeField] public TrailRenderer backLeftBigTireMarks;
+    [SerializeField] public TrailRenderer backRightBigTireMarks;
+
+    [SerializeField] public TrailRenderer backLeftBigFireMarks;
+    [SerializeField] public TrailRenderer backRightBigFireMarks;
+
     private void Awake()
     {
         carController = GameObject.Find("Camino").GetComponent<CarController>();
@@ -136,6 +154,28 @@ public class CarEffects : MonoBehaviour
             case 1:
                 wings.SetActive(true);
                 break;
+            case 2:
+                wings.SetActive(false);
+                break;
+        }
+
+        if (carController.passiveSelection == 2)
+        {
+            frontLeftTireMarks = frontLeftBigTireMarks;
+            frontRightTireMarks = frontRightBigTireMarks;
+            backLeftTireMarks = backLeftBigTireMarks;
+            backRightTireMarks = backRightBigTireMarks;
+            backLeftFireMarks = backLeftBigFireMarks;
+            backRightFireMarks = backRightBigFireMarks;
+        }
+        else
+        {
+            frontLeftTireMarks = frontLeftRegularTireMarks;
+            frontRightTireMarks = frontRightRegularTireMarks;
+            backLeftTireMarks = backLeftRegularTireMarks;
+            backRightTireMarks = backRightRegularTireMarks;
+            backLeftFireMarks = backLeftRegularFireMarks;
+            backRightFireMarks = backRightRegularFireMarks;
         }
     }
 

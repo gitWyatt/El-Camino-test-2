@@ -250,6 +250,9 @@ public class PauseMenu : MonoBehaviour
             case 1:
                 carController.transmissionSelection = 1;
                 break;
+            case 2:
+                carController.transmissionSelection = 2;
+                break;
         }
 
         PlayerPrefs.SetInt("transmissionIndex", transmissionIndex);
@@ -342,6 +345,9 @@ public class PauseMenu : MonoBehaviour
                 break;
             case 1:
                 carController.passiveSelection = 1;
+                break;
+            case 2:
+                carController.passiveSelection = 2;
                 break;
         }
 
