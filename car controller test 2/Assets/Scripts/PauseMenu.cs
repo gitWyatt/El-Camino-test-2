@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using Cinemachine;
 
 public class PauseMenu : MonoBehaviour
 {
@@ -14,11 +15,15 @@ public class PauseMenu : MonoBehaviour
 
     CarEffects carEffects;
 
+    [SerializeField] CinemachineVirtualCamera CMCamera;
+    CinemachineTransposer cameraTransposer;
+
     public GameObject pauseMenuUI;
 
     public GameObject pauseFirstButton;
 
     public TMPro.TMP_Dropdown BodyDropDown;
+    public TMPro.TMP_Dropdown CameraDropDown;
 
     public TMPro.TMP_Dropdown QualityDropDown;
     public TMPro.TMP_Dropdown FPSDropDown;
@@ -44,6 +49,11 @@ public class PauseMenu : MonoBehaviour
         EventSystem.current.SetSelectedGameObject(null);
         //set a new selected object
         EventSystem.current.SetSelectedGameObject(pauseFirstButton);
+
+        //hacky fix for closest follow camera reset bug
+        int camera = PlayerPrefs.GetInt("cameraIndex", 1);
+        CameraDropDown.value = camera;
+        SetCamera(camera);
     }
 
     private void OnEnable()
@@ -55,6 +65,9 @@ public class PauseMenu : MonoBehaviour
     {
         int body = PlayerPrefs.GetInt("bodyIndex", 0);
         BodyDropDown.value = body;
+
+        int camera = PlayerPrefs.GetInt("cameraIndex", 1);
+        CameraDropDown.value = camera;
 
         int quality = PlayerPrefs.GetInt("qualityIndex", 0);
         QualityDropDown.value = quality;
@@ -205,6 +218,51 @@ public class PauseMenu : MonoBehaviour
         }
 
         PlayerPrefs.SetInt("bodyIndex", bodyIndex);
+    }
+    public void SetCamera(int cameraIndex)
+    {
+        cameraTransposer = CMCamera.GetComponent<CinemachineVirtualCamera>().GetCinemachineComponent<CinemachineTransposer>();
+        switch (cameraIndex)
+        {
+            case 0:
+                cameraTransposer.m_BindingMode = CinemachineTransposer.BindingMode.LockToTargetWithWorldUp;
+                cameraTransposer.m_FollowOffset.y = 7f;
+                cameraTransposer.m_FollowOffset.z = -20f;
+                cameraTransposer.m_YawDamping = 1f;
+                break;
+            case 1:
+                cameraTransposer.m_BindingMode = CinemachineTransposer.BindingMode.LockToTargetWithWorldUp;
+                cameraTransposer.m_FollowOffset.y = 13f;
+                cameraTransposer.m_FollowOffset.z = -25f;
+                cameraTransposer.m_YawDamping = 1f;
+                break;
+            case 2:
+                cameraTransposer.m_BindingMode = CinemachineTransposer.BindingMode.LockToTargetWithWorldUp;
+                cameraTransposer.m_FollowOffset.y = 16f;
+                cameraTransposer.m_FollowOffset.z = -30f;
+                cameraTransposer.m_YawDamping = 1f;
+                break;
+            case 3:
+                cameraTransposer.m_BindingMode = CinemachineTransposer.BindingMode.SimpleFollowWithWorldUp;
+                cameraTransposer.m_FollowOffset.y = 7f;
+                cameraTransposer.m_FollowOffset.z = -20f;
+                cameraTransposer.m_YawDamping = 0f;
+                break;
+            case 4:
+                cameraTransposer.m_BindingMode = CinemachineTransposer.BindingMode.SimpleFollowWithWorldUp;
+                cameraTransposer.m_FollowOffset.y = 13f;
+                cameraTransposer.m_FollowOffset.z = -25f;
+                cameraTransposer.m_YawDamping = 0f;
+                break;
+            case 5:
+                cameraTransposer.m_BindingMode = CinemachineTransposer.BindingMode.SimpleFollowWithWorldUp;
+                cameraTransposer.m_FollowOffset.y = 16f;
+                cameraTransposer.m_FollowOffset.z = -30f;
+                cameraTransposer.m_YawDamping = 0f;
+                break;
+        }
+
+        PlayerPrefs.SetInt("cameraIndex", cameraIndex);
     }
     public void SetPoweredAxle(int axleIndex)
     {
