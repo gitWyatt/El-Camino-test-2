@@ -997,6 +997,7 @@ GameObject:
   - component: {fileID: 221942836}
   - component: {fileID: 221942835}
   - component: {fileID: 221942834}
+  - component: {fileID: 221942837}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1063,13 +1064,47 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 221942833}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -10}
+  m_LocalPosition: {x: 960, y: 540, z: -1390.049}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &221942837
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 221942833}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72ece51f2901e7445ab60da3685d6b5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ShowDebugText: 0
+  m_ShowCameraFrustum: 1
+  m_IgnoreTimeScale: 0
+  m_WorldUpOverride: {fileID: 0}
+  m_UpdateMethod: 2
+  m_BlendUpdateMethod: 1
+  m_DefaultBlend:
+    m_Style: 1
+    m_Time: 2
+    m_CustomCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+  m_CustomBlends: {fileID: 0}
+  m_CameraCutEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_CameraActivatedEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &253239115
 GameObject:
   m_ObjectHideFlags: 0
@@ -5170,6 +5205,7 @@ GameObject:
   - component: {fileID: 1514879135}
   - component: {fileID: 1514879134}
   - component: {fileID: 1514879138}
+  - component: {fileID: 1514879139}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -5267,13 +5303,16 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1514879133}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8a3ac98e789ceb24cbdc241d62ec9699, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CMCamera: {fileID: 0}
   pauseMenuUI: {fileID: 1084389037}
   pauseFirstButton: {fileID: 80060961}
+  BodyDropDown: {fileID: 0}
+  CameraDropDown: {fileID: 0}
   QualityDropDown: {fileID: 209144327}
   FPSDropDown: {fileID: 1611872405}
   AxleDropDown: {fileID: 388032497}
@@ -5284,7 +5323,26 @@ MonoBehaviour:
   SteeringAngleDropDown: {fileID: 0}
   SuspensionDropDown: {fileID: 0}
   HandbrakeDropDown: {fileID: 0}
+  PassiveDropDown: {fileID: 0}
   UseButtonDropDown: {fileID: 0}
+  fpsCheck: 60
+--- !u!114 &1514879139
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1514879133}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8700b0e867f5b5340a22f98f4339c855, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pauseMenuUI: {fileID: 1084389037}
+  pauseFirstButton: {fileID: 80060961}
+  QualityDropDown: {fileID: 209144327}
+  FPSDropDown: {fileID: 1611872405}
+  fpsCheck: 60
 --- !u!1 &1515219583
 GameObject:
   m_ObjectHideFlags: 0

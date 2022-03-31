@@ -3101,6 +3101,7 @@ MonoBehaviour:
   HandbrakeDropDown: {fileID: 4017779751370253124}
   PassiveDropDown: {fileID: 6173779615495599976}
   UseButtonDropDown: {fileID: 4017779753129730248}
+  fpsCheck: 60
 --- !u!1 &1321667445
 GameObject:
   m_ObjectHideFlags: 0
@@ -15820,6 +15821,14 @@ PrefabInstance:
       propertyPath: m_Navigation.m_SelectOnRight
       value: 
       objectReference: {fileID: 1106791503}
+    - target: {fileID: 8667348515540812675, guid: 131daab36bec5f840802ec3ac6d03510, type: 3}
+      propertyPath: m_Options.m_Options.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8667348515540812675, guid: 131daab36bec5f840802ec3ac6d03510, type: 3}
+      propertyPath: m_Options.m_Options.Array.data[5].m_Text
+      value: Vsync
+      objectReference: {fileID: 0}
     - target: {fileID: 8667348515540812675, guid: 131daab36bec5f840802ec3ac6d03510, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 

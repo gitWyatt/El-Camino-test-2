@@ -40,6 +40,8 @@ public class PauseMenu : MonoBehaviour
     public TMPro.TMP_Dropdown PassiveDropDown;
     public TMPro.TMP_Dropdown UseButtonDropDown;
 
+    public int fpsCheck = 60;
+
     private void Awake()
     {
         carController = GameObject.Find("Camino").GetComponent<CarController>();
@@ -54,6 +56,9 @@ public class PauseMenu : MonoBehaviour
         int camera = PlayerPrefs.GetInt("cameraIndex", 1);
         CameraDropDown.value = camera;
         SetCamera(camera);
+
+        QualitySettings.vSyncCount = 0;
+        Application.targetFrameRate = 60;
     }
 
     private void OnEnable()
@@ -63,6 +68,9 @@ public class PauseMenu : MonoBehaviour
 
     private void Start()
     {
+        QualitySettings.vSyncCount = 0;
+        Application.targetFrameRate = 60;
+
         int body = PlayerPrefs.GetInt("bodyIndex", 0);
         BodyDropDown.value = body;
 
@@ -75,23 +83,33 @@ public class PauseMenu : MonoBehaviour
         int axle = PlayerPrefs.GetInt("axleIndex", 1);
         AxleDropDown.value = axle;
 
-        int fps = PlayerPrefs.GetInt("fpsIndex", 1);
+        int fps = PlayerPrefs.GetInt("fpsIndex", 5);
         switch (fps)
         {
             case 0:
-                Application.targetFrameRate = 30;
+                QualitySettings.vSyncCount = 0;
+                fpsCheck = 30;
+                Application.targetFrameRate = fpsCheck;
                 break;
             case 1:
-                Application.targetFrameRate = 60;
+                QualitySettings.vSyncCount = 0;
+                fpsCheck = 60;
+                Application.targetFrameRate = fpsCheck;
                 break;
             case 2:
-                Application.targetFrameRate = 72;
+                QualitySettings.vSyncCount = 0;
+                fpsCheck = 72;
+                Application.targetFrameRate = fpsCheck;
                 break;
             case 3:
-                Application.targetFrameRate = 120;
+                QualitySettings.vSyncCount = 0;
+                fpsCheck = 120;
+                Application.targetFrameRate = fpsCheck;
                 break;
             case 4:
-                Application.targetFrameRate = 144;
+                QualitySettings.vSyncCount = 0;
+                fpsCheck = 144;
+                Application.targetFrameRate = fpsCheck;
                 break;
         }
         FPSDropDown.value = fps;
@@ -123,11 +141,16 @@ public class PauseMenu : MonoBehaviour
         int useButton = PlayerPrefs.GetInt("useButtonIndex", 0);
         UseButtonDropDown.value = useButton;
 
-        Debug.Log("fuck");
+        Debug.Log(fps);
     }
 
     private void Update()
     {
+        //if(Application.targetFrameRate != fpsCheck)
+        //{
+        //    Application.targetFrameRate = fpsCheck;
+        //}
+
         //Debug.Log(FPSDropDown.value);
         //Debug.Log(PlayerPrefs.GetInt("fpsIndex"));
     }
@@ -444,7 +467,8 @@ public class PauseMenu : MonoBehaviour
     }
     public void SetFPS(int fpsIndex)
     {
-        switch(fpsIndex)
+        QualitySettings.vSyncCount = 0;
+        switch (fpsIndex)
         {
             case 0:
                 Application.targetFrameRate = 30;
