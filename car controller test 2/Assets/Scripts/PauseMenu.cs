@@ -317,6 +317,9 @@ public class PauseMenu : MonoBehaviour
             case 1:
                 carController.motorSelection = 1;
                 break;
+            case 2:
+                carController.motorSelection = 2;
+                break;
         }
 
         PlayerPrefs.SetInt("motorIndex", motorIndex);
@@ -334,6 +337,9 @@ public class PauseMenu : MonoBehaviour
             case 2:
                 carController.transmissionSelection = 2;
                 break;
+            case 3:
+                carController.transmissionSelection = 3;
+                break;
         }
 
         PlayerPrefs.SetInt("transmissionIndex", transmissionIndex);
@@ -344,12 +350,15 @@ public class PauseMenu : MonoBehaviour
         {
             case 0:
                 carController.tireSelection = 0;
+                carEffects.SetStandardTire();
                 break;
             case 1:
                 carController.tireSelection = 1;
+                carEffects.SetOffRoadTire();
                 break;
             case 2:
                 carController.tireSelection = 2;
+                carEffects.SetDriftTire();
                 break;
         }
 
@@ -395,6 +404,9 @@ public class PauseMenu : MonoBehaviour
                 break;
             case 2:
                 carController.suspensionSelection = 2;
+                break;
+            case 3:
+                carController.suspensionSelection = 3;
                 break;
         }
 

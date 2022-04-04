@@ -137,6 +137,7 @@ public class CarController : MonoBehaviour
     [SerializeField] private float bouncySuspensionValue;
     [SerializeField] private float middleSuspensionValue;
     [SerializeField] private float sturdySuspensionValue;
+    [SerializeField] private float rockSuspensionValue;
 
     [SerializeField] private float controlPitchFactor;
     [SerializeField] private float controlYawFactor;
@@ -308,6 +309,12 @@ public class CarController : MonoBehaviour
                 blSpring.damper = sturdySuspensionValue;
                 brSpring.damper = sturdySuspensionValue;
                 break;
+            case 3:
+                flSpring.damper = rockSuspensionValue;
+                frSpring.damper = rockSuspensionValue;
+                blSpring.damper = rockSuspensionValue;
+                brSpring.damper = rockSuspensionValue;
+                break;
         }
 
         frontLeftWheelCollider.suspensionSpring = flSpring;
@@ -358,6 +365,9 @@ public class CarController : MonoBehaviour
                 break;
             case 1:
                 motorForce = racingMotorForce;
+                break;
+            case 2:
+                motorForce = 500f;
                 break;
         }
         
@@ -587,6 +597,77 @@ public class CarController : MonoBehaviour
                             break;
                         case 5:
                             transmissionForce = .7f;
+                            break;
+                    }
+                }
+                if (engineRPM < 0)
+                {
+                    transmissionForce = 3.5f;
+                }
+                else
+                {
+                    currentGear = 1;
+                    transmissionForce = 3.5f;
+                }
+            }
+        }
+
+        //6 SPEED DRIFT
+        if (transmissionSelection == 3)
+        {
+            if (engineRPM >= maxRPM)
+            {
+                if (currentGear < gearNumber)
+                {
+                    currentGear++;
+
+                    switch (currentGear)
+                    {
+                        case 2:
+                            transmissionForce = 2f;
+                            break;
+                        case 3:
+                            transmissionForce = 1f;
+                            break;
+                        case 4:
+                            transmissionForce = .5f;
+                            break;
+                        case 5:
+                            transmissionForce = .1f;
+                            break;
+                        case 6:
+                            transmissionForce = .00001f;
+                            break;
+                    }
+                }
+                else
+                {
+                    currentGear = 6;
+                    transmissionForce = .00001f;
+                }
+            }
+            if (engineRPM <= minRPM)
+            {
+                if (currentGear > 1)
+                {
+                    currentGear--;
+
+                    switch (currentGear)
+                    {
+                        case 1:
+                            transmissionForce = 4f;
+                            break;
+                        case 2:
+                            transmissionForce = 2f;
+                            break;
+                        case 3:
+                            transmissionForce = 1f;
+                            break;
+                        case 4:
+                            transmissionForce = .5f;
+                            break;
+                        case 5:
+                            transmissionForce = .1f;
                             break;
                     }
                 }

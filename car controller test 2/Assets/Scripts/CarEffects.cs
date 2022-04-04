@@ -6,6 +6,16 @@ public class CarEffects : MonoBehaviour
 {
     [SerializeField] public GameObject carBody;
 
+    [SerializeField] public GameObject flWheel;
+    [SerializeField] public GameObject frWheel;
+    [SerializeField] public GameObject rlWheel;
+    [SerializeField] public GameObject rrWheel;
+
+    [SerializeField] public GameObject flBigWheel;
+    [SerializeField] public GameObject frBigWheel;
+    [SerializeField] public GameObject rlBigWheel;
+    [SerializeField] public GameObject rrBigWheel;
+
     [SerializeField] public TrailRenderer leftAkiraTrailCamino;
     [SerializeField] public TrailRenderer rightAkiraTrailCamino;
     [SerializeField] public TrailRenderer leftAkiraTrailAE86;
@@ -39,6 +49,13 @@ public class CarEffects : MonoBehaviour
     [SerializeField] private Material fumigatorPaint;
     [SerializeField] private Mesh ae86Mesh;
     [SerializeField] private Material ae86Paint;
+
+    [SerializeField] private Mesh offRoadTireMesh;
+    [SerializeField] private Material offRoadTirePaint;
+    [SerializeField] private Mesh driftTireMesh;
+    [SerializeField] private Material driftTirePaint;
+    [SerializeField] private Mesh standardTireMesh;
+    [SerializeField] private Material standardTirePaint;
 
     CarController carController;
     
@@ -472,5 +489,66 @@ public class CarEffects : MonoBehaviour
 
         leftAkiraTrailAE86.emitting = false;
         rightAkiraTrailAE86.emitting = false;
+    }
+
+    public void SetOffRoadTire()
+    {
+        flWheel.GetComponent<MeshFilter>().mesh = offRoadTireMesh;
+        flWheel.GetComponent<Renderer>().material = offRoadTirePaint;
+        frWheel.GetComponent<MeshFilter>().mesh = offRoadTireMesh;
+        frWheel.GetComponent<Renderer>().material = offRoadTirePaint;
+        rlWheel.GetComponent<MeshFilter>().mesh = offRoadTireMesh;
+        rlWheel.GetComponent<Renderer>().material = offRoadTirePaint;
+        rrWheel.GetComponent<MeshFilter>().mesh = offRoadTireMesh;
+        rrWheel.GetComponent<Renderer>().material = offRoadTirePaint;
+
+        flBigWheel.GetComponent<MeshFilter>().mesh = offRoadTireMesh;
+        flBigWheel.GetComponent<Renderer>().material = offRoadTirePaint;
+        frBigWheel.GetComponent<MeshFilter>().mesh = offRoadTireMesh;
+        frBigWheel.GetComponent<Renderer>().material = offRoadTirePaint;
+        rlBigWheel.GetComponent<MeshFilter>().mesh = offRoadTireMesh;
+        rlBigWheel.GetComponent<Renderer>().material = offRoadTirePaint;
+        rrBigWheel.GetComponent<MeshFilter>().mesh = offRoadTireMesh;
+        rrBigWheel.GetComponent<Renderer>().material = offRoadTirePaint;
+    }
+    public void SetDriftTire()
+    {
+        flWheel.GetComponent<MeshFilter>().mesh = driftTireMesh;
+        flWheel.GetComponent<Renderer>().material = driftTirePaint;
+        frWheel.GetComponent<MeshFilter>().mesh = driftTireMesh;
+        frWheel.GetComponent<Renderer>().material = driftTirePaint;
+        rlWheel.GetComponent<MeshFilter>().mesh = driftTireMesh;
+        rlWheel.GetComponent<Renderer>().material = driftTirePaint;
+        rrWheel.GetComponent<MeshFilter>().mesh = driftTireMesh;
+        rrWheel.GetComponent<Renderer>().material = driftTirePaint;
+
+        flBigWheel.GetComponent<MeshFilter>().mesh = driftTireMesh;
+        flBigWheel.GetComponent<Renderer>().material = driftTirePaint;
+        frBigWheel.GetComponent<MeshFilter>().mesh = driftTireMesh;
+        frBigWheel.GetComponent<Renderer>().material = driftTirePaint;
+        rlBigWheel.GetComponent<MeshFilter>().mesh = driftTireMesh;
+        rlBigWheel.GetComponent<Renderer>().material = driftTirePaint;
+        rrBigWheel.GetComponent<MeshFilter>().mesh = driftTireMesh;
+        rrBigWheel.GetComponent<Renderer>().material = driftTirePaint;
+    }
+    public void SetStandardTire()
+    {
+        flWheel.GetComponent<MeshFilter>().mesh = standardTireMesh;
+        flWheel.GetComponent<Renderer>().material = standardTirePaint;
+        frWheel.GetComponent<MeshFilter>().mesh = standardTireMesh;
+        frWheel.GetComponent<Renderer>().material = standardTirePaint;
+        rlWheel.GetComponent<MeshFilter>().mesh = standardTireMesh;
+        rlWheel.GetComponent<Renderer>().material = standardTirePaint;
+        rrWheel.GetComponent<MeshFilter>().mesh = standardTireMesh;
+        rrWheel.GetComponent<Renderer>().material = standardTirePaint;
+
+        flBigWheel.GetComponent<MeshFilter>().mesh = standardTireMesh;
+        flBigWheel.GetComponent<Renderer>().material = standardTirePaint;
+        frBigWheel.GetComponent<MeshFilter>().mesh = standardTireMesh;
+        frBigWheel.GetComponent<Renderer>().material = standardTirePaint;
+        rlBigWheel.GetComponent<MeshFilter>().mesh = standardTireMesh;
+        rlBigWheel.GetComponent<Renderer>().material = standardTirePaint;
+        rrBigWheel.GetComponent<MeshFilter>().mesh = standardTireMesh;
+        rrBigWheel.GetComponent<Renderer>().material = standardTirePaint;
     }
 }

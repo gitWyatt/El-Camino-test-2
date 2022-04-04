@@ -13994,7 +13994,8 @@ MonoBehaviour:
   bouncySuspensionValue: 4500
   middleSuspensionValue: 5500
   sturdySuspensionValue: 6500
-  controlPitchFactor: 20000
+  rockSuspensionValue: 10000
+  controlPitchFactor: 30000
   controlYawFactor: 18000
   controlRollFactor: 23000
   frontLeftWheelCollider: {fileID: 1428129085900252539}
@@ -14036,6 +14037,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   carBody: {fileID: 6156427878405151861}
+  flWheel: {fileID: 1428129086069956932}
+  frWheel: {fileID: 1006546253368607086}
+  rlWheel: {fileID: 1428129086507531167}
+  rrWheel: {fileID: 1428129085842851345}
+  flBigWheel: {fileID: 1030377262309679971}
+  frBigWheel: {fileID: 1632660160803116046}
+  rlBigWheel: {fileID: 5640348233099023613}
+  rrBigWheel: {fileID: 9151566738875522528}
   leftAkiraTrailCamino: {fileID: 111124055}
   rightAkiraTrailCamino: {fileID: 1759964192}
   leftAkiraTrailAE86: {fileID: 995187096277758329}
@@ -14062,6 +14071,12 @@ MonoBehaviour:
   fumigatorPaint: {fileID: 2100000, guid: 4c4698123c365b34a8a454abe31bce2c, type: 2}
   ae86Mesh: {fileID: 6302564365713339395, guid: b21f45108f9dcd34687a6cbd1e4e11c6, type: 3}
   ae86Paint: {fileID: 2100000, guid: b6c0c2be80e97ab43ac547cf9c23d274, type: 2}
+  offRoadTireMesh: {fileID: 6544679403947562748, guid: 2d7177e11167f5646ac0ef6c80660ff5, type: 3}
+  offRoadTirePaint: {fileID: -8274133419916619345, guid: 2d7177e11167f5646ac0ef6c80660ff5, type: 3}
+  driftTireMesh: {fileID: -6935502421334319570, guid: 1b8501a6f1abe524fb9fe309498ed9e9, type: 3}
+  driftTirePaint: {fileID: 9185737683893222716, guid: 1b8501a6f1abe524fb9fe309498ed9e9, type: 3}
+  standardTireMesh: {fileID: -6296406880743504499, guid: 044b399169f53b64480641ddedc5abae, type: 3}
+  standardTirePaint: {fileID: 2100000, guid: 2aebbd2b752e8614c91f07f31ff3f15d, type: 2}
   fireMarksSwitch: 0
   akiraTrailSwitch: 1
   wingsOpen: 0
@@ -15766,6 +15781,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1106791503}
     - target: {fileID: 2870517059727222565, guid: 131daab36bec5f840802ec3ac6d03510, type: 3}
+      propertyPath: m_Options.m_Options.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2870517059727222565, guid: 131daab36bec5f840802ec3ac6d03510, type: 3}
+      propertyPath: m_Options.m_Options.Array.data[3].m_Text
+      value: Dwayne Johnson
+      objectReference: {fileID: 0}
+    - target: {fileID: 2870517059727222565, guid: 131daab36bec5f840802ec3ac6d03510, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1428129085908563068}
@@ -15787,11 +15810,15 @@ PrefabInstance:
       objectReference: {fileID: 1106791503}
     - target: {fileID: 4526401183811881757, guid: 131daab36bec5f840802ec3ac6d03510, type: 3}
       propertyPath: m_Options.m_Options.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4526401183811881757, guid: 131daab36bec5f840802ec3ac6d03510, type: 3}
       propertyPath: m_Options.m_Options.Array.data[2].m_Text
       value: 6 Gears Sport
+      objectReference: {fileID: 0}
+    - target: {fileID: 4526401183811881757, guid: 131daab36bec5f840802ec3ac6d03510, type: 3}
+      propertyPath: m_Options.m_Options.Array.data[3].m_Text
+      value: 6 Gears Drift
       objectReference: {fileID: 0}
     - target: {fileID: 4526401183811881757, guid: 131daab36bec5f840802ec3ac6d03510, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -15809,6 +15836,14 @@ PrefabInstance:
       propertyPath: m_Navigation.m_SelectOnRight
       value: 
       objectReference: {fileID: 1106791503}
+    - target: {fileID: 6366916160156102339, guid: 131daab36bec5f840802ec3ac6d03510, type: 3}
+      propertyPath: m_Options.m_Options.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6366916160156102339, guid: 131daab36bec5f840802ec3ac6d03510, type: 3}
+      propertyPath: m_Options.m_Options.Array.data[2].m_Text
+      value: test motor
+      objectReference: {fileID: 0}
     - target: {fileID: 6366916160156102339, guid: 131daab36bec5f840802ec3ac6d03510, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
