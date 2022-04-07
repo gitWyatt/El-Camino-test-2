@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
+using Cinemachine;
 
 public class CarController : MonoBehaviour
 {
@@ -28,6 +29,7 @@ public class CarController : MonoBehaviour
     private float horizontalInput;
     private float verticalInput;
     private float gas;
+    private float cameraInput;
     private float currentSteerAngle;
     private float currentBrakeForce;
     private float brakeCheck;
@@ -35,6 +37,7 @@ public class CarController : MonoBehaviour
     private float flipCheck;
     private float engageCheck;
 
+    public bool isCamming;
     public bool isBraking;
     public bool isReversing;
     private bool isResetting;
@@ -46,8 +49,8 @@ public class CarController : MonoBehaviour
 
     double mph;
     private float engineRPM;
-    private float minRPM = 1000f;
-    private float maxRPM = 2550f;
+    [SerializeField] private float minRPM;
+    [SerializeField] private float maxRPM;
     private float currentGear = 1f;
     private float gearNumber = 6f;
     private float[] gearRatio = new float[] { 2.66f, 1.78f, 1.3f, 1f, .7f, .1f };  //unneeded as of now.  top gear used to be .5f instead of .1f
@@ -172,6 +175,9 @@ public class CarController : MonoBehaviour
     [SerializeField] private Transform backLeftBigWheelTransform;
     [SerializeField] private Transform backRightBigWheelTransform;
 
+    [SerializeField] CinemachineVirtualCamera CMCamera;
+    CinemachineTransposer cameraTransposer;
+
     Color thatPurpleyColor;
 
     private void Awake()
@@ -215,6 +221,7 @@ public class CarController : MonoBehaviour
         HandleRotation();
         HandlePassive();
         HandleSpeedometer();
+        HandleCamera();
         UpdateWheels();
         ResetCheck();
         DebugToConsole();
@@ -227,6 +234,8 @@ public class CarController : MonoBehaviour
         horizontalInput = controls.Player.Steering.ReadValue<float>();
         verticalInput = controls.Player.UpDown.ReadValue<float>();
         gas = controls.Player.ForwardReverse.ReadValue<float>();
+
+        cameraInput = controls.Player.Camera.ReadValue<float>();
 
         brakeCheck = controls.Player.Handbrake.ReadValue<float>();
         resetCheck = controls.Player.Reset.ReadValue<float>();
@@ -254,6 +263,10 @@ public class CarController : MonoBehaviour
         if (engageCheck > .5)
         { isEngaging = true; }
         else { isEngaging = false; }
+
+        if (Mathf.Abs(cameraInput) > .1f)
+        { isCamming = true; }
+        else { isCamming = false; }
     }
 
     void CheckGround()
@@ -1269,7 +1282,17 @@ public class CarController : MonoBehaviour
             }
         }
     }
+    private void HandleCamera()
+    {
+        if (isCamming)
+        {
+            cameraTransposer = CMCamera.GetComponent<CinemachineVirtualCamera>().GetCinemachineComponent<CinemachineTransposer>();
+        }
+        else
+        {
 
+        }
+    }
     private void UpdateWheels()
     {
         UpdateSingleWheel(frontLeftWheelCollider, frontLeftWheelTransform);

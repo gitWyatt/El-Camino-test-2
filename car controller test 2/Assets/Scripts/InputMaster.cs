@@ -98,6 +98,15 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Camera"",
+                    ""type"": ""Value"",
+                    ""id"": ""cf430b62-be16-4c60-8509-cd1439ce22ab"",
+                    ""expectedControlType"": ""Stick"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -408,6 +417,17 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
                     ""action"": ""Engage"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8a0ee1b8-dd0b-4b27-b636-e11d68a99879"",
+                    ""path"": ""<Gamepad>/rightStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Camera"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -579,6 +599,7 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
         m_Player_Pause = m_Player.FindAction("Pause", throwIfNotFound: true);
         m_Player_Handbrake = m_Player.FindAction("Handbrake", throwIfNotFound: true);
         m_Player_Engage = m_Player.FindAction("Engage", throwIfNotFound: true);
+        m_Player_Camera = m_Player.FindAction("Camera", throwIfNotFound: true);
         // Menu
         m_Menu = asset.FindActionMap("Menu", throwIfNotFound: true);
         m_Menu_Directional = m_Menu.FindAction("Directional", throwIfNotFound: true);
@@ -649,6 +670,7 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Pause;
     private readonly InputAction m_Player_Handbrake;
     private readonly InputAction m_Player_Engage;
+    private readonly InputAction m_Player_Camera;
     public struct PlayerActions
     {
         private @InputMaster m_Wrapper;
@@ -661,6 +683,7 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
         public InputAction @Pause => m_Wrapper.m_Player_Pause;
         public InputAction @Handbrake => m_Wrapper.m_Player_Handbrake;
         public InputAction @Engage => m_Wrapper.m_Player_Engage;
+        public InputAction @Camera => m_Wrapper.m_Player_Camera;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -694,6 +717,9 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
                 @Engage.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnEngage;
                 @Engage.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnEngage;
                 @Engage.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnEngage;
+                @Camera.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCamera;
+                @Camera.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCamera;
+                @Camera.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCamera;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -722,6 +748,9 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
                 @Engage.started += instance.OnEngage;
                 @Engage.performed += instance.OnEngage;
                 @Engage.canceled += instance.OnEngage;
+                @Camera.started += instance.OnCamera;
+                @Camera.performed += instance.OnCamera;
+                @Camera.canceled += instance.OnCamera;
             }
         }
     }
@@ -787,6 +816,7 @@ public partial class @InputMaster : IInputActionCollection2, IDisposable
         void OnPause(InputAction.CallbackContext context);
         void OnHandbrake(InputAction.CallbackContext context);
         void OnEngage(InputAction.CallbackContext context);
+        void OnCamera(InputAction.CallbackContext context);
     }
     public interface IMenuActions
     {
